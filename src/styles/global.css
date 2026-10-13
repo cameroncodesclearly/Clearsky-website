@@ -1,0 +1,128 @@
+/* Clear Sky design tokens. Palette and type follow the CSC Northstar brand file. */
+@import '@fontsource/poppins/latin-400.css';
+@import '@fontsource/poppins/latin-500.css';
+@import '@fontsource/poppins/latin-600.css';
+
+@font-face {
+  font-family: 'Stapelia Sans';
+  src: url('/fonts/StapeliaHirsutaSans.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Stapelia Script';
+  src: url('/fonts/StapeliaHirsutaScript.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+:root {
+  --blue: #1a5276;
+  --blue-deep: #12394f;
+  --mustard: #d9b435;
+  --sky: #85c1e9;
+  --sky-tint: #d3e8f6;
+  --butter: #f7dc6f;
+  --paper: #f1f2f4;
+  --white: #ffffff;
+  --ink: #1a1307;
+  --ink-soft: #4a4438;
+  --line: rgba(26, 19, 7, 0.12);
+
+  --font-display: 'Stapelia Sans', 'Poppins', system-ui, sans-serif;
+  --font-script: 'Stapelia Script', 'Brush Script MT', cursive;
+  --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --step--1: clamp(0.83rem, 0.8rem + 0.15vw, 0.9rem);
+  --step-0: clamp(1rem, 0.96rem + 0.2vw, 1.1rem);
+  --step-1: clamp(1.2rem, 1.1rem + 0.5vw, 1.45rem);
+  --step-2: clamp(1.5rem, 1.3rem + 1vw, 2.1rem);
+  --step-3: clamp(2rem, 1.6rem + 2vw, 3.2rem);
+  --step-4: clamp(2.6rem, 1.8rem + 4vw, 5.4rem);
+  --step-5: clamp(3.2rem, 2rem + 6.5vw, 8rem);
+
+  --gutter: clamp(1rem, 0.6rem + 2vw, 2.5rem);
+  --max: 1320px;
+  --radius: 18px;
+  --radius-lg: 28px;
+  --shadow: 0 18px 50px -24px rgba(18, 57, 79, 0.45);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+}
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--step-0);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img, video, svg { display: block; max-width: 100%; height: auto; }
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.2em; }
+a:hover { color: var(--blue); }
+:focus-visible { outline: 3px solid var(--mustard); outline-offset: 3px; border-radius: 4px; }
+::selection { background: var(--butter); color: var(--ink); }
+
+h1, h2, h3, h4 { margin: 0 0 0.5em; line-height: 1.08; letter-spacing: -0.01em; }
+h1, .display { font-family: var(--font-display); font-weight: 400; font-size: var(--step-4); }
+h2 { font-family: var(--font-body); font-weight: 600; font-size: var(--step-3); color: var(--blue); }
+h3 { font-family: var(--font-body); font-weight: 600; font-size: var(--step-1); }
+p { margin: 0 0 1em; max-width: 68ch; }
+.script { font-family: var(--font-script); color: var(--mustard); font-weight: 400; letter-spacing: 0; }
+.eyebrow { font-size: var(--step--1); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--blue); margin: 0 0 1rem; }
+.lede { font-size: var(--step-1); color: var(--ink-soft); line-height: 1.5; }
+.muted { color: var(--ink-soft); }
+
+.container { width: min(100% - 2 * var(--gutter), var(--max)); margin-inline: auto; }
+.section { padding-block: clamp(4rem, 3rem + 6vw, 9rem); }
+.section--tight { padding-block: clamp(3rem, 2rem + 4vw, 6rem); }
+.section--dark { background: var(--blue-deep); color: var(--paper); }
+.section--dark h2 { color: var(--paper); }
+.section--dark .eyebrow { color: var(--butter); }
+.section--dark .muted, .section--dark .lede { color: rgba(241, 242, 244, 0.78); }
+.section--dark a:hover { color: var(--butter); }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 0.6em;
+  padding: 0.95em 1.6em; border-radius: 999px; border: 1.5px solid transparent;
+  font: 600 var(--step-0)/1 var(--font-body); text-decoration: none; cursor: pointer;
+  transition: transform 0.4s var(--ease), background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn--primary { background: var(--blue); color: var(--paper); }
+.btn--primary:hover { background: var(--ink); color: var(--paper); }
+.btn--gold { background: var(--mustard); color: var(--ink); }
+.btn--gold:hover { background: var(--butter); color: var(--ink); }
+.btn--ghost { border-color: currentColor; color: inherit; background: transparent; }
+.btn--ghost:hover { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.section--dark .btn--ghost:hover { background: var(--paper); border-color: var(--paper); color: var(--ink); }
+.btn svg { width: 1em; height: 1em; transition: transform 0.4s var(--ease); }
+.btn:hover svg { transform: translateX(3px); }
+
+.tag { display: inline-block; padding: 0.3em 0.8em; border-radius: 999px; background: var(--sky-tint); color: var(--blue-deep); font-size: var(--step--1); font-weight: 500; }
+
+.visually-hidden { position: absolute !important; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.skip-link { position: absolute; left: 1rem; top: -4rem; z-index: 100; background: var(--ink); color: var(--paper); padding: 0.7rem 1rem; border-radius: 8px; }
+.skip-link:focus { top: 1rem; }
+
+/* Reveal-on-scroll, enabled by a small script in BaseLayout. */
+.js [data-reveal] { opacity: 0; transform: translateY(28px); transition: opacity 0.9s var(--ease), transform 0.9s var(--ease); }
+.js [data-reveal].is-visible { opacity: 1; transform: none; }
+
+/* Long-form content from Keystatic (case-study stories and journal posts). */
+.prose { font-size: var(--step-0); }
+.prose > * + * { margin-top: 1.1em; }
+.prose h2 { font-size: var(--step-2); margin-top: 2em; }
+.prose h3 { margin-top: 1.6em; }
+.prose img { border-radius: var(--radius); margin-block: 2rem; }
+.prose blockquote { margin: 2rem 0; padding-left: 1.4rem; border-left: 4px solid var(--mustard); font-size: var(--step-1); }
+.prose ul, .prose ol { padding-left: 1.3em; }
+.prose a { color: var(--blue); }
