@@ -1,0 +1,268 @@
+{
+  "company_name": "Clear Sky Creations, LLC (brand name \"Clear Sky\"; sub-brands Clear Sky Sports and Clear Sky Beauty exist; \"Directed By Cameron\" is Cameron's personal brand)",
+  "tagline": "\"Content unmatched\" (the Northstar example for the Stapelia Hirsuta Script accent; it also closes the Playbook values line \"We won't stop until we give our clients what they deserve, content unmatched\"). Other approved lines: \"Tell the truth beautifully.\" (Directed By Cameron/CSC One Pager power phrase), \"Strategic Storytellers\", \"Premium Branding for Premium Business\", \"Build your Brand\" (Clear Sky Portal One Pager key phrases). User-requested homepage line for the replaced section: \"We make content creation a breeze.\"",
+  "positioning": "Playbook one-sentence positioning: \"Businesses struggle with being known, gaining trust, and separating themselves from the competition. Through organic social media and brand positioning, Clear Sky Creations helps you accomplish all three.\" Supporting messaging (DBC/CSC One Pager, Aug 2026): \"You do not need louder content. You need a clearer story. Clear Sky helps brands tell the truth beautifully through video, content strategy, creative direction, and ethical marketing systems.\" Website proof line used in current copy drafts (Clear Sky About Us Feature doc and Portal One Pager): \"Our clients average 4x more impressions in three months, which means cheaper ads, pre-sold leads, and real room to scale.\" (verify before publishing). Mission (Playbook): \"We help brands who are an agent for positive change in the world, as well as the ethically-sound people who run them, grow with great content.\" Vision: \"We see a future where the businesses we help grow and the content we produce improve people's lives.\" Identity: \"We like to have fun while we optimize, produce, and leverage creative ideas.\" Three active ICPs: medium-sized multi-location service businesses ($1M to $10M), funded startups (Seed to Series B), and marketing agencies lacking production support. Competitive edge (Portal One Pager): story-first strategy built on the founder's real story; values-driven partnership with transparent process; premium quality with AI-automated workflows (\"Creatives create, AI automates.\").",
+  "colors": [
+    {
+      "name": "Dark Blue (Primary)",
+      "hex": "#1a5276",
+      "usage": "Primary brand color. Headers, H2, authority, alternate H1 color. RGB 26, 82, 118. Derived check: about 7.4:1 contrast on #f1f2f4, safe for text."
+    },
+    {
+      "name": "Mustard / Gold (Accent)",
+      "hex": "#d9b435",
+      "usage": "Primary accent. Script flourishes, highlights, footer rules. RGB 217, 180, 53. Derived check: about 1.8:1 on #f1f2f4 (fails for text on light backgrounds); about 9:1 on #1a1307 (fine on dark)."
+    },
+    {
+      "name": "Light Blue (Secondary)",
+      "hex": "#85c1e9",
+      "usage": "Supporting fills only, never leads. RGB 133, 193, 233."
+    },
+    {
+      "name": "Light Yellow (Secondary)",
+      "hex": "#f7dc6f",
+      "usage": "Supporting fills only, never leads. RGB 247, 220, 111."
+    },
+    {
+      "name": "Off-White (Background)",
+      "hex": "#f1f2f4",
+      "usage": "Backgrounds. RGB 241, 242, 244."
+    },
+    {
+      "name": "Near-Black (Text)",
+      "hex": "#1a1307",
+      "usage": "Body text and default H1 color. RGB 26, 19, 7. Primary pairing rule: dark blue + mustard on off-white or near-black."
+    },
+    {
+      "name": "Clear Sky Sports accent (sub-brand only)",
+      "hex": "#d4a373",
+      "usage": "Sub-brand accent listed on the Notion Brand Assets & Style page. Not for the main Clear Sky site unless the sub-brand is featured."
+    },
+    {
+      "name": "Clear Sky Beauty accent (sub-brand only)",
+      "hex": "#7e102c",
+      "usage": "Sub-brand accent listed on the Notion Brand Assets & Style page. Not for the main Clear Sky site unless the sub-brand is featured."
+    }
+  ],
+  "fonts": [
+    {
+      "name": "Stapelia Hirsuta Sans",
+      "usage": "H1 / page titles. Regular weight. Near-black #1a1307 default, dark blue #1a5276 alternate. Northstar says web artifacts use Stapelia webfonts.",
+      "source": "Custom display face (folder name 'MCO-Stapelia-Hirsuta'). Drive web fonts: woff2 1UWRr4NCC5RKXaN8cERSAtECPrGUKjakF, woff 1GbgL1JZ0-LM-QSrKseTIFquNCD1G7Zw7 (folder 'Web Fonts' 17wr51gicO0LbZa-YF_naSg1jfzqJyN-w). OTF 1nvqysMzfkgI2tIImOIOcF2UHMpXfvC7F. Also attached on Notion Brand Assets & Style page."
+    },
+    {
+      "name": "Stapelia Hirsuta Script",
+      "usage": "Accent only: taglines, pull quotes, flourishes (e.g. 'content unmatched'). Mustard #d9b435. Use sparingly, never as a workhorse.",
+      "source": "Drive web fonts: woff2 1jRTeHqCtb21l72Dr4m9UFN8MDgQIkENP, woff 1I1oF5FouhpOwtEWiTln28US5Ut5w60t3. OTF 1J3UEQ51t2GlvRb3p5HlIFLhkDTg6Iyl2. Also attached on Notion Brand Assets & Style page."
+    },
+    {
+      "name": "Poppins SemiBold",
+      "usage": "H2 / H3 / sub-headers. H2 in dark blue #1a5276.",
+      "source": "Google Fonts (free). TTFs also in Drive folder 'Poppins' 1GIApxDoEKuqqaP4kw0i4_H5MSw8ontU2 and on the Notion Brand Assets & Style page."
+    },
+    {
+      "name": "Poppins Regular / SemiBold",
+      "usage": "Body copy, near-black #1a1307. Also the safe fallback when Stapelia is unavailable.",
+      "source": "Google Fonts (free)."
+    }
+  ],
+  "logo_assets": [
+    {
+      "description": "Clear Sky Creations_Logo 1.svg. The only vector SVG logo found, from the current site's Webflow asset export (folder 'webflow-assets-2026-02-10'). Best starting point for the web header. Colorway and mark (stacked vs horizontal) not verified.",
+      "location": "Drive / webflow-assets-2026-02-10 (folder 1uD4VzK2PufGhZnVTq3l-sPShkAhPxi8S)",
+      "drive_file_id": "1Ur4_nIXtAN7zUDiHkZAL1wqYpoe9Ug3N"
+    },
+    {
+      "description": "clearsky_logo-favicon.png (current site favicon, 1.2 KB)",
+      "location": "Drive / webflow-assets-2026-02-10",
+      "drive_file_id": "1_BhmtBHfrHTYXoPVK64mmAxs49evFYNX"
+    },
+    {
+      "description": "clearsky_logo-webclip.png (current site Apple touch / webclip icon)",
+      "location": "Drive / webflow-assets-2026-02-10",
+      "drive_file_id": "10LdSsK2gDGI18Sl3j83OAgw7VUFrovkT"
+    },
+    {
+      "description": "Primary stacked logo, DARK BLUE colorway PNG (use on light backgrounds per Northstar)",
+      "location": "Drive / Clear Sky Branding 2025 / Logo Variations (folder 11KKO6aIq6KakbkS9VATHEfkFXkgNfDVC)",
+      "drive_file_id": "1RmZPcStd_NF9470a1pbafuwdE5iCWB4t"
+    },
+    {
+      "description": "Primary stacked logo, WHITE colorway PNG (use on dark or photo/video backgrounds per Northstar)",
+      "location": "Drive / Clear Sky Branding 2025 / Logo Variations",
+      "drive_file_id": "1XZThcVZ1Ucz2LXWB4_cyXXCSRu7XfuHg"
+    },
+    {
+      "description": "Primary stacked logo, BLACK colorway PNG",
+      "location": "Drive / Clear Sky Branding 2025 / Logo Variations",
+      "drive_file_id": "1MKERaet_xAqhhk7FjTuSkydh7zPzHL0y"
+    },
+    {
+      "description": "Primary stacked logo, LIGHT BLUE colorway PNG",
+      "location": "Drive / Clear Sky Branding 2025 / Logo Variations",
+      "drive_file_id": "16af_IFeTdMjDyAqWImTn8btsO9atIRYg"
+    },
+    {
+      "description": "Primary stacked logo, LIGHT YELLOW colorway PNG (duplicate also in webflow export: 1o8kZdr69z_Qv0jFnsWJiAE106dP03VtO)",
+      "location": "Drive / Clear Sky Branding 2025 / Logo Variations",
+      "drive_file_id": "1olS2n15JNgeGAHCfBIFspj36H87TEV-y"
+    },
+    {
+      "description": "Primary stacked logo, MUSTARD YELLOW colorway PNG",
+      "location": "Drive / Clear Sky Branding 2025 / Logo Variations",
+      "drive_file_id": "1xqINjHGxmYbN_CNbrR1WiiD0oypJKvus"
+    },
+    {
+      "description": "Master logo Illustrator file (CLEAR SKY_logo_.ai), source for exporting per-colorway SVGs",
+      "location": "Drive / Clear Sky Branding 2025 / Logo Variations",
+      "drive_file_id": "1Fv2GglaVfSlaDIl9J5-kUlmELRPQxJw4"
+    },
+    {
+      "description": "Smaller re-exported colorway PNGs (modified 2025-11-05, about 32 to 40 KB, lighter for web): dark blue 1kN6CH3mACfqr26NXbR8XLU23uiJbo-t_, white 1USIjdQo3kg1DmreD-bm8iNx0BkCRTgw8 (also 1aRSRAfAYo7r9Xvk0UbX4_YjBjP4F88vJ), black 1H0ubfqBZKaZ2vDWmhLinXQXlmw4oDL1U, light blue 1xDjw_ZcKU8fjzlbH6FqBCIZJGiP5g58r, mustard 1_8S_XmuMU8VPPtSQWcgu32Lt-hRSVe86. No light yellow in this set.",
+      "location": "Drive folder 10Cbv9bbKQnEJ_nV4CLc31kh5Kg1yDIWN",
+      "drive_file_id": "1kN6CH3mACfqr26NXbR8XLU23uiJbo-t_"
+    },
+    {
+      "description": "Horizontal logo PNG (also AI 1nrRgHFGXVmS7trbFvahtx_P3X6ZbDx0Y, PDF 1PiFWlnHjHcV3RYL0lCMMZU2sBJ_1eVXF, EPS RGB 1dyr8-SLmm7JsnLEcuKqVubvQh0gPOnaK). Good candidate for the nav bar.",
+      "location": "Drive / Clear Sky Branding 2025 / other-cool-and-timeless-logo-b / CLEAR SKY logo _horizontal (folder 1BKiRWDVwq-84GPeGqYSvsBGZ6ehrt-oI)",
+      "drive_file_id": "15m0NXfUxHfLkofgcD1-JVVDIXNuDUnRp"
+    },
+    {
+      "description": "Horizontal reversed logo PNG for dark backgrounds (also AI 1yKaeisYwl1c0bJYgK5aFEcbIepw8GGbL, PDF 1jXwVJRoCPVvLbXDOfJ62kL7Cw61PlgFn, EPS RGB 12Fmsk64xq7lJfpAzB6VOZ6Fxl3j4pvgV)",
+      "location": "Drive / Clear Sky Branding 2025 / other-cool-and-timeless-logo-b / CLEAR SKY logo _horizontal_REV (folder 1wVTzp0erUfxOw9ZvEqhKWykmGs451UTb)",
+      "drive_file_id": "1VFCSwtsZqV5A6r45TcBr6RoZZ4CC_Z7p"
+    },
+    {
+      "description": "Icon mark PNG (also AI 1XRZ8DV3QpgeanmeoPDAcAcLQyfqL-muD, PDF 1vxcTHvBUGQ5V9CK5ru2ryZzbqLJnUmS8, EPS 10PuiDbzRNgHe_WO6qdOuJt0VW9J937MG). Use for favicon/social avatar regeneration.",
+      "location": "Drive / Clear Sky Branding 2025 / other-cool-and-timeless-logo-b / CLEAR SKY logo icon (folder 18jTPJqxU_Y9N51xnNB8sxHzSaaNzMnnw)",
+      "drive_file_id": "1bDnsacHKhutiPu7eq_r_jP69N1RxXZy3"
+    },
+    {
+      "description": "Icon mark reversed PNG (also AI 1nZJtYCy0_1NmTUBIfzavM62PWE6eKxGz, PDF 1iPnF5R53VboZ0wKZRXl-MKEUH9rhvBsH)",
+      "location": "Drive / Clear Sky Branding 2025 / other-cool-and-timeless-logo-b / CLEAR SKY logo icon(rev) (folder 1OGHem7msBvVywZQ7vqhbhFbbruMoGEC_)",
+      "drive_file_id": "1W0eYRwi7mv83flVKuE5RrWkv9y2NEFhI"
+    },
+    {
+      "description": "Mustard Yellow icon, transparent PNG",
+      "location": "Drive / Clear Sky Branding 2025 (folder 1yIPzhttdl8GxbAwEb5MWT_2IfA7S6WLt)",
+      "drive_file_id": "1rbwNUhw2USzaO0K1BJP9WOXK5o0ThYMu"
+    },
+    {
+      "description": "Reversed primary logo PNG (2025-07-17 set; PDF 1oVNpEKjJkclec6j6SWnjZeVIv9eb6R0x, EPS 1CRpRF1F77w3n7DQlPim2uVb0VCS6IuxL)",
+      "location": "Drive folder 1oU9eYFAoexiMBRU_uPDlCZOsNlQVRF1v",
+      "drive_file_id": "1OeYYACd7n_Aii04S_7QzJk-kNzA-8OG0"
+    },
+    {
+      "description": "Animated logo with alpha channel, 'Clear Sky logo ALPHA V1.mov' (2024, about 131 MB, would need transcoding to WebM/MP4 for web)",
+      "location": "Drive folder 1ji975RgA8BE1nmcjUmfTjVtB0qHipwHc",
+      "drive_file_id": "1kbxWeXIXytzzS9ihWXqFvFIq2wAsu5mp"
+    },
+    {
+      "description": "Brand source PSD 'Clear Sky-Logo, Font, Color + Priority.psd' (the file the palette and fonts were extracted from per Playbook v1.1)",
+      "location": "Drive / Clear Sky Branding 2025 / Assets (folder 1btbTQPxfGtUtnZ16aE1gyXMPmw9wNmSB)",
+      "drive_file_id": "1U3C0tdbbewLoBdpOFq-KdymAEdSdApDU"
+    },
+    {
+      "description": "Notion copies of all six colorways plus horizontal, horizontal reversed, icon, icon reversed PNGs, a Social Icon, and four cinematic backgrounds (Blue, Dark, Gold, Light; source PSDs in Drive Assets folder: Light 1HgTWFL1uLlV1a_tSb6ef-n7FcfeuWp2q, Dark 1BRz7qYaVuMCTkBfFippvFf56di8xQmB-, Gold 12YdufvegWk0N3n8_dYvOGrf7MnZglpHB)",
+      "location": "Notion: Mission Control / Client Dashboard / Companies / Clear Sky / Clear Sky Portal / Brand Assets & Style (https://app.notion.com/p/316a696c1a53817295a4e4d017a32a48)"
+    },
+    {
+      "description": "NOT approved colorways: CLEAR SKY_logo_Red.png (1OoRn-aWGoAVHCuOPRlraTE6dJUCqKI3K, 1hVMJUatxNvR46_pPZ0uT2DAjqF_XMZH9) and CLEAR SKY_logo_Brown.png (1AQKP18wWbvGW0-0eUHgxoqat1VzjRSko). Exist in Drive but are outside the six documented colorways; do not use without Cameron's OK.",
+      "location": "Drive / Clear Sky Branding 2025 / Logo Variations and folder 10Cbv9bbKQnEJ_nV4CLc31kh5Kg1yDIWN"
+    }
+  ],
+  "voice_rules": [
+    "Overall: simple, lighthearted, fun but professional, confident, grounded. Human to human. If Cameron read it aloud it should sound like him talking to a friend who happens to be a client.",
+    "Website and email tone (Clear Sky Portal One Pager): clear, confident, conversational copy; story-driven About pages; benefit-first CTAs without hype or false urgency. Inform and invite, never pressure.",
+    "Lead with the point, then add context. Keep it short. Every line must carry a real claim or a real move; cut transitional fluff.",
+    "ABSOLUTE: no em-dashes anywhere on the site. Use periods, commas, or a new sentence.",
+    "Banned constructions: 'X instead of (opposite)'; 'no X, no Y, just Z'; 'we promote X, not Y'; assert-then-negate-the-inverse ('Do this. Not that.'). No redundant phrasing, no filler adjectives.",
+    "No words chosen to sound smart: avoid 'leverage synergies', 'circle back', 'bandwidth', 'game-changer', 'take it to the next level', 'growth hacking', 'synergy', 'hacks', 'content factory', 'cheap', guaranteed or viral promises, fear-based urgency, guru or hype-marketer energy.",
+    "Power words (Portal One Pager): Experienced, Premium, Value, Authenticity, Integrity, Partner. Key phrases: 'Build your Brand', 'Creatives create, AI automates.', 'Premium Branding for Premium Business', 'Get un-stuck', 'Strategic Storytellers', 'Tell the truth beautifully', 'Proof over claims'.",
+    "Warm, specific enthusiasm. Exclamation points are the default warm punctuation in client-facing CTAs ('Let me know!', 'Reach out to Clear Sky today!').",
+    "Faith shows up grounded, never preachy: honest, humble, invitational. Values in action, not a costume.",
+    "Never talk poorly about competitors. Never overhype; let the work and case studies sell (grounded confidence).",
+    "Second person, present tense, contractions. Talk like one person to one person.",
+    "Signature/footer standard: 'Clear Sky Creations // www.clearskycreations.com'. Email signature: 'Cameron Bennett / Owner // www.clearskycreations.com'.",
+    "Visual-voice rules from Northstar: light blue and light yellow support, never lead; script font is a flourish only; dark blue logo on light backgrounds, white logo on dark/photo backgrounds; mustard rule in footer."
+  ],
+  "services": [
+    "Consulting & Strategy (pre-production): brand voice creation, social media consultation, 30-min meeting with Cameron, social strategy (16-idea minimum), production planning, project management, creative direction, producing, copywriting",
+    "Production: full crew video production (director, producer, cinematography, 2-ton lighting kit, grips, gaffers, hair/makeup, locations). Packages: Social, Prime, Curated, Spotlight, Campaign, Event (add-on, not primary), Remote, Studio, Real Estate. Photography (headshots, facility, lifestyle, event) via partners",
+    "Social Media Management: content days (shoot, edit, deliver) and content retainers (shoot, edit, and post on the client's behalf), often hybrid",
+    "Paid Media / Marketing: Meta and Google ad management, design and concept newsletters, drip email campaigns",
+    "Post-Production: 4 edit tiers up to motion graphics; hero videos, short-form ads, testimonials, VSLs, website landers, sizzle/process videos, cutdowns, social reels, color, photo retouching",
+    "Design & Web: logo creation, brand guidelines, landing/conversion pages, website launch and copy, e-commerce setup",
+    "Packaged offerings: CS Academy Program, CS Social Coaching, CS Strategy, CS Social (monthly full social retainer), CS Core (6-month hero package), CS Social + Core, CS Complete, CS Remote, Local by Clear Sky, CS Web Dev, CS Staffing",
+    "Ruled out (do not list on site): live events as primary offering, live broadcasting, weddings, music videos, films, internal-only communications work"
+  ],
+  "about": {
+    "founder": "Cameron Bennett, Owner & Creative Director (strategist, lead creative, lead salesperson and pitch developer). Personal brand: Directed By Cameron.",
+    "story": "Cameron studied video production and filmmaking. Out of college he built an Instagram account doing baseball content ('Baseball Bro', grew to about 50K followers during COVID per the Clear Sky Portal One Pager), found organic success, and got obsessed with what makes people stop scrolling. When COVID hit and digital became mandatory for businesses, he launched Clear Sky Creations. The business is built on doing what is needed to bring light into the world, not on 'more, more, more.' As a man of faith, Cameron runs CSC so his work reflects the same principles he holds in his faith, which is why CSC takes on projects that matter and refuses to keep clients happy with empty promises. Values (Playbook): integrity, honesty, diligence, and quality, 'content unmatched.' Alternate values set (Portal One Pager, Aug 2026): Transparency, Integrity, Selflessness, Love, Focus. Stands for justice, ethics, selflessness, hard work that earns respect, understanding before solving. Editorial principles: raw, story-driven editing; emotional and personal connection; people over posts; familiar but new.",
+    "team": [
+      "Cameron Bennett, Owner & Creative Director",
+      "Maica Suan, Executive Assistant (scheduling, project management, social media management, simple graphic design)",
+      "Elliot Schwartz, Client Success Manager / Account Director",
+      "Jason Ronell de Leon, Lead Editor",
+      "Furkan Emre Uzel, Senior Video Editor (hero videos, commercials, color grading)",
+      "Melvin Maglaque, Junior Editor / Assistant Editor",
+      "Contractors: Jeff Harrington (website design + paid ads lead), Kris Schweitzer (2D/3D animator), Eduardo 'Eddie' (junior strategist + on-set actor), Ryan Juarez, Fidel Melara, Alfred Scott",
+      "Team photos: Drive folder '2026-06-07 Clear Sky team portraits' (1d9FJunEMh1_qIHyElSaSeMJv5eLom4FC), subfolders '01 Go-to picks' (14biJzpewI6MbKIyCdSddTTXj3ZQq4rZx) and 'Talent, team & portraits' (1tMMXLB3IxFgH1wxhSNmwDxsQ2W4Krm0x); individual files not reviewed"
+    ]
+  },
+  "contact": {
+    "email": "cameron@clearskycreations.com",
+    "phone": "310 561 4050 (from the extended email signature in CSC_Voice; invoices format it +1 (310) 561-4050)",
+    "website": "www.clearskycreations.com",
+    "location": "California. The invoice header (Invoice 0979, Jul 2026) shows 'Clear Sky Creations LLC, 3940 E Gilman St, CA'. Confirm with Cameron before publishing a street address. Client work is concentrated in the LA / South Bay area (Torrance, Downey, Palos Verdes Chamber), which is an inference, not a stated service area.",
+    "socials": [
+      "Instagram: www.instagram.com/clearskycreations",
+      "TikTok: https://www.tiktok.com/@clearskycreations",
+      "YouTube: https://www.youtube.com/@clearskycreations",
+      "LinkedIn: https://www.linkedin.com/company/clear-sky-creations",
+      "Facebook: https://www.facebook.com/clearskycreationsco"
+    ]
+  },
+  "sources": [
+    "Skill: anthropic-skills:csc-northstar (v1.0, May 23 2026): palette, typography, logos, document standard",
+    "Skill: anthropic-skills:csc-voice (v1.2, May 22 2026): tone, guardrails, sign-offs",
+    "Skill: anthropic-skills:csc-playbook (v1.2, Sep 22 2026): identity, ICPs, services, team, operations, brand summary",
+    "Notion: AI Instructions: CSC Northstar, live page (https://app.notion.com/p/3f2a696c1a5381dfb633de6738d41c11), matches the skill",
+    "Notion: AI Instructions: CSC Voice, live page (https://app.notion.com/p/3f2a696c1a53815fa648cd4dfc3618fd), matches the skill",
+    "Notion: AI Instructions: CSC Playbook, live page (https://app.notion.com/p/3f2a696c1a538196be00fecd35158e5f), matches the skill",
+    "Notion: Clear Sky Portal / Brand Assets & Style (https://app.notion.com/p/316a696c1a53817295a4e4d017a32a48, edited 2026-09-24): authoritative palette with RGB, typography table, logo marks and colorways, sub-brand accents, font files, cinematic backgrounds",
+    "Notion: Clear Sky Portal (https://app.notion.com/p/316a696c1a53810bab0ddbfc557abe78)",
+    "Notion: Clear Sky Portal / Online Presence / Links database (collection://316a696c-1a53-81f1-a3e3-000bcd66b58c): social and website URLs",
+    "Notion: Clear Sky Portal / Brand Voice / One Pager (https://app.notion.com/p/316a696c1a53812cae42ef2f552a459e, edited 2026-08-18): mission, audience, personality, website tone, power words, key phrases, competitive edge, example scripts",
+    "Notion: Directed By Cameron Playbook / Brand Voice / One Pager (https://app.notion.com/p/2a9a696c1a5381f5a19af20c22106ba5, Status Done, 2026-08-21): combined CSC/DBC voice, messaging position, power phrases, avoid list",
+    "Notion (superseded, 2025): Style Guide & Brand Assets: Clear Sky Creations (https://app.notion.com/p/233a696c1a5381a79fb6fa6ba6904b68) and Style Guide & Brand Assets: Clear Sky (https://app.notion.com/p/233a696c1a53811598decd3c1097ff96)",
+    "Google Doc: Clear Sky About Us Feature (1ujTuf6H69pL9SB8uvgWaSA1P1YvJuvL34aS3XhR2bBg): website About copy draft",
+    "Google Drive: Clear Sky Branding 2025 folder (1yAXKJ57o5Q-PrC9ezS_IYIYDzi4nTBk-) with Logo Variations, other-cool-and-timeless-logo-b, Fonts, Assets subfolders",
+    "Google Drive: webflow-assets-2026-02-10 folder (1uD4VzK2PufGhZnVTq3l-sPShkAhPxi8S): current-site asset export (SVG logo, favicon, webclip, client logos, icons)",
+    "Google Drive: logo colorway folder 10Cbv9bbKQnEJ_nV4CLc31kh5Kg1yDIWN; logo_rev folder 1oU9eYFAoexiMBRU_uPDlCZOsNlQVRF1v; animated logo 1kbxWeXIXytzzS9ihWXqFvFIq2wAsu5mp",
+    "Google Drive: Invoice 0979.pdf (1gyDRSZpSvrGQoZ37xnXKoZ5ZuKesYRFr) search snippet only, for the business address line",
+    "Google Drive search 'title contains logo' also returned Logo Release.docx (1MbrHXNTSyZbtFwdMpHx4tIiiV0Ir8AQK, 1vqwX_cL2KcRnS178Xdml98YwfHBqn_s_), which is a product/logo usage release form, not a CSC logo",
+    "All access was read-only. Nothing in Notion or Drive was created, edited, moved, shared, or commented on."
+  ],
+  "gaps": [
+    "No formal brand book: the Notion Brand Assets & Style page is headed 'No Brand Book' and its Brand Book embed is empty. Web-specific rules (button/link/hover/focus, form, error/success colors, spacing, dark mode) are not defined anywhere.",
+    "Stapelia Hirsuta web license not verified. The files come from an 'MCO-Stapelia-Hirsuta' package and Northstar says web artifacts use Stapelia webfonts, but no license document was found confirming self-hosted website use. Only a Regular weight exists for Sans and Script (no bold/italic).",
+    "Accessibility (derived, not from sources): mustard #d9b435 and light blue #85c1e9 fail WCAG contrast as text on off-white #f1f2f4 (about 1.8:1 for mustard). Use mustard text only on near-black/dark blue, or as non-text accents.",
+    "Web-ready vector logos: only one SVG exists (Clear Sky Creations_Logo 1.svg from the Webflow export), and its colorway and mark were not verified. Per-colorway, horizontal, and icon SVGs need exporting from the AI/EPS/PDF masters.",
+    "No Open Graph/social share image, no SVG or ICO favicon set (only a 1.2 KB PNG favicon and a webclip PNG).",
+    "Red and Brown logo variants exist in Drive outside the six documented colorways; status unknown.",
+    "Conflicting older guidance: the 2025 Notion page 'Style Guide & Brand Assets: Clear Sky Creations' lists a different, unfinished palette (#00AEEF, #003366, #FFA500, #F5F5F5, #333333) and fonts (Montserrat, Open Sans, Nunito). Treated as superseded by the Sept 2026 Brand Assets & Style page and Northstar; Cameron may want it archived.",
+    "Mission, vision, and values differ across sources (Playbook vs Clear Sky Portal One Pager vs Directed By Cameron One Pager). Cameron needs to pick the version for the website About page.",
+    "The '4x more impressions in three months' claim appears in draft copy but no supporting data source was found. Verify before publishing.",
+    "An older Google Doc 'Clear Sky Brand Voice' (2025, 1MWjyTUfMUgoC7__4RutI89d6qYm-BM7jQLZhdscXhMs) contains sample copy that breaks current CSC_Voice guardrails ('no gimmicks, just genuine connection'). Do not reuse its examples.",
+    "Case studies and testimonials were not collected in this pass, and clearskycreations.com and cm.studio were not reachable from this environment, so current site copy, page structure, and case study text were not reviewed.",
+    "Client logo display rights unverified. The Webflow export holds logos for Adidas, Evolus, Tarsus, Lapiplasty, Baseballism, Good Stuff, Endera, Sona Creative Group, Age With Vitality, d'Arnaud Athletics, OC Raw and others, plus placeholder 'logoipsum' SVGs. Sona end-client work (Evolus, Tarsus, Omada) may be white-label and need permission.",
+    "Public business address not confirmed: the only address found is the invoice header; it may not be intended for publication.",
+    "Team bios and approved headshots: a team portraits folder exists, but final selections and per-person bios were not found. Notion IDs for Elliot Schwartz and Jeff Harrington are missing in the Playbook.",
+    "Client roster and Quarter Focus in the Playbook are dated Q2 2026 (May 2026). Verify which clients and projects are current before featuring them.",
+    "Privacy policy: the Playbook requires CCPA compliance, but no privacy policy or terms text was found.",
+    "Lottie/animated assets: no free Lottie file was sourced in this pass. Drive has a Motion Array 'Cloud Logo' After Effects template (folder 1dCUbz0etMOTuatfjfi60Fhv-Ithrmv-Z, Cloud Logo Final.aep 1kEmayrcDCz59EuS8GgJ0b7-O55Jg7duO). It is not web-ready, and its web license under Motion Array is unverified. The animated alpha logo .mov (2024) would need transcoding.",
+    "Sub-brands (Clear Sky Sports, Clear Sky Beauty) have accent colors and logo folders, but there is no guidance on whether they appear on the main site.",
+    "Brand photography and 'Design Examples / Web' sections on the Notion Brand Assets page are empty. The Photo & Video Library database was not reviewed."
+  ]
+}

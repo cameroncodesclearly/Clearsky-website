@@ -47,7 +47,11 @@ Requirements from Cameron:
 - [x] Brand system (docs/discovery/brand.json)
 - [x] Astro + Keystatic scaffold, content schema, design tokens, base layout
 - [x] Placeholder breeze Lottie generator (to be restyled)
-- [ ] Discovery: copy, case studies, Drive inventory, Notion final-status checks (docs/discovery/)
+- [x] Drive client folder list, 60 folders (docs/discovery/drive-client-folders.json)
+- [ ] Discovery still to run: existing copy and case studies, per-folder media inventory, Notion final-status checks with a skeptic pass.
+      Run scripts/discovery-workflow.js with the Workflow tool. It is read-only. brand.json is already done, so the brand agent can be dropped.
+- [ ] Logos and fonts: download from the Drive IDs listed in docs/discovery/brand.json into src/assets/brand and public/fonts.
+      Confirm the Stapelia Hirsuta web license first (unverified). Poppins is self-hosted from @fontsource.
 - [ ] cm.studio structure capture with REA
 - [ ] Pages: home, work, case study, services, about, journal, post, contact, 404
 - [ ] Videos: transcode verified finals to web loops
