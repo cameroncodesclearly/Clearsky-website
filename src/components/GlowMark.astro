@@ -1,0 +1,96 @@
+---
+// "Clear Sky" wordmark in yellow with a mist that streams off the letters.
+// The mist follows the live wind at a clear-sky spot and trails behind the
+// page as it scrolls, like haze left in the air behind something moving.
+interface Props { text?: string }
+const { text = 'Clear Sky' } = Astro.props;
+---
+<span class="glow-mark" data-glow-mark>{text}</span>
+
+<style>
+  .glow-mark {
+    display: inline-block;
+    font-family: var(--font-display);
+    font-size: clamp(1.35rem, 1.1rem + 0.9vw, 1.9rem);
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
+    white-space: nowrap;
+    color: var(--butter);
+    /* A fine blue edge keeps yellow letters readable on the off-white pages. */
+    -webkit-text-stroke: 1.2px var(--blue-deep);
+    paint-order: stroke fill;
+    text-shadow: 0 0 10px rgba(247, 220, 111, 0.55), 0 0 22px rgba(247, 220, 111, 0.3);
+    will-change: text-shadow;
+  }
+</style>
+
+<script>
+  // Clear-sky spots: Palm Springs, Punta Cana, the Namib, the Sahara, Atacama, Las Vegas.
+  const SPOTS: [number, number][] = [[33.8, -116.5], [23.7, -69.5], [-24.6, 15.1], [25.0, 25.3], [-30, -70.8], [36.1, -115.1]];
+  const LAYERS = 18;
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  type Wind = { speed: number; dir: number };
+  let wind: Wind = { speed: 12, dir: 270 };
+
+  // One forecast per visit is plenty; the sky doesn't change that fast.
+  async function pickSky(): Promise<Wind> {
+    try {
+      const cached = sessionStorage.getItem('cs-wind');
+      if (cached) return JSON.parse(cached);
+    } catch {}
+    const lat = SPOTS.map((s) => s[0]).join(), lon = SPOTS.map((s) => s[1]).join();
+    const res = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=wind_speed_10m,wind_direction_10m,weather_code,is_day`);
+    const all: { current: { wind_speed_10m: number; wind_direction_10m: number; weather_code: number; is_day: number } }[] = await res.json();
+    const clear = all.filter((x) => x.current.weather_code === 0 && x.current.is_day);
+    const pool = clear.length ? clear : all;
+    const c = pool[Math.floor(Math.random() * pool.length)].current;
+    const picked = { speed: c.wind_speed_10m, dir: c.wind_direction_10m };
+    try { sessionStorage.setItem('cs-wind', JSON.stringify(picked)); } catch {}
+    return picked;
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-glow-mark]').forEach((el) => {
+    if (reduce) return; // keep the soft static glow from the stylesheet
+
+    pickSky().then((w) => (wind = w)).catch(() => {});
+
+    let lastY = window.scrollY;
+    let scrollV = 0; // smoothed scroll speed, px per frame
+    let mistX = 0, mistY = 0; // where the trail currently points, eased toward its target
+
+    const frame = (now: number) => {
+      const t = now / 1000;
+      // Scroll speed with inertia: a flick keeps pushing the haze for a moment.
+      scrollV += (window.scrollY - lastY) * 0.3;
+      lastY = window.scrollY;
+      scrollV *= 0.9;
+
+      // Wind direction is where it blows FROM; the mist drifts the other way.
+      const rad = ((wind.dir + 180) * Math.PI) / 180;
+      const gust = 0.75 + 0.25 * Math.sin(t * 0.9) + 0.12 * Math.sin(t * 2.3 + 1.7);
+      const len = Math.min(wind.speed * 2.2, 60) * gust;
+      // Scrolling down carries the mark down through the air, so haze is left above it.
+      const targetX = Math.sin(rad) * len;
+      const targetY = -Math.cos(rad) * len - Math.max(-90, Math.min(90, scrollV * 2.4));
+      mistX += (targetX - mistX) * 0.12;
+      mistY += (targetY - mistY) * 0.12;
+
+      const layers: string[] = [];
+      for (let i = 1; i <= LAYERS; i++) {
+        const k = i / LAYERS;
+        // Each wisp wanders a little on its own so the trail never looks like a stamp.
+        const wobX = Math.sin(t * 1.7 + i * 0.8) * 3 * k;
+        const wobY = Math.cos(t * 1.3 + i * 1.1) * 2.5 * k;
+        const blur = 4 + k * 20;
+        const alpha = 0.6 * Math.pow(1 - k, 1.4);
+        layers.push(`${(mistX * k + wobX).toFixed(1)}px ${(mistY * k + wobY).toFixed(1)}px ${blur.toFixed(1)}px rgba(247, 220, 111, ${alpha.toFixed(3)})`);
+      }
+      // A tight halo stays on the letters themselves.
+      el.style.textShadow = `0 0 8px rgba(247, 220, 111, 0.6), ${layers.join(', ')}`;
+      requestAnimationFrame(frame);
+    };
+    requestAnimationFrame(frame);
+  });
+</script>

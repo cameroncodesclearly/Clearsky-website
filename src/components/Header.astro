@@ -1,5 +1,5 @@
 ---
-import Logo from './Logo.astro';
+import GlowMark from './GlowMark.astro';
 import { nav, site, publishedServices } from '../lib/site';
 
 const services = await publishedServices();
@@ -8,7 +8,7 @@ const isActive = (href: string) => href !== '/' && path.startsWith(href);
 ---
 <header class="header" data-header>
   <a class="header__logo" href="/" aria-label={`${site.name} home`}>
-    <Logo />
+    <GlowMark />
   </a>
 
   <nav class="header__nav" aria-label="Main">
@@ -71,7 +71,7 @@ const isActive = (href: string) => href !== '/' && path.startsWith(href);
     opacity: 0.92; transition: opacity 0.35s var(--ease);
   }
   .header.is-light::before { opacity: 0; }
-  .header__logo { width: 46px; color: inherit; display: block; }
+  .header__logo { display: block; justify-self: start; padding-block: 0.4rem; }
   .header__nav { display: none; }
   .header__menu-btn { justify-self: end; padding: 0.6rem 0; }
   .header__menu-btn .close-label, .menu-open .header__menu-btn .open-label { display: none; }
@@ -93,7 +93,6 @@ const isActive = (href: string) => href !== '/' && path.startsWith(href);
 
   @media (min-width: 900px) {
     .header { grid-template-columns: 1fr 2fr; }
-    .header__logo { width: 52px; }
     .header__menu-btn, .mobile-menu { display: none; }
     .header__nav { display: grid; grid-template-columns: repeat(4, 1fr); align-items: start; }
     .header__item { position: relative; }
