@@ -1,7 +1,8 @@
 ---
 // "Clear Sky" wordmark in yellow with a mist that streams off the letters.
-// The mist follows the live wind at a clear-sky spot and trails behind the
-// page as it scrolls, like haze left in the air behind something moving.
+// At rest the mist drifts left to right in uneven gusts (strength from the live
+// wind at a clear-sky spot); while scrolling it trails behind the
+// page, like haze left in the air behind something moving.
 interface Props { text?: string }
 const { text = 'Clear Sky' } = Astro.props;
 ---
@@ -17,18 +18,19 @@ const { text = 'Clear Sky' } = Astro.props;
     letter-spacing: 0.01em;
     white-space: nowrap;
     color: var(--butter);
-    /* A fine blue edge keeps yellow letters readable on the off-white pages. */
-    -webkit-text-stroke: 1.2px var(--blue-deep);
-    paint-order: stroke fill;
+    transition: color 0.35s var(--ease);
     text-shadow: 0 0 10px rgba(247, 220, 111, 0.55), 0 0 22px rgba(247, 220, 111, 0.3);
     will-change: text-shadow;
   }
+  /* Light yellow vanishes on the off-white pages; mustard stays readable there. */
+  :global(.header:not(.is-light)) .glow-mark { color: var(--mustard); }
+  :global(html.theme-blue) .glow-mark, :global(html.theme-ink) .glow-mark { color: var(--butter); }
 </style>
 
 <script>
   // Clear-sky spots: Palm Springs, Punta Cana, the Namib, the Sahara, Atacama, Las Vegas.
   const SPOTS: [number, number][] = [[33.8, -116.5], [23.7, -69.5], [-24.6, 15.1], [25.0, 25.3], [-30, -70.8], [36.1, -115.1]];
-  const LAYERS = 18;
+  const LAYERS = 22;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   type Wind = { speed: number; dir: number };
@@ -67,24 +69,34 @@ const { text = 'Clear Sky' } = Astro.props;
       lastY = window.scrollY;
       scrollV *= 0.9;
 
-      // Wind direction is where it blows FROM; the mist drifts the other way.
-      const rad = ((wind.dir + 180) * Math.PI) / 180;
-      const gust = 0.75 + 0.25 * Math.sin(t * 0.9) + 0.12 * Math.sin(t * 2.3 + 1.7);
-      const len = Math.min(wind.speed * 2.2, 60) * gust;
+      // At rest the breeze blows left to right. Its strength comes from the live
+      // wind, broken up by gusts and lulls built from out-of-step waves so the
+      // pattern never repeats exactly.
+      const base = 48 + Math.min(wind.speed, 30) * 1.4;
+      const gust =
+        0.62 +
+        0.22 * Math.sin(t * 0.53) +
+        0.14 * Math.sin(t * 1.37 + 2.1) +
+        0.09 * Math.sin(t * 3.11 + 0.4) +
+        0.05 * Math.sin(t * 7.3 + 1.3);
+      const targetX = base * Math.max(0.25, gust);
+      // Mist lifts and sinks a little as it travels, never in a straight line.
+      const lift = -4 + 5 * Math.sin(t * 0.71 + 0.9) + 2.5 * Math.sin(t * 2.2);
       // Scrolling down carries the mark down through the air, so haze is left above it.
-      const targetX = Math.sin(rad) * len;
-      const targetY = -Math.cos(rad) * len - Math.max(-90, Math.min(90, scrollV * 2.4));
-      mistX += (targetX - mistX) * 0.12;
-      mistY += (targetY - mistY) * 0.12;
+      const targetY = lift - Math.max(-90, Math.min(90, scrollV * 2.4));
+      mistX += (targetX - mistX) * 0.08;
+      mistY += (targetY - mistY) * 0.1;
 
       const layers: string[] = [];
       for (let i = 1; i <= LAYERS; i++) {
         const k = i / LAYERS;
         // Each wisp wanders a little on its own so the trail never looks like a stamp.
-        const wobX = Math.sin(t * 1.7 + i * 0.8) * 3 * k;
-        const wobY = Math.cos(t * 1.3 + i * 1.1) * 2.5 * k;
-        const blur = 4 + k * 20;
-        const alpha = 0.6 * Math.pow(1 - k, 1.4);
+        const wobX = (Math.sin(t * 1.7 + i * 0.8) * 3 + Math.sin(t * 0.6 + i * 2.3) * 2) * k;
+        const wobY = (Math.cos(t * 1.3 + i * 1.1) * 3 + Math.sin(t * 2.9 + i * 0.5) * 1.5) * k;
+        const blur = 4 + k * 20 + Math.sin(t * 1.1 + i) * 2 * k;
+        // Wisps thin out unevenly, so some patches of haze linger longer than others.
+        const patch = 0.8 + 0.2 * Math.sin(t * 0.9 + i * 1.7);
+        const alpha = 0.5 * Math.pow(1 - k, 0.9) * patch;
         layers.push(`${(mistX * k + wobX).toFixed(1)}px ${(mistY * k + wobY).toFixed(1)}px ${blur.toFixed(1)}px rgba(247, 220, 111, ${alpha.toFixed(3)})`);
       }
       // A tight halo stays on the letters themselves.
