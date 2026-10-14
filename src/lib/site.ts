@@ -51,7 +51,7 @@ export const formatDate = (d: Date) =>
 // Video links. Editors paste a normal Vimeo or YouTube link; the site works out
 // the embed URLs and a poster.
 export interface VideoRef {
-  provider: 'vimeo' | 'youtube';
+  provider: 'vimeo' | 'youtube' | 'instagram';
   id: string;
   hash?: string;
 }
@@ -62,11 +62,14 @@ export function parseVideo(url?: string | null): VideoRef | null {
   if (vimeo) return { provider: 'vimeo', id: vimeo[1], hash: vimeo[2] || vimeo[3] };
   const yt = url.match(/(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([\w-]{11})/);
   if (yt) return { provider: 'youtube', id: yt[1] };
+  const ig = url.match(/instagram\.com\/(?:reel|reels|p)\/([\w-]+)/);
+  if (ig) return { provider: 'instagram', id: ig[1] };
   return null;
 }
 
-/** Muted, looping, chrome-free player for backgrounds and cards. */
-export function backgroundEmbed(v: VideoRef) {
+/** Muted, looping, chrome-free player for backgrounds and cards. Instagram has none. */
+export function backgroundEmbed(v: VideoRef): string | undefined {
+  if (v.provider === 'instagram') return undefined;
   if (v.provider === 'vimeo') {
     const h = v.hash ? `h=${v.hash}&` : '';
     return `https://player.vimeo.com/video/${v.id}?${h}background=1&autoplay=1&loop=1&muted=1&dnt=1`;
@@ -74,13 +77,20 @@ export function backgroundEmbed(v: VideoRef) {
   return `https://www.youtube-nocookie.com/embed/${v.id}?autoplay=1&mute=1&loop=1&playlist=${v.id}&controls=0&playsinline=1&modestbranding=1`;
 }
 
-/** Full player with sound and controls. */
+/** Full player with sound and controls, set to start playing. */
 export function playerEmbed(v: VideoRef) {
   if (v.provider === 'vimeo') {
     const h = v.hash ? `h=${v.hash}&` : '';
-    return `https://player.vimeo.com/video/${v.id}?${h}dnt=1&title=0&byline=0&portrait=0&color=d9b435`;
+    return `https://player.vimeo.com/video/${v.id}?${h}dnt=1&title=0&byline=0&portrait=0&color=d9b435&autoplay=1`;
   }
-  return `https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1`;
+  if (v.provider === 'instagram') return `https://www.instagram.com/reel/${v.id}/embed/`;
+  return `https://www.youtube-nocookie.com/embed/${v.id}?rel=0&modestbranding=1&autoplay=1`;
+}
+
+export function watchUrl(v: VideoRef) {
+  if (v.provider === 'vimeo') return `https://vimeo.com/${v.id}${v.hash ? `/${v.hash}` : ''}`;
+  if (v.provider === 'instagram') return `https://www.instagram.com/reel/${v.id}/`;
+  return `https://www.youtube.com/watch?v=${v.id}`;
 }
 
 // Posters saved as src/assets/video-posters/<vimeo id>.jpg are picked up automatically.

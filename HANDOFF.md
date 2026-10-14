@@ -51,8 +51,12 @@ Requirements from Cameron:
 - Stapelia Hirsuta web license still unverified.
 - The "500+ productions" proof line comes from the live FAQ; confirm it.
 - Team section on About is ready but empty until bios and headshots are chosen.
-- Discovery workflow results (Drive inventory + Notion final checks): see
-  docs/discovery/ once written; add newer verified projects as case studies.
+- Discovery workflow finished: docs/discovery/final-assets.md and discovery-results.json.
+  224 assets are Notion-verified final, all large videos in Drive. Downey Nissan was added
+  as a case study using its published Instagram reels. Next candidates: Palos Verdes
+  Chamber, Montage Spa, Rolling Hills Prep. Upload chosen finals to Vimeo to use them.
+- Good Stuff copy repeats the live site's "best summer in 45 years" claim; discovery found
+  no financial data behind it. Confirm or soften.
 
 ## Blocked in session 1
 - Network policy denied cm.studio, clearskycreations.com, lottiefiles.com.
@@ -75,7 +79,7 @@ Requirements from Cameron:
 - [x] Astro + Keystatic scaffold, content schema, design tokens, base layout
 - [x] Placeholder breeze Lottie generator (to be restyled)
 - [x] Drive client folder list, 60 folders (docs/discovery/drive-client-folders.json)
-- [ ] Discovery still to run: existing copy and case studies, per-folder media inventory, Notion final-status checks with a skeptic pass.
+- [x] Discovery run: existing copy and case studies, per-folder media inventory, Notion final-status checks with a skeptic pass.
       Run scripts/discovery-workflow.js with the Workflow tool. It is read-only. brand.json is already done, so the brand agent can be dropped.
 - [x] Logos and fonts (license still unverified): download from the Drive IDs listed in docs/discovery/brand.json into src/assets/brand and public/fonts.
       Confirm the Stapelia Hirsuta web license first (unverified). Poppins is self-hosted from @fontsource.

@@ -16,14 +16,43 @@
     "Tell the truth beautifully.",
     "Get un-stuck. We've got the plan."
   ],
-  "manifesto": ["Story first", "People over posts", "Content unmatched"],
+  "manifesto": [
+    "Story first",
+    "People over posts",
+    "Content unmatched"
+  ],
   "clients": [
-    { "name": "Good Stuff Restaurants", "logo": null },
-    { "name": "Endera", "logo": "../../assets/clients/endera.webp" },
-    { "name": "Lucy's", "logo": "../../assets/clients/lucys.png" },
-    { "name": "Coachly", "logo": null },
-    { "name": "ABG Art Group", "logo": "../../assets/clients/abg.avif" },
-    { "name": "Age With Vitality", "logo": null },
-    { "name": "Dr. Hedi", "logo": "../../assets/clients/dr-hedi.png" }
+    {
+      "name": "Good Stuff Restaurants",
+      "logo": null
+    },
+    {
+      "name": "Endera",
+      "logo": "../../assets/clients/endera.webp"
+    },
+    {
+      "name": "Lucy's",
+      "logo": "../../assets/clients/lucys.png"
+    },
+    {
+      "name": "Downey Nissan",
+      "logo": null
+    },
+    {
+      "name": "Coachly",
+      "logo": null
+    },
+    {
+      "name": "ABG Art Group",
+      "logo": "../../assets/clients/abg.avif"
+    },
+    {
+      "name": "Age With Vitality",
+      "logo": null
+    },
+    {
+      "name": "Dr. Hedi",
+      "logo": "../../assets/clients/dr-hedi.png"
+    }
   ]
 }
