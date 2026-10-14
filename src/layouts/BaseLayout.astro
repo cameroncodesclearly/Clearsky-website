@@ -8,15 +8,18 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
-  /** Header sits over a dark hero and starts transparent with light text. */
-  overlayHeader?: boolean;
+  /** Page colour: paper, blue, sky, butter, or ink. */
+  theme?: string;
+  /** Footer CTA colour; defaults to Clear Sky blue. */
+  footerTheme?: string;
 }
-const { title, description = site.description, image = '/og-default.jpg', overlayHeader = false } = Astro.props;
+const { title, description = site.description, image = '/og-default.jpg', theme = 'paper', footerTheme } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Video and Social Content Studio`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const themeColor = { paper: '#f1f2f4', blue: '#1a5276', sky: '#85c1e9', butter: '#f7dc6f', ink: '#1a1307' }[theme] ?? '#f1f2f4';
 ---
 <!doctype html>
-<html lang="en">
+<html lang="en" class={`theme-${theme}`}>
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -26,7 +29,8 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/fonts/StapeliaHirsutaSans.woff2" as="font" type="font/woff2" crossorigin />
-    <meta name="theme-color" content="#1a5276" />
+    <link rel="preconnect" href="https://player.vimeo.com" />
+    <meta name="theme-color" content={themeColor} />
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
@@ -39,25 +43,53 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <Header overlay={overlayHeader} />
+    <div class="preloader theme-blue" data-preloader aria-hidden="true">
+      <div class="preloader__doodle" data-doodle="/lottie/sky.json"></div>
+      <p class="ui" data-preloader-word></p>
+    </div>
+    <Header />
     <main id="main">
       <slot />
     </main>
-    <Footer />
+    <Footer theme={footerTheme} />
+    <div class="fader" data-fader aria-hidden="true"></div>
     <script>
-      // Fade sections in as they enter the viewport.
-      const io = new IntersectionObserver(
-        (entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              io.unobserve(entry.target);
-            }
-          }
-        },
-        { rootMargin: '0px 0px -10% 0px' },
-      );
-      document.querySelectorAll('[data-reveal]').forEach((el) => io.observe(el));
+      import '../scripts/site.ts';
     </script>
   </body>
 </html>
+
+<style is:global>
+  .preloader {
+    position: fixed; inset: 0; z-index: 300;
+    display: grid; place-content: center; justify-items: center; gap: 1.5rem;
+    transition: opacity 0.7s var(--ease), visibility 0.7s;
+    /* Safety net: hides itself even if the script never runs. */
+    animation: preloader-out 0.6s 4.5s forwards;
+  }
+  @keyframes preloader-out { to { opacity: 0; visibility: hidden; } }
+  .js .preloader { display: grid; }
+  html:not(.js) .preloader { display: none; }
+  .preloader.is-done { opacity: 0; visibility: hidden; }
+  .preloader__doodle { width: min(46vw, 260px); aspect-ratio: 600 / 460; }
+  .fader {
+    position: fixed; inset: 0; z-index: 250; pointer-events: none;
+    background: var(--paper); opacity: 0; transition: opacity 0.45s var(--ease-out-expo);
+  }
+  .fader.is-in { opacity: 1; }
+  .no-scroll { overflow: hidden; }
+  .cursor-label {
+    position: fixed; left: 0; top: 0; z-index: 260; pointer-events: none;
+    margin: 14px 0 0 14px; padding: 0.55em 1em; border-radius: 999px;
+    background: var(--ink); color: var(--paper);
+    font-size: var(--step--1); font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; white-space: nowrap;
+    opacity: 0; scale: 0.6; transition: opacity 0.25s var(--ease), scale 0.35s var(--ease);
+  }
+  .cursor-label.is-on { opacity: 1; scale: 1; }
+  .blink { animation: blink 1s steps(1) infinite; }
+  @keyframes blink { 50% { opacity: 0; } }
+  main > :first-child { padding-top: var(--header-h); }
+  main > [data-full-bleed]:first-child { padding-top: 0; }
+  html.dim-page main, html.dim-page footer { opacity: 0.18; transition: opacity 0.4s var(--ease); }
+  main, footer { transition: opacity 0.4s var(--ease); }
+</style>

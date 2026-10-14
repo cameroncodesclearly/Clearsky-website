@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../lib/site';
+---
+<BaseLayout title="Contact" description="Tell Clear Sky Creations about your project. We read every message and reply with next steps.">
+  <section class="contact container">
+    <div class="contact__doodle" data-doodle="/lottie/bubble.json" aria-hidden="true"></div>
+    <h1 class="mega center contact__heading">Let's talk.</h1>
+    <p class="statement center contact__intro">Tell us about your brand and what you want to make. We'll learn how we can help and reach out with next steps.</p>
+  </section>
+
+  <section class="contact-form container" aria-label="Project intake form">
+    {site.intakeFormId ? (
+      <div class="contact-form__embed" data-fillout-id={site.intakeFormId} data-fillout-embed-type="standard" data-fillout-inherit-parameters data-fillout-dynamic-resize></div>
+    ) : null}
+    <noscript><p class="center">The form needs JavaScript. Email us at <a href={`mailto:${site.email}`}>{site.email}</a>.</p></noscript>
+  </section>
+
+  <section class="contact-direct container">
+    <div><p class="ui ui-muted">Email</p><a class="display" href={`mailto:${site.email}`}>{site.email}</a></div>
+    <div><p class="ui ui-muted">Phone</p><a class="display" href={`tel:${site.phone.replace(/[^\d+]/g, '')}`}>{site.phone}</a></div>
+    <div><p class="ui ui-muted">Follow along</p>
+      <ul class="contact-direct__social">{site.socials.map((s) => <li><a class="ui" href={s.url} rel="me noopener" target="_blank">{s.label}</a></li>)}</ul>
+    </div>
+  </section>
+  <script is:inline src="https://server.fillout.com/embed/v1/" async></script>
+</BaseLayout>
+
+<style>
+  .contact { display: grid; justify-items: center; padding-top: calc(var(--header-h) + clamp(2rem, 5vw, 4rem)); padding-bottom: clamp(3rem, 6vw, 5rem); }
+  .contact__doodle { width: min(70vw, 420px); aspect-ratio: 600 / 420; margin-bottom: clamp(-7rem, -8vw, -3rem); position: relative; z-index: 1; }
+  .contact__intro { margin-top: 2rem; max-width: 34ch; }
+  .contact-form__embed { width: 100%; min-height: 560px; border-radius: var(--radius-lg); overflow: hidden; background: var(--white); }
+  .contact-direct { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; padding-block: clamp(4rem, 8vw, 8rem); }
+  .contact-direct .display { font-family: var(--font-body); font-weight: 600; text-transform: none; font-size: clamp(1.2rem, 1rem + 0.8vw, 1.6rem); letter-spacing: -0.01em; overflow-wrap: anywhere; }
+  .contact-direct a.display:hover { color: var(--blue); }
+  .contact-direct__social { list-style: none; margin: 0.5rem 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.2rem; }
+</style>

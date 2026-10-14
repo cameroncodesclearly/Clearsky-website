@@ -1,0 +1,49 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TalkCta from '../../components/TalkCta.astro';
+import { publishedPosts, formatDate } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const posts = await publishedPosts();
+  return posts.map((entry, i) => ({ params: { slug: entry.id }, props: { entry, next: posts[i + 1] ?? posts[0] } }));
+}
+const { entry, next } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+---
+<BaseLayout title={d.title} description={d.excerpt} image={d.cover?.src}>
+  <article class="post">
+    <header class="post__header container">
+      <p class="ui ui-muted">{formatDate(d.publishedDate)}{d.tags.length > 0 && `, ${d.tags.join(', ')}`}</p>
+      <h1 class="display post__title">{d.title}</h1>
+      <p class="ui">{d.author}</p>
+    </header>
+    {d.cover && (
+      <figure class="post__cover container frame ratio-16x9" data-reveal>
+        <Image src={d.cover} alt="" widths={[800, 1200, 1800]} sizes="(min-width: 1440px) 1400px, 100vw" loading="eager" />
+      </figure>
+    )}
+    <div class="post__body narrow prose"><Content /></div>
+    {next && next.id !== entry.id && (
+      <nav class="post__next container" aria-label="Next story">
+        <a href={`/journal/${next.id}/`}>
+          <span class="ui ui-muted">Next story</span>
+          <span class="display">{next.data.title}</span>
+        </a>
+      </nav>
+    )}
+  </article>
+  <TalkCta />
+</BaseLayout>
+
+<style>
+  .post__header { text-align: center; display: grid; gap: 1rem; justify-items: center; padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 6rem)); padding-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .post__title { max-width: 18ch; font-size: clamp(2.4rem, 1.4rem + 4vw, 5.6rem); }
+  .post__cover { border-radius: var(--radius-lg); margin-block: 0; }
+  .post__body { padding-block: clamp(4rem, 7vw, 7rem); font-size: var(--step-1); }
+  .post__next { border-top: 1.5px solid var(--fg); padding-block: 2rem 0; }
+  .post__next a { display: grid; gap: 0.5rem; }
+  .post__next a:hover { color: var(--blue); }
+</style>

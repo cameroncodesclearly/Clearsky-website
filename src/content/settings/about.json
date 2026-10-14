@@ -1,0 +1,29 @@
+{
+  "heading": "A story-first content studio building good brands with honest content.",
+  "reelUrl": "https://vimeo.com/1117275029/8f70d10f51",
+  "intro": "We help CEOs, creators, marketing leads, and the creatives inside companies change how content gets made and how it feels to watch. Strategy, production, post, and posting, under one roof and one clear plan.",
+  "story": [
+    "It all started with Cameron. After college, with a Cinematic Arts degree and his Major League Baseball dreams retired, he mixed his two passions into a niche baseball account on Instagram, TikTok, and YouTube.",
+    "Over the next two years he discovered a skill that most businesses suddenly needed in 2020: making content people actually stop for. So he started Clear Sky, with one simple mission. Help businesses grow their visibility on social media through quality content.",
+    "Each project was better than the last. The team grew, the services widened, and over five years Clear Sky went from a one-person social content company to a full-service creative agency.",
+    "Then we noticed a trend. Social media is crowded with misleading ads, fake news, and a sales-at-all-costs mindset, and trust in brands is at an all-time low. We think social media needs a renaissance, and we want to help lead it."
+  ],
+  "mission": "To build good brands with honest content. We want to lead the way back to trust-filled marketing, using ethical methods to promote your business.",
+  "bigLine": "Changed companies change culture",
+  "values": [
+    { "title": "Transparency", "body": "You see the plan, the process, and the numbers. No surprises." },
+    { "title": "Integrity", "body": "We only make promises we can keep, and we keep them." },
+    { "title": "Love", "body": "We care about the people behind the brand and the people watching." },
+    { "title": "Selflessness", "body": "Your win is the point. When you grow, we grow with you." }
+  ],
+  "photos": [
+    { "image": "../../assets/about/cameron-director.webp", "alt": "Cameron directing on set" },
+    { "image": "../../assets/about/bts-car-rig.webp", "alt": "Filming a vehicle from a moving car" },
+    { "image": "../../assets/about/bts-interview.webp", "alt": "A woman being interviewed on camera" },
+    { "image": "../../assets/about/bts-camera.webp", "alt": "A focused camera operator" },
+    { "image": "../../assets/about/bts-baseball.webp", "alt": "Photographing a player in a baseball uniform" },
+    { "image": "../../assets/about/team-cam-fidel.webp", "alt": "The Clear Sky team at work" }
+  ],
+  "team": [],
+  "baseLine": "Based in Southern California, shooting everywhere."
+}

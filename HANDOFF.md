@@ -27,6 +27,33 @@ Requirements from Cameron:
 - Large videos: short web loops (<8 MB) in public/videos; full pieces via a URL
   field (YouTube/Vimeo/R2). The Drive connector can't move files of 60 to 400 MB into the container.
 
+## Session 2 (2026-10-14)
+- Network access opened for cm.studio, clearskycreations.com, lottiefiles.com.
+- cm.studio captured with REA + headless Chromium: docs/reference/cm-studio-structure.md,
+  REA evidence in docs/reference/rea/. The brain is a 7-frame, 7 fps line boil in one flat
+  blue with a fat round marker stroke; clicks fly quotes along hidden motion paths.
+- Live clearskycreations.com copy saved to docs/reference/clearskycreations-pages.json.
+  The 4 live case studies (Good Stuff, Endera, Age With Vitality, Coachly), About story,
+  testimonials, and FAQ were rewritten for the voice rules and loaded into Keystatic.
+- Assets used are already published on the live site or Vimeo (final by definition):
+  case-study images, BTS photos, client logos, 19 Vimeo videos and their poster stills.
+  Fonts and the SVG logo came from the Drive IDs in brand.json. The hand-lettered stacked
+  logo was traced to src/components/Logo.astro.
+- Built pages: home, work, case study, services index + 6 service pages, about, journal,
+  post, contact (live Fillout intake form nFKBasCSv8us), 404.
+- Breeze animation regenerated in the cm.studio style (scripts/make-breeze-lottie.mjs).
+
+### Open items
+- Four Vimeo videos refuse to embed off clearskycreations.com (2024 reel 914985215 and
+  Endera 560226791, 645331848, 942522420). They fall back to posters / "Watch on Vimeo".
+  Check Vimeo embed privacy, or allow the preview and production domains.
+- Dropbox refused the homepage sizzle MP4; the hero uses Vimeo instead.
+- Stapelia Hirsuta web license still unverified.
+- The "500+ productions" proof line comes from the live FAQ; confirm it.
+- Team section on About is ready but empty until bios and headshots are chosen.
+- Discovery workflow results (Drive inventory + Notion final checks): see
+  docs/discovery/ once written; add newer verified projects as case studies.
+
 ## Blocked in session 1
 - Network policy denied cm.studio, clearskycreations.com, lottiefiles.com.
   REA ran (`rea list-browser-targets`) but Chrome got a proxy refusal.
@@ -50,9 +77,9 @@ Requirements from Cameron:
 - [x] Drive client folder list, 60 folders (docs/discovery/drive-client-folders.json)
 - [ ] Discovery still to run: existing copy and case studies, per-folder media inventory, Notion final-status checks with a skeptic pass.
       Run scripts/discovery-workflow.js with the Workflow tool. It is read-only. brand.json is already done, so the brand agent can be dropped.
-- [ ] Logos and fonts: download from the Drive IDs listed in docs/discovery/brand.json into src/assets/brand and public/fonts.
+- [x] Logos and fonts (license still unverified): download from the Drive IDs listed in docs/discovery/brand.json into src/assets/brand and public/fonts.
       Confirm the Stapelia Hirsuta web license first (unverified). Poppins is self-hosted from @fontsource.
-- [ ] cm.studio structure capture with REA
-- [ ] Pages: home, work, case study, services, about, journal, post, contact, 404
+- [x] cm.studio structure capture with REA
+- [x] Pages: home, work, case study, services, about, journal, post, contact, 404
 - [ ] Videos: transcode verified finals to web loops
 - [ ] Vercel preview

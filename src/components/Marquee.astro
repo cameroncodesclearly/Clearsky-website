@@ -1,0 +1,44 @@
+---
+import { Image } from 'astro:assets';
+import { resolveImage } from '../lib/site';
+
+// Client logos scrolling at a steady pace. Logos are shown as one-colour
+// silhouettes; clients without a logo file show their name in the display face.
+interface Props { clients: { name: string; logo?: string | null }[] }
+const { clients } = Astro.props;
+const items = clients.map((c) => ({ ...c, image: resolveImage(c.logo) }));
+---
+<section class="marquee" aria-label="Clients we've worked with" data-marquee>
+  <ul class="marquee__list">
+    {items.map((c) => (
+      <li class="marquee__item">
+        {c.image ? <Image src={c.image} alt={c.name} widths={[240, 480]} sizes="160px" /> : <span>{c.name}</span>}
+      </li>
+    ))}
+  </ul>
+  <ul class="marquee__list" aria-hidden="true">
+    {items.map((c) => (
+      <li class="marquee__item">
+        {c.image ? <Image src={c.image} alt="" widths={[240, 480]} sizes="160px" /> : <span>{c.name}</span>}
+      </li>
+    ))}
+  </ul>
+</section>
+
+<style>
+  .marquee {
+    --speed: 40s;
+    display: flex; overflow: hidden; padding-block: clamp(3rem, 6vw, 6rem);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+  }
+  .marquee__list {
+    list-style: none; margin: 0; padding: 0; flex: none;
+    display: flex; align-items: center; gap: clamp(3rem, 6vw, 6.5rem); padding-right: clamp(3rem, 6vw, 6.5rem);
+    animation: marquee var(--speed) linear infinite;
+  }
+  .marquee:hover .marquee__list { animation-play-state: paused; }
+  .marquee__item img { height: clamp(30px, 3vw, 46px); width: auto; max-width: 180px; object-fit: contain; filter: brightness(0); opacity: 0.85; }
+  .marquee__item span { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(1.2rem, 1rem + 1vw, 1.9rem); white-space: nowrap; line-height: 1; }
+  @keyframes marquee { to { transform: translateX(-100%); } }
+  @media (prefers-reduced-motion: reduce) { .marquee__list { animation: none; } .marquee { flex-wrap: wrap; justify-content: center; } }
+</style>

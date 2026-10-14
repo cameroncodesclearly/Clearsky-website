@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Page not found" theme="blue" footerTheme="ink">
+  <section class="lost" data-full-bleed data-header-light>
+    <div class="lost__card"><div class="lost__doodle" data-doodle="/lottie/sky.json" aria-hidden="true"></div></div>
+    <div class="lost__bottom">
+      <h1 class="mega lost__title" data-scramble='["Error 404","This page blew away","Lost in the clouds","Cloudy with a chance of 404"]'>Error 404</h1>
+      <a class="pill pill--solid" href="/">Back to clear skies</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .lost { min-height: 100svh; display: grid; grid-template-rows: 1fr auto; padding: calc(var(--header-h) + 2rem) var(--gutter) var(--gutter); }
+  .lost__card { place-self: center; width: min(46vw, 220px); aspect-ratio: 1; border-radius: var(--radius-lg); background: var(--blue-deep); display: grid; place-items: center; }
+  .lost__doodle { width: 82%; aspect-ratio: 600 / 460; }
+  .lost__bottom { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1.5rem; }
+  .lost__title { font-size: clamp(3rem, 1rem + 8vw, 10rem); max-width: 14ch; }
+</style>
+
+<script>
+  // The headline shuffles through letters before landing on each new line.
+  const el = document.querySelector<HTMLElement>('[data-scramble]');
+  if (el && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const lines: string[] = JSON.parse(el.dataset.scramble!);
+    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    let n = 0;
+    const scramble = (target: string) => {
+      let frame = 0;
+      const total = 18;
+      const id = setInterval(() => {
+        frame++;
+        const settled = Math.floor((frame / total) * target.length);
+        el.textContent = target
+          .split('')
+          .map((c, i) => (i < settled || c === ' ' ? c : chars[Math.floor(Math.random() * chars.length)]))
+          .join('');
+        if (frame >= total) { clearInterval(id); el.textContent = target; }
+      }, 45);
+    };
+    setInterval(() => scramble(lines[++n % lines.length]), 2800);
+  }
+</script>

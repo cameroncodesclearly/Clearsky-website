@@ -1,0 +1,93 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import HeroCarousel, { type Slide } from '../components/HeroCarousel.astro';
+import Breeze from '../components/Breeze.astro';
+import WorkCard from '../components/WorkCard.astro';
+import Marquee from '../components/Marquee.astro';
+import Rays from '../components/Rays.astro';
+import home from '../content/settings/home.json';
+import { publishedCaseStudies, parseVideo, posterFor } from '../lib/site';
+
+const studies = await publishedCaseStudies();
+const featured = studies.filter((s) => s.data.featured);
+
+// Hero: the reel first, then featured work that has a landscape video.
+const reelPoster = posterFor(parseVideo(home.reelUrl));
+const slides: Slide[] = [
+  ...(reelPoster ? [{ client: 'Clear Sky', title: home.reelTitle, href: '/work/', video: home.reelUrl, poster: reelPoster }] : []),
+  ...featured
+    .map((s) => {
+      const poster = posterFor(parseVideo(s.data.videoUrl));
+      return poster && poster.width > poster.height
+        ? { client: s.data.client, title: s.data.title, href: `/work/${s.id}/`, video: s.data.videoUrl, poster }
+        : null;
+    })
+    .filter((s): s is Slide => Boolean(s)),
+].slice(0, 5);
+
+// Feed placement follows the loose left / right / centre rhythm of the reference.
+const placements = ['left', 'right', 'center', 'right-wide', 'left'];
+---
+<BaseLayout>
+  <HeroCarousel slides={slides} />
+
+  <section class="proof section" aria-label="Clear Sky in numbers">
+    <div class="proof__lockup" data-reveal>
+      <Rays class="proof__rays" />
+      <p class="proof__value">{home.proofValue}</p>
+      <span class="proof__rule" aria-hidden="true"></span>
+      <p class="proof__label script">{home.proofLabel}</p>
+    </div>
+    <p class="ui proof__caption" data-reveal>{home.proofCaption}</p>
+  </section>
+
+  <Breeze heading={home.breezeHeading} hint={home.breezeHint} notes={home.breezeNotes} />
+
+  <section class="feed" aria-label="Selected work">
+    {featured.map((entry, i) => (
+      <div class:list={['feed__item', `feed__item--${placements[i % placements.length]}`, { 'feed__item--portrait': entry.data.coverVertical }]} data-reveal>
+        <WorkCard entry={entry} portrait={entry.data.coverVertical} ratio="16x9" sizes="(min-width: 900px) 60vw, 100vw" />
+      </div>
+    ))}
+    <div class="feed__more" data-reveal><a class="pill" href="/work/">See all work</a></div>
+  </section>
+
+  <Marquee clients={home.clients} />
+
+  <section class="manifesto section" aria-label="What we believe">
+    {home.manifesto.map((line, i) => (
+      <p class="mega" data-reveal>
+        {line}
+        {i === home.manifesto.length - 1 && <Rays class="manifesto__rays" />}
+      </p>
+    ))}
+  </section>
+</BaseLayout>
+
+<style>
+  .proof { display: grid; justify-items: center; gap: 1.6rem; text-align: center; padding-inline: var(--gutter); }
+  .proof__lockup { position: relative; display: flex; align-items: center; gap: clamp(1rem, 3vw, 2.5rem); }
+  .proof__value { font-family: var(--font-display); font-size: clamp(4rem, 2rem + 8vw, 9rem); line-height: 0.8; }
+  .proof__rule { width: 3px; align-self: stretch; background: var(--fg); border-radius: 3px; }
+  .proof__label { font-size: clamp(2.2rem, 1.2rem + 3.6vw, 5rem); line-height: 1; color: var(--blue); max-width: 7ch; text-align: left; }
+  .proof__caption { color: var(--muted); }
+  .proof :global(.proof__rays) { position: absolute; width: clamp(48px, 6vw, 84px); left: -12%; top: -38%; rotate: -70deg; }
+
+  .feed { display: grid; gap: clamp(5rem, 10vw, 11rem); padding: clamp(2rem, 5vw, 6rem) var(--gutter) clamp(3rem, 6vw, 6rem); }
+  .feed__item { width: min(100%, 640px); }
+  .feed__item--portrait { width: min(72%, 340px); }
+  .feed__item--left { justify-self: start; margin-left: clamp(0px, 12vw, 260px); }
+  .feed__item--right { justify-self: end; margin-right: clamp(0px, 8vw, 180px); }
+  .feed__item--center { justify-self: center; }
+  .feed__item--right-wide { justify-self: end; width: min(100%, 760px); }
+  .feed__more { justify-self: center; }
+  @media (max-width: 699px) {
+    .feed__item { margin: 0 !important; }
+    .feed__item--portrait.feed__item--right, .feed__item--portrait.feed__item--right-wide { justify-self: end; }
+  }
+
+  .manifesto { text-align: center; display: grid; gap: 0.12em; padding-inline: var(--gutter); }
+  .manifesto .mega { position: relative; }
+  .manifesto .mega:nth-child(2) { color: var(--blue); }
+  .manifesto :global(.manifesto__rays) { display: inline-block; width: 0.6em; vertical-align: top; margin-left: 0.05em; translate: 0 -0.25em; }
+</style>

@@ -1,0 +1,42 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { publishedPosts, formatDate } from '../../lib/site';
+
+const posts = await publishedPosts();
+---
+<BaseLayout title="Journal" description="Notes from Clear Sky Creations on content, social media, production, and building a brand people trust.">
+  <section class="journal container">
+    <h1 class="mega">Journal</h1>
+    {posts.length === 0 && <p class="lede">New stories are on the way.</p>}
+    <ul class="journal__grid">
+      {posts.map((p) => (
+        <li data-reveal>
+          <a class="journal__card" href={`/journal/${p.id}/`}>
+            <span class="caption">
+              <span class="ui">{formatDate(p.data.publishedDate)}</span>
+              {p.data.tags.length > 0 && <span class="ui ui-muted">{p.data.tags.join(', ')}</span>}
+            </span>
+            <span class="frame ratio-16x10">
+              {p.data.cover && <Image src={p.data.cover} alt="" widths={[480, 800, 1200]} sizes="(min-width: 900px) 33vw, 100vw" />}
+            </span>
+            <span class="journal__title">{p.data.title}</span>
+            <span class="journal__excerpt">{p.data.excerpt}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>
+
+<style>
+  .journal { padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 7rem)); padding-bottom: clamp(5rem, 9vw, 9rem); }
+  .journal .mega { margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .journal__grid { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(3rem, 6vw, 5rem) clamp(1rem, 1.5vw, 1.5rem); grid-template-columns: repeat(auto-fill, minmax(min(100%, 360px), 1fr)); }
+  .journal__card { display: grid; gap: 0.2rem; }
+  .journal__card .frame { display: block; margin-bottom: 1rem; }
+  .journal__card img { transition: transform 1.2s var(--ease); }
+  .journal__card:hover img { transform: scale(1.04); }
+  .journal__title { font-size: var(--step-1); font-weight: 600; line-height: 1.2; }
+  .journal__excerpt { color: var(--muted); }
+</style>

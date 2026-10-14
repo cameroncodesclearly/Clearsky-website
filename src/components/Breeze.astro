@@ -1,0 +1,179 @@
+---
+import paths from '../lib/breeze-paths.json';
+
+// Homepage section that replaces cm.studio's "second brain". A line-boil doodle
+// sits under the headline; each click sends a note along one of the gusts.
+interface Props {
+  heading: string;
+  hint?: string;
+  notes: string[];
+}
+const { heading, hint = 'Catch a breeze!', notes } = Astro.props;
+---
+<section class="breeze section" aria-labelledby="breeze-heading">
+  <h2 class="mega breeze__heading" id="breeze-heading" data-reveal>{heading}</h2>
+  <div class="breeze__stage" data-breeze data-notes={JSON.stringify(notes)}>
+    <button class="breeze__button" type="button" data-cursor={hint} aria-label="Send a breeze note">
+      <span class="breeze__doodle" data-doodle="/lottie/breeze.json"></span>
+    </button>
+    <svg class="breeze__paths" viewBox={`0 0 ${paths.width} ${paths.height}`} aria-hidden="true" focusable="false">
+      {paths.paths.map((d) => <path d={d} />)}
+    </svg>
+    <div class="breeze__notes" aria-live="polite"></div>
+    <p class="ui breeze__hint" aria-hidden="true">{hint}</p>
+  </div>
+</section>
+
+<style>
+  .breeze { text-align: center; padding-inline: var(--gutter); overflow: hidden; }
+  .breeze__heading { max-width: 12ch; margin-inline: auto; position: relative; z-index: 1; }
+  .breeze__stage {
+    position: relative; z-index: 2;
+    width: min(92vw, 720px); aspect-ratio: 1000 / 700;
+    margin: clamp(-9rem, -9vw, -3rem) auto 0;
+  }
+  .breeze__button { display: block; width: 100%; height: 100%; border-radius: 40px; }
+  .breeze__button:active .breeze__doodle { scale: 0.97; }
+  .breeze__doodle { display: block; width: 100%; height: 100%; transition: scale 0.3s var(--ease); }
+  .breeze__paths { position: absolute; inset: 0; width: 100%; height: 100%; fill: none; stroke: none; pointer-events: none; }
+  .breeze__notes { position: absolute; inset: 0; pointer-events: none; }
+  .breeze__hint { margin-top: 0.5rem; color: var(--muted); }
+  @media (hover: hover) and (pointer: fine) { .breeze__hint { visibility: hidden; } }
+
+  :global(.breeze-note) {
+    position: absolute; left: 0; top: 0;
+    padding: 0.6em 1.1em; border-radius: 999px;
+    background: var(--paper); color: var(--ink);
+    border: 1.5px solid color-mix(in srgb, var(--blue) 35%, transparent);
+    font-size: clamp(0.78rem, 0.7rem + 0.3vw, 0.95rem); font-weight: 500; white-space: nowrap;
+    box-shadow: 0 10px 30px -18px rgba(18, 57, 79, 0.5);
+    will-change: transform, filter, opacity;
+  }
+</style>
+
+<script>
+  // Notes glide in along a gust, hold, then blow away along the rest of it.
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
+  const easeIn = (t: number) => t * t * t;
+
+  let audio: AudioContext | undefined;
+  // G major pentatonic, two octaves: bright and impossible to play a wrong note.
+  const scale = [392, 440, 493.88, 587.33, 659.25, 783.99, 880, 987.77];
+  function chime() {
+    try {
+      audio ??= new AudioContext();
+      const now = audio.currentTime;
+      const freq = scale[Math.floor(Math.random() * scale.length)];
+      const out = audio.createGain();
+      out.gain.value = 0.16;
+      // A short feedback echo gives the tone some air.
+      const delay = audio.createDelay();
+      delay.delayTime.value = 0.18;
+      const feedback = audio.createGain();
+      feedback.gain.value = 0.32;
+      delay.connect(feedback).connect(delay);
+      out.connect(audio.destination);
+      delay.connect(out);
+      for (const [mult, level] of [[1, 1], [2, 0.18], [3, 0.06]] as const) {
+        const osc = audio.createOscillator();
+        const env = audio.createGain();
+        osc.type = 'sine';
+        osc.frequency.value = freq * mult;
+        env.gain.setValueAtTime(0, now);
+        env.gain.linearRampToValueAtTime(level, now + 0.02);
+        env.gain.exponentialRampToValueAtTime(0.0001, now + 1.4);
+        osc.connect(env);
+        env.connect(out);
+        env.connect(delay);
+        osc.start(now);
+        osc.stop(now + 1.5);
+      }
+    } catch {
+      // Audio is a nicety; ignore browsers that block it.
+    }
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-breeze]').forEach((stage) => {
+    const notes: string[] = JSON.parse(stage.dataset.notes || '[]');
+    const layer = stage.querySelector<HTMLElement>('.breeze__notes')!;
+    const gusts = [...stage.querySelectorAll<SVGPathElement>('.breeze__paths path')];
+    const button = stage.querySelector('button')!;
+    const live: { el: HTMLElement; stop: () => void }[] = [];
+    let bag: number[] = [];
+    let lastGust = -1;
+
+    const nextNote = () => {
+      if (!bag.length) bag = notes.map((_, i) => i).sort(() => Math.random() - 0.5);
+      return notes[bag.pop()!];
+    };
+
+    button.addEventListener('click', () => {
+      if (!notes.length) return;
+      chime();
+      if (live.length >= 5) {
+        const old = live.shift()!;
+        old.stop();
+        old.el.animate([{ opacity: 1 }, { opacity: 0, filter: 'blur(8px)' }], { duration: 300, fill: 'forwards' }).finished.then(() => old.el.remove());
+      }
+      const el = document.createElement('div');
+      el.className = 'breeze-note';
+      el.textContent = nextNote();
+      layer.append(el);
+
+      let g = Math.floor(Math.random() * gusts.length);
+      if (g === lastGust) g = (g + 1) % gusts.length;
+      lastGust = g;
+      const path = gusts[g];
+      const length = path.getTotalLength();
+      const forward = Math.random() > 0.35;
+      const hold = Math.min(2600, Math.max(900, el.textContent!.length * 45));
+      const unit = () => stage.clientWidth / 1000;
+      let raf = 0;
+      let stopped = false;
+
+      const place = (t: number, blur: number, scale: number, opacity: number) => {
+        const at = forward ? t : 1 - t;
+        const pt = path.getPointAtLength(at * length);
+        const u = unit();
+        const w = el.offsetWidth, h = el.offsetHeight;
+        // Keep the pill inside the section horizontally.
+        const x = Math.min(Math.max(pt.x * u - w / 2, -stage.offsetLeft + 8), stage.clientWidth + stage.offsetLeft - w - 8);
+        el.style.transform = `translate3d(${x}px, ${pt.y * u - h / 2}px, 0) scale(${scale})`;
+        el.style.filter = blur > 0.05 ? `blur(${blur}px)` : 'none';
+        el.style.opacity = String(opacity);
+      };
+
+      if (reduce) {
+        place(0.5, 0, 1, 1);
+        setTimeout(() => el.remove(), hold + 2000);
+        live.push({ el, stop: () => {} });
+        return;
+      }
+
+      const t0 = performance.now();
+      const inDur = 2200, outDur = 1500, mid = 0.5;
+      const frame = (now: number) => {
+        if (stopped) return;
+        const e = now - t0;
+        if (e < inDur) {
+          const k = easeOut(e / inDur);
+          place(k * mid, 14 * (1 - Math.min(1, (e / inDur) * 2.2)), 0.4 + 0.6 * k, Math.min(1, (e / inDur) * 3));
+        } else if (e < inDur + hold) {
+          place(mid, 0, 1, 1);
+        } else if (e < inDur + hold + outDur) {
+          const k = easeIn((e - inDur - hold) / outDur);
+          place(mid + (1 - mid) * k, 14 * k, 1 - 0.2 * k, 1 - k);
+        } else {
+          el.remove();
+          const i = live.findIndex((n) => n.el === el);
+          if (i >= 0) live.splice(i, 1);
+          return;
+        }
+        raf = requestAnimationFrame(frame);
+      };
+      raf = requestAnimationFrame(frame);
+      live.push({ el, stop: () => { stopped = true; cancelAnimationFrame(raf); } });
+    });
+  });
+</script>

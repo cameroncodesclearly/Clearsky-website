@@ -1,0 +1,16 @@
+---
+// "Let's talk" call to action with the speech-bubble doodle sitting on the type.
+interface Props { heading?: string }
+const { heading = "Let's talk." } = Astro.props;
+---
+<section class="talk section" aria-label="Start a project">
+  <div class="talk__doodle" data-doodle="/lottie/bubble.json" aria-hidden="true"></div>
+  <h2 class="mega talk__heading" data-reveal>{heading}</h2>
+  <a class="pill pill--solid" href="/contact/">Start a project</a>
+</section>
+
+<style>
+  .talk { display: grid; justify-items: center; text-align: center; padding-inline: var(--gutter); }
+  .talk__doodle { width: min(70vw, 420px); aspect-ratio: 600 / 420; margin-bottom: clamp(-7rem, -8vw, -3rem); position: relative; z-index: 1; }
+  .talk__heading { margin-bottom: 2rem; }
+</style>

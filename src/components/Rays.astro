@@ -1,0 +1,24 @@
+---
+// Three short marker strokes, the sun rays from the Clear Sky logo. A stepped
+// wobble gives them the same hand-drawn boil as the larger doodles.
+interface Props { class?: string; color?: string }
+const { class: className, color = 'var(--mustard)' } = Astro.props;
+---
+<svg class:list={['rays', className]} viewBox="0 0 120 100" fill="none" stroke={color} stroke-width="11" stroke-linecap="round" aria-hidden="true">
+  <path d="M20 70 C 16 50, 14 36, 12 18" />
+  <path d="M48 64 C 58 46, 68 32, 82 18" />
+  <path d="M66 84 C 82 78, 96 72, 110 66" />
+</svg>
+
+<style>
+  .rays { overflow: visible; animation: rays-boil 1s steps(1) infinite; }
+  @keyframes rays-boil {
+    0% { transform: rotate(0deg) translate(0, 0); }
+    14% { transform: rotate(1.6deg) translate(1px, -1px); }
+    28% { transform: rotate(-1deg) translate(-1px, 1px) skewX(1deg); }
+    43% { transform: rotate(0.8deg) translate(0, 1px); }
+    57% { transform: rotate(-1.4deg) translate(1px, 0) skewY(-1deg); }
+    71% { transform: rotate(0.5deg) translate(-1px, -1px); }
+    86% { transform: rotate(-0.6deg) translate(0, 0) skewX(-1deg); }
+  }
+</style>

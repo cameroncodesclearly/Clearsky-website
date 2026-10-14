@@ -1,15 +1,15 @@
 export const meta = {
   name: 'csc-website-discovery',
-  description: 'Read-only discovery for the Clear Sky website: brand system, existing copy/case studies, Drive asset inventory, Notion final-status verification',
+  description: 'Read-only discovery for the Clear Sky website: existing copy/case studies, Drive asset inventory, Notion final-status verification',
   phases: [
-    { title: 'Discover', detail: 'brand, copy, and client folder listing in parallel' },
+    { title: 'Discover', detail: 'Notion/Drive copy and case studies; client folders come from args or a listing agent' },
     { title: 'Inventory', detail: 'one agent per client folder lists media files' },
     { title: 'Verify', detail: 'cross-check each folder against the Notion PM database' },
     { title: 'Skeptic', detail: 'second agent tries to refute every final_verified asset' },
   ],
 }
 
-const READ_ONLY = 'STRICTLY READ-ONLY: never create, edit, move, share, comment on, or delete anything in Notion or Google Drive. Load deferred MCP tools with ToolSearch (e.g. "select:mcp__Google_Drive__search_files,mcp__Google_Drive__get_file_metadata" or "select:mcp__Notion__notion-search,mcp__Notion__notion-fetch,mcp__Notion__notion-query-data-sources"). The public web (clearskycreations.com, cm.studio) is NOT reachable from this environment; do not try WebFetch.'
+const READ_ONLY = 'STRICTLY READ-ONLY: never create, edit, move, share, comment on, or delete anything in Notion or Google Drive. Load deferred MCP tools with ToolSearch (e.g. "select:mcp__Google_Drive__search_files,mcp__Google_Drive__get_file_metadata" or "select:mcp__Notion__notion-search,mcp__Notion__notion-fetch,mcp__Notion__notion-query-data-sources"). Do not fetch clearskycreations.com or cm.studio; the main session captures those directly.'
 
 const NOTION_MAP = 'To understand the CSC Notion workspace, first try the Skill tool with skill "anthropic-skills:csc-notion"; if unavailable, notion-fetch the page id 3f4a696c-1a53-81af-b512-f3abaae93eeb ("AI Instructions: CSC Notion"), which maps database IDs, the Master Task Board, Campaigns and Clients.'
 
@@ -103,16 +103,15 @@ const SKEPTIC_SCHEMA = {
 
 phase('Discover')
 
-const brandP = agent(`Assemble the Clear Sky Creations (CSC) brand system for a new company website. ${READ_ONLY}
-Use the Skill tool to load "anthropic-skills:csc-northstar" (visual identity: colors, fonts, logos, document standard), "anthropic-skills:csc-voice" (tone) and "anthropic-skills:csc-playbook" (business context, services, team, clients). Follow any live Notion pages those skills point to. Search Google Drive for logo files (title contains 'logo' or 'Clear Sky') and record their Drive file IDs.
-Return exact hex codes and font names as stated by the sources. Record every source you used. List gaps (anything a website needs that you could not find).`, { label: 'brand-system', phase: 'Discover', schema: BRAND_SCHEMA })
+// Brand discovery is done (docs/discovery/brand.json), so no brand agent runs here.
 
-const copyP = agent(`Find every piece of existing Clear Sky Creations website copy and case-study material that lives in Notion or Google Drive, since clearskycreations.com itself is unreachable. ${READ_ONLY}
+const copyP = agent(`Find every piece of existing Clear Sky Creations website copy and case-study material that lives in Notion or Google Drive, to add to what the live site shows (drafts, recaps, results, testimonials). ${READ_ONLY}
 ${NOTION_MAP}
 Search Notion and Drive for: website copy, "case study", "portfolio", "About", "testimonial", client results/metrics, campaign recaps, Clients database one-pagers, and any blog/article drafts. Search with several different phrasings and also browse the Clients/Campaigns databases for per-client summaries.
 For each case study capture client, title, industry, summary, challenge, approach, results (only stated facts, no invented metrics), services, media references, and the source URL. Quote testimonials exactly with their source. Report gaps.`, { label: 'copy-and-case-studies', phase: 'Discover', schema: COPY_SCHEMA })
 
-const listing = await agent(`List every immediate child FOLDER of two Google Drive folders. ${READ_ONLY}
+// Pass { folders } (docs/discovery/drive-client-folders.json) as args to skip the listing agent.
+const listing = args && args.folders ? args : await agent(`List every immediate child FOLDER of two Google Drive folders. ${READ_ONLY}
 Roots: 1ZMwn44hckVNcZAIUHiWzvxLpaziA01um ("03_Final Exports", root="final_exports") and 1-SXtDy8CiTIs8-ZizwVxtBKKEcQkUSrZ ("01_Working Projects", root="working_projects").
 Use mcp__Google_Drive__search_files with query "parentId = '<root>' and mimeType = 'application/vnd.google-apps.folder'", pageSize 100, excludeContentSnippets true, and FOLLOW nextPageToken until a page returns no files. Return all folders with id, exact name, and root. Report pages_followed.`, { label: 'list-client-folders', phase: 'Discover', schema: FOLDERS_SCHEMA })
 
@@ -152,8 +151,7 @@ Claims (JSON): ${JSON.stringify(claimed.map(a => ({ file_id: a.file_id, name: a.
   },
 )
 
-const brand = await brandP
 const copy = await copyP
 const done = results.filter(Boolean)
 log(`Inventoried ${done.length}/${folders.length} folders`)
-return { brand, copy, folders, clients: done }
+return { copy, folders, clients: done }

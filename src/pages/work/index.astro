@@ -1,0 +1,57 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { publishedCaseStudies, SERVICE_LABELS } from '../../lib/site';
+
+const studies = await publishedCaseStudies();
+const archive = [...studies].sort((a, b) => b.data.year - a.data.year || a.data.client.localeCompare(b.data.client));
+---
+<BaseLayout title="Work" description="Case studies from Clear Sky Creations: video production, social media, and campaigns for good brands at every stage.">
+  <section class="work container">
+    <h1 class="visually-hidden">Work</h1>
+    <div class="work__grid">
+      {studies.map((entry) => (
+        <div data-reveal><WorkCard entry={entry} sizes="(min-width: 1000px) 33vw, (min-width: 640px) 50vw, 100vw" /></div>
+      ))}
+    </div>
+  </section>
+
+  <section class="archive container" aria-labelledby="archive-heading">
+    <h2 id="archive-heading" class="archive__heading">Archive</h2>
+    <table class="archive__table">
+      <thead>
+        <tr class="ui ui-muted">
+          <th scope="col">Client</th>
+          <th scope="col">Project</th>
+          <th scope="col">Year</th>
+          <th scope="col">Services</th>
+        </tr>
+      </thead>
+      <tbody>
+        {archive.map((entry) => (
+          <tr class="ui">
+            <td><a href={`/work/${entry.id}/`}>{entry.data.client}</a></td>
+            <td class="ui-muted"><a href={`/work/${entry.id}/`}>{entry.data.title}</a></td>
+            <td>{entry.data.year}</td>
+            <td>{entry.data.services.map((s) => SERVICE_LABELS[s] ?? s).join(', ')}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </section>
+</BaseLayout>
+
+<style>
+  .work { padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 8rem)) !important; }
+  .work__grid { display: grid; gap: clamp(3rem, 7vw, 8rem) clamp(1rem, 1.5vw, 1.5rem); grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); }
+  .archive { padding-block: clamp(6rem, 10vw, 12rem); }
+  .archive__heading { font-size: var(--step-2); font-weight: 500; letter-spacing: -0.01em; margin-bottom: 2rem; }
+  .archive__table { width: 100%; border-collapse: collapse; }
+  .archive__table th, .archive__table td { text-align: left; padding: 0.85rem 1rem 0.85rem 0; border-bottom: 1px solid var(--rule); vertical-align: top; }
+  .archive__table thead th { border-bottom: 1.5px solid var(--fg); font-weight: 700; }
+  .archive__table tbody tr { transition: background-color 0.25s; }
+  .archive__table tbody tr:hover { background: color-mix(in srgb, var(--fg) 5%, transparent); }
+  @media (max-width: 699px) {
+    .archive__table th:nth-child(3), .archive__table td:nth-child(3), .archive__table th:nth-child(4), .archive__table td:nth-child(4) { display: none; }
+  }
+</style>

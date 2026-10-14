@@ -1,0 +1,149 @@
+---
+import { Image } from 'astro:assets';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import VideoPlayer from '../components/VideoPlayer.astro';
+import Rays from '../components/Rays.astro';
+import about from '../content/settings/about.json';
+import { site, publishedServices, resolveImage } from '../lib/site';
+
+const services = await publishedServices();
+const photos = about.photos.map((p) => ({ ...p, img: resolveImage(p.image) })).filter((p) => p.img);
+const team = about.team.map((t: { name: string; role: string; photo?: string | null }) => ({ ...t, img: resolveImage(t.photo) }));
+// Spots for the scattered service tags around the big line (percent of the block).
+const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [48, 90, -5]];
+---
+<BaseLayout title="About" description="Clear Sky Creations started with one person and a baseball account. Today we're a story-first content studio building good brands with honest content.">
+  <section class="about-hero container">
+    <h1 class="mega center" data-reveal>{about.heading}</h1>
+  </section>
+
+  <section class="about-reel container" data-reveal>
+    <VideoPlayer video={about.reelUrl} title="How we work" class="about-reel__frame" sizes="(min-width: 1440px) 1400px, 100vw" />
+  </section>
+
+  <section class="about-intro narrow">
+    <p class="statement" data-reveal>{about.intro}</p>
+  </section>
+
+  <section class="about-story container" aria-labelledby="story-heading">
+    <h2 id="story-heading" class="ui ui-muted">Our story</h2>
+    <div class="about-story__cols">
+      {about.story.map((para) => <p data-reveal>{para}</p>)}
+    </div>
+  </section>
+
+  <section class="about-big section" aria-label="Our mission" data-shrink data-shrink-start="100vh">
+    <div class="about-big__stage">
+    <div class="about-big__tags" aria-hidden="true">
+      {services.slice(0, spots.length).map((s, i) => (
+        <a class="about-big__tag" href={`/services/${s.id}/`} tabindex="-1" style={`left:${spots[i][0]}%;top:${spots[i][1]}%;--tilt:${spots[i][2]}deg;--drift:${(i % 2 ? -1 : 1) * (30 + i * 8)}px`}>
+          <span class="ui">{s.data.title}</span>
+        </a>
+      ))}
+    </div>
+    <p class="mega center about-big__line" data-reveal>{about.bigLine}</p>
+    </div>
+    <p class="statement center about-big__mission" data-reveal>{about.mission}</p>
+  </section>
+
+  <section class="about-values container" aria-labelledby="values-heading">
+    <h2 id="values-heading" class="ui ui-muted">What we stand on</h2>
+    <ul class="about-values__grid">
+      {about.values.map((v) => (
+        <li data-reveal>
+          <h3 class="display">{v.title}</h3>
+          <p>{v.body}</p>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  {photos.length > 0 && (
+    <section class="about-photos container" aria-label="Behind the scenes">
+      <ol class="about-photos__row">
+        {photos.map((p, i) => (
+          <li data-reveal>
+            <span class="ui">{String(i + 1).padStart(2, '0')}</span>
+            <figure class:list={['frame', i % 3 === 1 ? 'ratio-1' : 'ratio-4x5']}>
+              <Image src={p.img!} alt={p.alt} widths={[400, 700, 1000]} sizes="(min-width: 900px) 18vw, 60vw" />
+            </figure>
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
+  {team.length > 0 && (
+    <section class="about-team container" aria-labelledby="team-heading">
+      <h2 id="team-heading" class="ui ui-muted">The team</h2>
+      <ul class="about-team__grid">
+        {team.map((t) => (
+          <li>
+            {t.img && <figure class="frame ratio-4x5"><Image src={t.img} alt={t.name} widths={[400, 700]} sizes="25vw" /></figure>}
+            <p class="ui">{t.name}</p>
+            <p class="ui ui-muted">{t.role}</p>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="about-base section container">
+    <p class="script about-base__line" data-reveal>{about.baseLine}<Rays class="about-base__rays" /></p>
+    <dl class="about-base__details">
+      <div><dt class="ui ui-muted">Email</dt><dd class="ui"><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
+      <div><dt class="ui ui-muted">Phone</dt><dd class="ui"><a href={`tel:${site.phone.replace(/[^\d+]/g, '')}`}>{site.phone}</a></dd></div>
+      <div><dt class="ui ui-muted">Home base</dt><dd class="ui">{site.location}</dd></div>
+    </dl>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-hero { padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 7rem)); padding-bottom: clamp(2.5rem, 5vw, 4rem); }
+  .about-hero .mega { max-width: 15ch; font-size: clamp(2.6rem, 1rem + 6.4vw, 8rem); }
+  .about-reel :global(.about-reel__frame) { border-radius: var(--radius-lg); }
+  .about-intro { padding-block: clamp(5rem, 9vw, 9rem); }
+  .about-story { display: grid; gap: 1.5rem; padding-bottom: clamp(4rem, 8vw, 8rem); }
+  .about-story__cols { columns: 2 320px; column-gap: clamp(2rem, 4vw, 4rem); font-size: var(--step-1); line-height: 1.5; }
+  .about-story__cols p { break-inside: avoid; margin-bottom: 1.2em; }
+
+  .about-big { --shrink: 0; position: relative; padding-inline: var(--gutter); }
+  .about-big__line { position: relative; z-index: 1; max-width: 12ch; }
+  .about-big__mission { margin-top: 2.5rem; max-width: 30ch; }
+  .about-big__stage { position: relative; padding-block: clamp(2rem, 5vw, 5rem); }
+  .about-big__tags { position: absolute; inset: 0 4%; z-index: 2; pointer-events: none; }
+  .about-big__tag {
+    position: absolute; pointer-events: auto;
+    padding: 0.7rem 1rem; border-radius: 12px; background: var(--blue); color: var(--paper);
+    rotate: var(--tilt); translate: 0 calc(var(--shrink) * var(--drift));
+    box-shadow: 0 18px 40px -22px rgba(18, 57, 79, 0.7);
+    transition: background-color 0.3s;
+  }
+  .about-big__tag:nth-child(3n + 2) { background: var(--butter); color: var(--ink); }
+  .about-big__tag:nth-child(3n) { background: var(--ink); color: var(--paper); }
+  .about-big__tag:hover { background: var(--mustard); color: var(--ink); }
+  @media (max-width: 699px) { .about-big__tags { display: none; } }
+
+  .about-values { display: grid; gap: 1.5rem; padding-bottom: clamp(5rem, 9vw, 9rem); }
+  .about-values__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; border-top: 1.5px solid var(--fg); padding-top: 2rem; }
+  .about-values__grid h3 { color: var(--blue); margin-bottom: 0.6rem; font-size: clamp(1.8rem, 1.3rem + 1.4vw, 2.6rem); overflow-wrap: anywhere; }
+
+  .about-photos__row {
+    list-style: none; margin: 0; padding: 0 0 1rem; display: grid; grid-auto-flow: column;
+    grid-auto-columns: minmax(200px, 1fr); gap: clamp(0.75rem, 1.2vw, 1.25rem); align-items: start; overflow-x: auto; scroll-snap-type: x mandatory;
+  }
+  .about-photos__row li { display: grid; gap: 0.5rem; scroll-snap-align: start; }
+  .about-photos__row li:nth-child(3n + 2) { margin-top: 3rem; }
+  .about-photos__row figure { margin: 0; }
+  .about-team { display: grid; gap: 1.5rem; padding-top: clamp(4rem, 8vw, 8rem); }
+  .about-team__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
+  .about-team__grid figure { margin: 0 0 0.6rem; }
+
+  .about-base { text-align: center; display: grid; gap: 3rem; justify-items: center; }
+  .about-base__line { font-size: clamp(2.2rem, 1.2rem + 4vw, 5.4rem); line-height: 1.05; color: var(--blue); max-width: 16ch; position: relative; }
+  .about-base :global(.about-base__rays) { display: inline-block; width: 0.8em; margin-left: 0.15em; vertical-align: top; }
+  .about-base__details { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 3rem; margin: 0; }
+  .about-base__details div { display: grid; gap: 0.2rem; }
+  .about-base__details dd { margin: 0; }
+  @media (max-width: 699px) { .about-photos__row { grid-auto-columns: 62%; } }
+</style>

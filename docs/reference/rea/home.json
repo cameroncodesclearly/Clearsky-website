@@ -1,0 +1,2302 @@
+{
+ "evidence_id": "ev_7eb13bf3fe2e0905c659efdeaead5264a6407d33615564c677504fea10c06753",
+ "provider": {
+  "id": "rea-cdp-browser",
+  "name": "REA Chrome DevTools Protocol observation provider",
+  "version": "2"
+ },
+ "target": {
+  "target_id": "4A45A8091FB05B357D2ADC3EF013DDAF",
+  "type": "page",
+  "title": "Conscious Minds - Small Agency of the Year 2026",
+  "url": "https://www.cm.studio/",
+  "origin": "https://www.cm.studio",
+  "attached": false
+ },
+ "capture_window": {
+  "started_at": "2026-10-14T00:09:45.841Z",
+  "ended_at": "2026-10-14T00:09:48.200Z",
+  "observation_ms": 2000
+ },
+ "completeness": {
+  "status": "policy_filtered",
+  "conditions": [
+   "attach_limited",
+   "policy_filtered"
+  ],
+  "policy_filtered_sections": [
+   "accessibility",
+   "console_text",
+   "json_body_shapes",
+   "metadata",
+   "resources",
+   "script_sources",
+   "scripts",
+   "storage_keys",
+   "websocket_shapes",
+   "workers"
+  ],
+  "attach_limited_sections": [
+   "console_events",
+   "metadata",
+   "network_requests",
+   "websocket_connections",
+   "websocket_frames"
+  ],
+  "truncated_sections": [],
+  "unavailable_sections": [],
+  "excluded": [
+   {
+    "section": "accessibility",
+    "reason": "not_approved",
+    "count": 453
+   },
+   {
+    "section": "console_text",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "json_body_shapes",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "metadata",
+    "reason": "disallowed_origin",
+    "count": 200
+   },
+   {
+    "section": "metadata",
+    "reason": "unsupported_url",
+    "count": 24
+   },
+   {
+    "section": "resources",
+    "reason": "disallowed_origin",
+    "count": 36
+   },
+   {
+    "section": "script_sources",
+    "reason": "not_approved",
+    "count": 41
+   },
+   {
+    "section": "scripts",
+    "reason": "disallowed_origin",
+    "count": 5
+   },
+   {
+    "section": "scripts",
+    "reason": "unattributed_origin",
+    "count": 1
+   },
+   {
+    "section": "storage_keys",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "websocket_shapes",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "workers",
+    "reason": "out_of_target_scope",
+    "count": 2
+   }
+  ],
+  "dropped_events": {
+   "scripts": 0,
+   "network_requests": 0,
+   "console_events": 0,
+   "websocket_connections": 0,
+   "websocket_frames": 0,
+   "webmcp_tools": 0,
+   "timeline_events": 0,
+   "total": 0
+  }
+ },
+ "dom_total_nodes": 2265,
+ "custom_elements": [
+  "MUX-VIDEO",
+  "SIX-BACKGROUND-VIDEO",
+  "SIX-BRAIN-CALLOUT",
+  "SIX-BURGER-MENU",
+  "SIX-CALLOUT-LINK-LIST",
+  "SIX-CAROUSEL",
+  "SIX-CLOCK",
+  "SIX-CUSTOM-CURSOR",
+  "SIX-FOOTER",
+  "SIX-HEADER",
+  "SIX-HEADER-MENU",
+  "SIX-HERO-MEDIA",
+  "SIX-LOTTIE-PLAYER",
+  "SIX-MARQUEE",
+  "SIX-MUTE-BTN",
+  "SIX-NAV-MENU",
+  "SIX-PAGE-FADER",
+  "SIX-PILL",
+  "SIX-PRELOADER",
+  "SIX-PROJECT-CAROUSEL",
+  "SIX-SUBMENU-PANEL",
+  "SWIPER-CONTAINER",
+  "SWIPER-SLIDE",
+  "VERCEL-ANALYTICS",
+  "WA-DETAILS"
+ ],
+ "scripts": [
+  "https://www.cm.studio/_astro/vendor-swiper.ZCpjw0M_.js",
+  "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/BodyScrollLock.Cygulz9G.js",
+  "https://www.cm.studio/_astro/router.wwaU8DuT.js",
+  "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/client.BgIjqTtf.js",
+  "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/",
+  "https://www.cm.studio/",
+  "https://www.cm.studio/",
+  "https://www.cm.studio/_vercel/insights/script.js",
+  "https://www.cm.studio/_astro/Carousel.astro_astro_type_script_index_0_lang.P5uVdgQX.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/SixHeroMedia.astro_astro_type_script_index_0_lang.C48GUqjG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/LottiePlayer.astro_astro_type_script_index_0_lang.CxJ0cz5P.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/Marquee.astro_astro_type_script_index_0_lang.DdNBY7Pn.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/UserActivityWatcher.DCc-opx-.js",
+  "https://www.cm.studio/_astro/CalloutLinkList.astro_astro_type_script_index_0_lang.CannPcBH.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/vendor-gsap.-FfEEfmX.js",
+  "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/ProjectCarousel.astro_astro_type_script_index_0_lang.B4vuf0aa.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/Preloader.astro_astro_type_script_index_0_lang.B72jguLz.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/eventbus.Ck9u63El.js",
+  "https://www.cm.studio/_astro/isDevices.hE_4pUI7.js",
+  "https://www.cm.studio/~partytown/partytown-sandbox-sw.html?1791936573359",
+  "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/BrainCallout.astro_astro_type_script_index_0_lang.DPY2DSA6.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/index.7D7uTqs0.js",
+  "https://www.cm.studio/",
+  "https://www.cm.studio/",
+  "https://www.cm.studio/_astro/preload-helper.CVfkMyKi.js",
+  "https://www.cm.studio/_astro/vendor-locomotive.Bl4ldVjt.js",
+  "https://www.cm.studio/_astro/SixComponent.Dt9MwuNM.js",
+  "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+ ],
+ "resources": [
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1020,
+   "url": "https://www.cm.studio/_astro/BodyScrollLock.Cygulz9G.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 325892,
+   "url": "https://www.cm.studio/_astro/LottiePlayer.astro_astro_type_script_index_0_lang.CxJ0cz5P.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 38152,
+   "url": "https://www.cm.studio/_astro/fonts/ccd80d05ccfa7a50.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 3034,
+   "url": "https://www.cm.studio/_astro/CalloutLinkList.astro_astro_type_script_index_0_lang.CannPcBH.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 79,
+   "url": "https://www.cm.studio/_astro/client.BgIjqTtf.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 890,
+   "url": "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 68932,
+   "url": "https://www.cm.studio/_astro/fonts/5a92ba28ee8943e6.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 627,
+   "url": "https://www.cm.studio/_astro/eventbus.Ck9u63El.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 34360,
+   "url": "https://www.cm.studio/_astro/vendor-locomotive.Bl4ldVjt.js"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 28325,
+   "url": "https://www.cm.studio/_astro/fonts/a2c236c069163de9.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 843,
+   "url": "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1085,
+   "url": "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1719,
+   "url": "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 184684,
+   "url": "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 206,
+   "url": "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4550,
+   "url": "https://www.cm.studio/_vercel/insights/script.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1476,
+   "url": "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 33000,
+   "url": "https://www.cm.studio/_astro/fonts/01ae22f0cbb521d6.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 691187,
+   "url": "https://www.cm.studio/_astro/index.7D7uTqs0.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 110704,
+   "url": "https://www.cm.studio/_astro/vendor-swiper.ZCpjw0M_.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 5195,
+   "url": "https://www.cm.studio/_astro/Carousel.astro_astro_type_script_index_0_lang.P5uVdgQX.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4801,
+   "url": "https://www.cm.studio/_astro/BrainCallout.astro_astro_type_script_index_0_lang.DPY2DSA6.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2256,
+   "url": "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 3539,
+   "url": "https://www.cm.studio/_astro/Preloader.astro_astro_type_script_index_0_lang.B72jguLz.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4494,
+   "url": "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 864,
+   "url": "https://www.cm.studio/_astro/UserActivityWatcher.DCc-opx-.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4960,
+   "url": "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 12138,
+   "url": "https://www.cm.studio/_astro/router.wwaU8DuT.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 155712,
+   "url": "https://www.cm.studio/_astro/vendor-gsap.-FfEEfmX.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2077,
+   "url": "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 211,
+   "url": "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2674,
+   "url": "https://www.cm.studio/_astro/SixComponent.Dt9MwuNM.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 679,
+   "url": "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 12302,
+   "url": "https://www.cm.studio/_astro/ProjectCarousel.astro_astro_type_script_index_0_lang.B4vuf0aa.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1252,
+   "url": "https://www.cm.studio/_astro/Marquee.astro_astro_type_script_index_0_lang.DdNBY7Pn.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1254,
+   "url": "https://www.cm.studio/_astro/preload-helper.CVfkMyKi.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 169,
+   "url": "https://www.cm.studio/_astro/isDevices.hE_4pUI7.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1247,
+   "url": "https://www.cm.studio/_astro/SixHeroMedia.astro_astro_type_script_index_0_lang.C48GUqjG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 5453,
+   "url": "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 32348,
+   "url": "https://www.cm.studio/_astro/fonts/3f1258acbb65adda.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  }
+ ],
+ "metadata": {
+  "responses": [],
+  "dom_urls": [
+   {
+    "node_index": 4,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 5,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 6,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-light.svg",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 7,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-dark.svg",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 10,
+    "attribute": "href",
+    "url": "https://www.cm.studio/_astro/fonts/a2c236c069163de9.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 13,
+    "attribute": "href",
+    "url": "https://www.cm.studio/_astro/fonts/ccd80d05ccfa7a50.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 20,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-96x96.png",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 21,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/apple-touch-icon.png",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 23,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/site.webmanifest",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 24,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 26,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 29,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 31,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 33,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 35,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 72,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 76,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_vercel/insights/script.js",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 79,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 80,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 81,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 86,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 93,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Preloader.astro_astro_type_script_index_0_lang.B72jguLz.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 109,
+    "attribute": "href",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 122,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 124,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 125,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 126,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 127,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 148,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 156,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 169,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 199,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 210,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 264,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 272,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 280,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 288,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 296,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 304,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 317,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 335,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 340,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 345,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 373,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 375,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 404,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 409,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 414,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 419,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 424,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 429,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 438,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 443,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 443,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 450,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 450,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 452,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 469,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 482,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 487,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 487,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 494,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 494,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 496,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 513,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 526,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 531,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 531,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 538,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 538,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 540,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 558,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 571,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 576,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 576,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 583,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 583,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 585,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 603,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 616,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 621,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 621,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 628,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 628,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 630,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 647,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 660,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 664,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 671,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 699,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/ProjectCarousel.astro_astro_type_script_index_0_lang.B4vuf0aa.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 700,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Carousel.astro_astro_type_script_index_0_lang.P5uVdgQX.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 701,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixHeroMedia.astro_astro_type_script_index_0_lang.C48GUqjG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 702,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/BrainCallout.astro_astro_type_script_index_0_lang.DPY2DSA6.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 703,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/LottiePlayer.astro_astro_type_script_index_0_lang.CxJ0cz5P.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 704,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Marquee.astro_astro_type_script_index_0_lang.DdNBY7Pn.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 705,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/CalloutLinkList.astro_astro_type_script_index_0_lang.CannPcBH.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 726,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 726,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 733,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 733,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 735,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 759,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 759,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 766,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 766,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 768,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 792,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 792,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 799,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 799,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 801,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 825,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 825,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 832,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 832,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 834,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 858,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 858,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 865,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 865,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 867,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 900,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 904,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 905,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 908,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 908,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 915,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 915,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 917,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 935,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/no-cup-like-it",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 941,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 941,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 948,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 948,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 950,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 968,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/from-anywhere",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 974,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 974,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 981,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 981,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 983,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1001,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/coachella-activation",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1007,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1007,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1014,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1014,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1016,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1034,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/touch-grass",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1040,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1040,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1047,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1047,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1049,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1176,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1244,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/social-and-culture",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1264,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1264,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1271,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1271,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1273,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1290,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/running",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1310,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1310,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1317,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1317,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1319,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1336,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/yahoo",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1356,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1356,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1363,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1363,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1365,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1394,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1398,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1402,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1406,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1410,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1414,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1418,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1422,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1426,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1430,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1434,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1438,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1442,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1446,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1453,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1457,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1461,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1465,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1469,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1473,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1477,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1481,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1485,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1489,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1493,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1497,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1501,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1505,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1512,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1516,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1520,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1524,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1528,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1532,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1536,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1540,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1544,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1548,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1552,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1556,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1560,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1564,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1571,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1575,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1579,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1583,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1587,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1591,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1595,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1599,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1603,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1607,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1611,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1615,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1619,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1623,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1634,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1638,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1642,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1646,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1650,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1654,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1658,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1662,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1666,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1670,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1674,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1678,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1682,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1686,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1693,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1697,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1701,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1705,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1709,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1713,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1717,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1721,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1725,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1729,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1733,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1737,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1741,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1745,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1752,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1756,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1760,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1764,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1768,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1772,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1776,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1780,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1784,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1788,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1792,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1796,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1800,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1804,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1811,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1815,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1819,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1823,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1827,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1831,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1835,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1839,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1843,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1847,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1851,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1855,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1859,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1863,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1876,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1887,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1887,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1894,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1894,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1896,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1917,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1927,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1937,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1948,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1948,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1955,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1955,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1957,
+    "attribute": "src",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1981,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1983,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1984,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 2118,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 2151,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 2158,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 2165,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 2173,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 2185,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 2228,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 2256,
+    "attribute": "src",
+    "url": "https://www.cm.studio/~partytown/partytown-sandbox-sw.html?1791936573359",
+    "destination_scope": "approved"
+   }
+  ],
+  "agent_hints": [],
+  "excluded_dom_urls": 224,
+  "headers_allowlisted": true
+ },
+ "limitations": [
+  "Observation starts when REA attaches; prior network and console activity is unavailable.",
+  "Raw network headers, bodies, cookies, storage values, console objects, and WebSocket payloads are never retained; explicitly requested primitive console text is retained verbatim, while payload captures retain value-free shapes.",
+  "Source maps are reported only as declarative URLs and are not fetched.",
+  "URL-less scripts and console events without an allowed source URL are excluded because their origin cannot be proven."
+ ]
+}

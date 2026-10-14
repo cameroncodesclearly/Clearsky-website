@@ -1,0 +1,1376 @@
+{
+ "evidence_id": "ev_ec9de26a797f093a5fb0236d03ed6f9b4f81d608ddb7a7f4b36cdf69c44add34",
+ "provider": {
+  "id": "rea-cdp-browser",
+  "name": "REA Chrome DevTools Protocol observation provider",
+  "version": "2"
+ },
+ "target": {
+  "target_id": "4A45A8091FB05B357D2ADC3EF013DDAF",
+  "type": "page",
+  "title": "Cardi B&#39;s Email Planner - Conscious Minds",
+  "url": "https://www.cm.studio/projects/cardi-b-busy",
+  "origin": "https://www.cm.studio",
+  "attached": false
+ },
+ "capture_window": {
+  "started_at": "2026-10-14T00:10:15.776Z",
+  "ended_at": "2026-10-14T00:10:18.096Z",
+  "observation_ms": 2000
+ },
+ "completeness": {
+  "status": "policy_filtered",
+  "conditions": [
+   "attach_limited",
+   "policy_filtered"
+  ],
+  "policy_filtered_sections": [
+   "accessibility",
+   "console_text",
+   "json_body_shapes",
+   "metadata",
+   "resources",
+   "script_sources",
+   "scripts",
+   "storage_keys",
+   "websocket_shapes",
+   "workers"
+  ],
+  "attach_limited_sections": [
+   "console_events",
+   "metadata",
+   "network_requests",
+   "websocket_connections",
+   "websocket_frames"
+  ],
+  "truncated_sections": [],
+  "unavailable_sections": [],
+  "excluded": [
+   {
+    "section": "accessibility",
+    "reason": "not_approved",
+    "count": 336
+   },
+   {
+    "section": "console_text",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "json_body_shapes",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "metadata",
+    "reason": "disallowed_origin",
+    "count": 68
+   },
+   {
+    "section": "metadata",
+    "reason": "unsupported_url",
+    "count": 17
+   },
+   {
+    "section": "resources",
+    "reason": "disallowed_origin",
+    "count": 29
+   },
+   {
+    "section": "script_sources",
+    "reason": "not_approved",
+    "count": 38
+   },
+   {
+    "section": "scripts",
+    "reason": "disallowed_origin",
+    "count": 4
+   },
+   {
+    "section": "scripts",
+    "reason": "unattributed_origin",
+    "count": 1
+   },
+   {
+    "section": "storage_keys",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "websocket_shapes",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "workers",
+    "reason": "out_of_target_scope",
+    "count": 4
+   }
+  ],
+  "dropped_events": {
+   "scripts": 0,
+   "network_requests": 0,
+   "console_events": 0,
+   "websocket_connections": 0,
+   "websocket_frames": 0,
+   "webmcp_tools": 0,
+   "timeline_events": 0,
+   "total": 0
+  }
+ },
+ "dom_total_nodes": 1753,
+ "custom_elements": [
+  "MEDIA-CONTROL-BAR",
+  "MEDIA-CONTROLLER",
+  "MEDIA-GESTURE-RECEIVER",
+  "MEDIA-MUTE-BUTTON",
+  "MEDIA-PLAY-BUTTON",
+  "MEDIA-PREVIEW-CHAPTER-DISPLAY",
+  "MEDIA-PREVIEW-THUMBNAIL",
+  "MEDIA-PREVIEW-TIME-DISPLAY",
+  "MEDIA-TIME-RANGE",
+  "MEDIA-TOOLTIP",
+  "MUX-VIDEO",
+  "SIX-BACKGROUND-VIDEO",
+  "SIX-BURGER-MENU",
+  "SIX-CAROUSEL",
+  "SIX-CLOCK",
+  "SIX-CUSTOM-CURSOR",
+  "SIX-FOOTER",
+  "SIX-HEADER",
+  "SIX-HEADER-MENU",
+  "SIX-HERO-MEDIA",
+  "SIX-MUTE-BTN",
+  "SIX-NAV-MENU",
+  "SIX-PAGE-FADER",
+  "SIX-PILL",
+  "SIX-PRELOADER",
+  "SIX-PROJECT-HEADER",
+  "SIX-SUBMENU-PANEL",
+  "SIX-VIDEO-PLAYER",
+  "SWIPER-CONTAINER",
+  "SWIPER-SLIDE",
+  "VERCEL-ANALYTICS",
+  "WA-DETAILS"
+ ],
+ "scripts": [
+  "https://www.cm.studio/projects/cardi-b-busy",
+  "https://www.cm.studio/_astro/vendor-swiper.ZCpjw0M_.js",
+  "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/~partytown/partytown-sandbox-sw.html?1791936604483",
+  "https://www.cm.studio/_astro/BodyScrollLock.Cygulz9G.js",
+  "https://www.cm.studio/_astro/router.wwaU8DuT.js",
+  "https://www.cm.studio/projects/cardi-b-busy",
+  "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/client.BgIjqTtf.js",
+  "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/projects/cardi-b-busy",
+  "https://www.cm.studio/_vercel/insights/script.js",
+  "https://www.cm.studio/_astro/Carousel.astro_astro_type_script_index_0_lang.P5uVdgQX.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/SixHeroMedia.astro_astro_type_script_index_0_lang.C48GUqjG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/UserActivityWatcher.DCc-opx-.js",
+  "https://www.cm.studio/_astro/index.CDKQuDS_.js",
+  "https://www.cm.studio/_astro/vendor-gsap.-FfEEfmX.js",
+  "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/Preloader.astro_astro_type_script_index_0_lang.B72jguLz.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/eventbus.Ck9u63El.js",
+  "https://www.cm.studio/_astro/ProjectHeader.astro_astro_type_script_index_0_lang.CV_vviwh.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/index.7D7uTqs0.js",
+  "https://www.cm.studio/projects/cardi-b-busy",
+  "https://www.cm.studio/projects/cardi-b-busy",
+  "https://www.cm.studio/_astro/VideoPlayer.astro_astro_type_script_index_0_lang.mUksAjLs.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/preload-helper.CVfkMyKi.js",
+  "https://www.cm.studio/_astro/vendor-locomotive.Bl4ldVjt.js",
+  "https://www.cm.studio/_astro/SixComponent.Dt9MwuNM.js",
+  "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+ ],
+ "resources": [
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1020,
+   "url": "https://www.cm.studio/_astro/BodyScrollLock.Cygulz9G.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 182574,
+   "url": "https://www.cm.studio/_astro/index.CDKQuDS_.js"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 38152,
+   "url": "https://www.cm.studio/_astro/fonts/ccd80d05ccfa7a50.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 79,
+   "url": "https://www.cm.studio/_astro/client.BgIjqTtf.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 890,
+   "url": "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 68932,
+   "url": "https://www.cm.studio/_astro/fonts/5a92ba28ee8943e6.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 627,
+   "url": "https://www.cm.studio/_astro/eventbus.Ck9u63El.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 34360,
+   "url": "https://www.cm.studio/_astro/vendor-locomotive.Bl4ldVjt.js"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 28325,
+   "url": "https://www.cm.studio/_astro/fonts/a2c236c069163de9.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 843,
+   "url": "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 7046,
+   "url": "https://www.cm.studio/_astro/VideoPlayer.astro_astro_type_script_index_0_lang.mUksAjLs.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1085,
+   "url": "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1719,
+   "url": "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 184684,
+   "url": "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 206,
+   "url": "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4550,
+   "url": "https://www.cm.studio/_vercel/insights/script.js"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 32080,
+   "url": "https://www.cm.studio/_astro/fonts/1801f5760b553106.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1476,
+   "url": "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 33000,
+   "url": "https://www.cm.studio/_astro/fonts/01ae22f0cbb521d6.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 691187,
+   "url": "https://www.cm.studio/_astro/index.7D7uTqs0.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 110704,
+   "url": "https://www.cm.studio/_astro/vendor-swiper.ZCpjw0M_.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 5195,
+   "url": "https://www.cm.studio/_astro/Carousel.astro_astro_type_script_index_0_lang.P5uVdgQX.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2256,
+   "url": "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 3539,
+   "url": "https://www.cm.studio/_astro/Preloader.astro_astro_type_script_index_0_lang.B72jguLz.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4494,
+   "url": "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 864,
+   "url": "https://www.cm.studio/_astro/UserActivityWatcher.DCc-opx-.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4960,
+   "url": "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 12138,
+   "url": "https://www.cm.studio/_astro/router.wwaU8DuT.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 155712,
+   "url": "https://www.cm.studio/_astro/vendor-gsap.-FfEEfmX.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2077,
+   "url": "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 211,
+   "url": "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2674,
+   "url": "https://www.cm.studio/_astro/SixComponent.Dt9MwuNM.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 679,
+   "url": "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1254,
+   "url": "https://www.cm.studio/_astro/preload-helper.CVfkMyKi.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 786,
+   "url": "https://www.cm.studio/_astro/ProjectHeader.astro_astro_type_script_index_0_lang.CV_vviwh.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1247,
+   "url": "https://www.cm.studio/_astro/SixHeroMedia.astro_astro_type_script_index_0_lang.C48GUqjG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 5453,
+   "url": "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 32348,
+   "url": "https://www.cm.studio/_astro/fonts/3f1258acbb65adda.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  }
+ ],
+ "metadata": {
+  "responses": [],
+  "dom_urls": [
+   {
+    "node_index": 4,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 5,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 6,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-light.svg",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 7,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-dark.svg",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 10,
+    "attribute": "href",
+    "url": "https://www.cm.studio/_astro/fonts/a2c236c069163de9.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 13,
+    "attribute": "href",
+    "url": "https://www.cm.studio/_astro/fonts/ccd80d05ccfa7a50.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 20,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-96x96.png",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 21,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/apple-touch-icon.png",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 23,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/site.webmanifest",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 24,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 26,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 29,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 31,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 33,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 35,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 72,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 76,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_vercel/insights/script.js",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 79,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 80,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 81,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 86,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 93,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Preloader.astro_astro_type_script_index_0_lang.B72jguLz.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 109,
+    "attribute": "href",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 122,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 124,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 125,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 126,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 127,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 148,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 156,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 169,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 199,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 210,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 264,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 272,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 280,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 288,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 296,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 304,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 317,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 335,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 340,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 345,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 373,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 375,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 404,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 409,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 414,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 419,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 424,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 429,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 438,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 443,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 443,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 450,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 450,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 452,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 469,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 482,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 487,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 487,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 494,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 494,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 496,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 513,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 526,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 531,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 531,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 538,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 538,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 540,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 558,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 571,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 576,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 576,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 583,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 583,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 585,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 603,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 616,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 621,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 621,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 628,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 628,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 630,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 647,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 660,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 664,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 671,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 697,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/ProjectHeader.astro_astro_type_script_index_0_lang.CV_vviwh.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 699,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixHeroMedia.astro_astro_type_script_index_0_lang.C48GUqjG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 700,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/VideoPlayer.astro_astro_type_script_index_0_lang.mUksAjLs.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 733,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 733,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 740,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 740,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 742,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1070,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1075,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1080,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1088,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1093,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1110,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Carousel.astro_astro_type_script_index_0_lang.P5uVdgQX.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1126,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/so-win",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1145,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1145,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1152,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1152,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1154,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1172,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/from-anywhere",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1191,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1191,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1198,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1198,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1200,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1218,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/be-who-you-are",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1237,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1237,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1244,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1244,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1246,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1264,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/runners-helping-runners",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1283,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1283,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1290,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1290,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1292,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1310,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/us-open",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1329,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1329,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1336,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1336,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1338,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1356,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/playlist",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1375,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1375,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1382,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1382,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1384,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1402,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects/pay-and-books",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1421,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1421,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1428,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1428,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1430,
+    "attribute": "src",
+    "url": "https://www.cm.studio/projects/cardi-b-busy",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1469,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1471,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1472,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1606,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1639,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1646,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1653,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1661,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 1673,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1716,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1744,
+    "attribute": "src",
+    "url": "https://www.cm.studio/~partytown/partytown-sandbox-sw.html?1791936604483",
+    "destination_scope": "approved"
+   }
+  ],
+  "agent_hints": [],
+  "excluded_dom_urls": 85,
+  "headers_allowlisted": true
+ },
+ "limitations": [
+  "Observation starts when REA attaches; prior network and console activity is unavailable.",
+  "Raw network headers, bodies, cookies, storage values, console objects, and WebSocket payloads are never retained; explicitly requested primitive console text is retained verbatim, while payload captures retain value-free shapes.",
+  "Source maps are reported only as declarative URLs and are not fetched.",
+  "URL-less scripts and console events without an allowed source URL are excluded because their origin cannot be proven."
+ ]
+}

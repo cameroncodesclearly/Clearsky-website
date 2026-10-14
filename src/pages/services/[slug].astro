@@ -1,0 +1,101 @@
+---
+import { getEntry, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VideoFrame from '../../components/VideoFrame.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import TalkCta from '../../components/TalkCta.astro';
+import { publishedServices, parseVideo, posterFor } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const services = await publishedServices();
+  return services.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const featured = d.featuredWork ? await getEntry('caseStudies', d.featuredWork) : undefined;
+const heroPoster = d.heroImage ?? posterFor(parseVideo(d.heroVideo));
+const hasBody = Boolean(entry.body?.trim());
+---
+<BaseLayout title={d.title} description={d.intro} theme={d.theme}>
+  <section class="svc-hero" data-full-bleed data-header-light>
+    <div class="svc-hero__card" data-shrink>
+      <VideoFrame video={d.heroVideo} poster={heroPoster} ratio="free" class="svc-hero__media" sizes="100vw" eager />
+      <div class="svc-hero__shade" aria-hidden="true"></div>
+      <h1 class="mega svc-hero__title">{d.title}</h1>
+      {d.tagline && <p class="ui svc-hero__tag">{d.tagline}</p>}
+    </div>
+  </section>
+
+  {d.intro && (
+    <section class="svc-intro narrow" data-reveal>
+      <p class="statement"><span class="ui-muted">{d.title}.</span> {d.intro}</p>
+    </section>
+  )}
+
+  {d.media.length > 0 && (
+    <section class="svc-strip container" aria-label={`${d.title} examples`}>
+      <ol class="svc-strip__row">
+        {d.media.map((m, i) => (
+          <li data-reveal>
+            <span class="ui">{String(i + 1).padStart(2, '0')}</span>
+            <VideoFrame video={m.url} poster={m.poster} alt={m.title} ratio={m.vertical ? '9x16' : '16x10'} vertical={m.vertical} sizes="(min-width: 900px) 25vw, 60vw" />
+            {m.title && <span class="ui ui-muted">{m.title}</span>}
+          </li>
+        ))}
+      </ol>
+    </section>
+  )}
+
+  {d.statement && (
+    <section class="svc-statement section container">
+      <p class="mega center" data-reveal>{d.statement}</p>
+    </section>
+  )}
+
+  {d.capabilities.length > 0 && (
+    <section class="svc-caps container" aria-labelledby="caps-heading">
+      <h2 id="caps-heading" class="ui ui-muted">Capabilities</h2>
+      <p class="display svc-caps__list" data-reveal>{d.capabilities.join(', ')}.</p>
+    </section>
+  )}
+
+  {hasBody && <section class="narrow prose svc-body"><Content /></section>}
+
+  {featured && !featured.data.draft && (
+    <section class="svc-featured container" aria-label="Featured case study">
+      <WorkCard entry={featured} ratio="16x9" sizes="100vw" />
+    </section>
+  )}
+
+  <TalkCta />
+</BaseLayout>
+
+<style>
+  .svc-hero { height: 100svh; min-height: 520px; }
+  .svc-hero__card {
+    --shrink: 0;
+    position: relative; height: 100%; overflow: hidden; color: var(--paper); background: var(--ink);
+    display: grid; place-content: center; text-align: center; padding: var(--gutter);
+    transform-origin: 50% 0; scale: calc(1 - var(--shrink) * 0.1); border-radius: calc(var(--shrink) * 64px);
+  }
+  .svc-hero__card :global(.svc-hero__media) { position: absolute; inset: 0; border-radius: 0; }
+  .svc-hero__shade { position: absolute; inset: 0; background: rgba(26, 19, 7, 0.35); }
+  .svc-hero__title { position: relative; max-width: 11ch; }
+  .svc-hero__tag { position: absolute; left: 0; right: 0; bottom: var(--gutter); }
+  .svc-intro { padding-block: clamp(5rem, 9vw, 9rem) clamp(3rem, 5vw, 5rem); }
+  .svc-intro .statement { max-width: 34ch; }
+  .svc-strip__row {
+    list-style: none; margin: 0; padding: 0 0 1rem;
+    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 1fr); gap: clamp(0.75rem, 1.2vw, 1.25rem);
+    align-items: start; overflow-x: auto; scroll-snap-type: x mandatory;
+  }
+  .svc-strip__row li { display: grid; gap: 0.5rem; scroll-snap-align: start; }
+  .svc-strip__row li:nth-child(even) { margin-top: clamp(2rem, 6vw, 6rem); }
+  .svc-caps { display: grid; gap: 1rem; text-align: center; justify-items: center; padding-bottom: clamp(5rem, 9vw, 9rem); }
+  .svc-caps__list { max-width: 22ch; font-size: clamp(2rem, 1.2rem + 3vw, 4.4rem); }
+  .svc-body { padding-bottom: clamp(4rem, 8vw, 8rem); }
+  .svc-featured { padding-bottom: clamp(3rem, 6vw, 6rem); }
+  @media (max-width: 699px) { .svc-strip__row { grid-auto-columns: 62%; } }
+</style>

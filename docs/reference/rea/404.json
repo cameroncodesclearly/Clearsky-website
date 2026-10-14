@@ -1,0 +1,1108 @@
+{
+ "evidence_id": "ev_111307d1da46405f6db3b691bac4fd04bb8535e01883f3c045e6cc3038118d40",
+ "provider": {
+  "id": "rea-cdp-browser",
+  "name": "REA Chrome DevTools Protocol observation provider",
+  "version": "2"
+ },
+ "target": {
+  "target_id": "4A45A8091FB05B357D2ADC3EF013DDAF",
+  "type": "page",
+  "title": "404 - Page Not Found",
+  "url": "https://www.cm.studio/nope",
+  "origin": "https://www.cm.studio",
+  "attached": false
+ },
+ "capture_window": {
+  "started_at": "2026-10-14T00:11:17.228Z",
+  "ended_at": "2026-10-14T00:11:19.566Z",
+  "observation_ms": 2000
+ },
+ "completeness": {
+  "status": "policy_filtered",
+  "conditions": [
+   "attach_limited",
+   "policy_filtered"
+  ],
+  "policy_filtered_sections": [
+   "accessibility",
+   "console_text",
+   "json_body_shapes",
+   "metadata",
+   "resources",
+   "script_sources",
+   "scripts",
+   "storage_keys",
+   "websocket_shapes",
+   "workers"
+  ],
+  "attach_limited_sections": [
+   "console_events",
+   "metadata",
+   "network_requests",
+   "websocket_connections",
+   "websocket_frames"
+  ],
+  "truncated_sections": [],
+  "unavailable_sections": [],
+  "excluded": [
+   {
+    "section": "accessibility",
+    "reason": "not_approved",
+    "count": 117
+   },
+   {
+    "section": "console_text",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "json_body_shapes",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "metadata",
+    "reason": "disallowed_origin",
+    "count": 51
+   },
+   {
+    "section": "metadata",
+    "reason": "unsupported_url",
+    "count": 13
+   },
+   {
+    "section": "resources",
+    "reason": "disallowed_origin",
+    "count": 20
+   },
+   {
+    "section": "script_sources",
+    "reason": "not_approved",
+    "count": 32
+   },
+   {
+    "section": "scripts",
+    "reason": "disallowed_origin",
+    "count": 4
+   },
+   {
+    "section": "scripts",
+    "reason": "unattributed_origin",
+    "count": 1
+   },
+   {
+    "section": "storage_keys",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "websocket_shapes",
+    "reason": "not_approved",
+    "count": null
+   },
+   {
+    "section": "workers",
+    "reason": "out_of_target_scope",
+    "count": 8
+   }
+  ],
+  "dropped_events": {
+   "scripts": 0,
+   "network_requests": 0,
+   "console_events": 0,
+   "websocket_connections": 0,
+   "websocket_frames": 0,
+   "webmcp_tools": 0,
+   "timeline_events": 0,
+   "total": 0
+  }
+ },
+ "dom_total_nodes": 1042,
+ "custom_elements": [
+  "MUX-VIDEO",
+  "SIX-BACKGROUND-VIDEO",
+  "SIX-BURGER-MENU",
+  "SIX-CLOCK",
+  "SIX-CUSTOM-CURSOR",
+  "SIX-FOOTER",
+  "SIX-FOUR-OH-FOUR",
+  "SIX-HEADER",
+  "SIX-HEADER-MENU",
+  "SIX-MUTE-BTN",
+  "SIX-NAV-MENU",
+  "SIX-PAGE-FADER",
+  "SIX-PILL",
+  "SIX-SUBMENU-PANEL",
+  "VERCEL-ANALYTICS",
+  "WA-DETAILS"
+ ],
+ "scripts": [
+  "https://www.cm.studio/_astro/vendor-swiper.ZCpjw0M_.js",
+  "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/BodyScrollLock.Cygulz9G.js",
+  "https://www.cm.studio/_astro/router.wwaU8DuT.js",
+  "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/client.BgIjqTtf.js",
+  "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_vercel/insights/script.js",
+  "https://www.cm.studio/_astro/SixFourOhFour.astro_astro_type_script_index_0_lang.DAp12s8G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/nope",
+  "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/nope",
+  "https://www.cm.studio/~partytown/partytown-sandbox-sw.html?1791936666209",
+  "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/nope",
+  "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/nope",
+  "https://www.cm.studio/_astro/UserActivityWatcher.DCc-opx-.js",
+  "https://www.cm.studio/_astro/vendor-gsap.-FfEEfmX.js",
+  "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/eventbus.Ck9u63El.js",
+  "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+  "https://www.cm.studio/_astro/index.7D7uTqs0.js",
+  "https://www.cm.studio/_astro/preload-helper.CVfkMyKi.js",
+  "https://www.cm.studio/_astro/vendor-locomotive.Bl4ldVjt.js",
+  "https://www.cm.studio/_astro/SixComponent.Dt9MwuNM.js",
+  "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+ ],
+ "resources": [
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1020,
+   "url": "https://www.cm.studio/_astro/BodyScrollLock.Cygulz9G.js"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 38152,
+   "url": "https://www.cm.studio/_astro/fonts/ccd80d05ccfa7a50.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 79,
+   "url": "https://www.cm.studio/_astro/client.BgIjqTtf.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 890,
+   "url": "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 68932,
+   "url": "https://www.cm.studio/_astro/fonts/5a92ba28ee8943e6.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 627,
+   "url": "https://www.cm.studio/_astro/eventbus.Ck9u63El.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 34360,
+   "url": "https://www.cm.studio/_astro/vendor-locomotive.Bl4ldVjt.js"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 28325,
+   "url": "https://www.cm.studio/_astro/fonts/a2c236c069163de9.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 843,
+   "url": "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1085,
+   "url": "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1719,
+   "url": "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 184684,
+   "url": "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 206,
+   "url": "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1329,
+   "url": "https://www.cm.studio/_astro/SixFourOhFour.astro_astro_type_script_index_0_lang.DAp12s8G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4550,
+   "url": "https://www.cm.studio/_vercel/insights/script.js"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 32080,
+   "url": "https://www.cm.studio/_astro/fonts/1801f5760b553106.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1476,
+   "url": "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 33000,
+   "url": "https://www.cm.studio/_astro/fonts/01ae22f0cbb521d6.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 691187,
+   "url": "https://www.cm.studio/_astro/index.7D7uTqs0.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 110704,
+   "url": "https://www.cm.studio/_astro/vendor-swiper.ZCpjw0M_.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2256,
+   "url": "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4494,
+   "url": "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 864,
+   "url": "https://www.cm.studio/_astro/UserActivityWatcher.DCc-opx-.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 4960,
+   "url": "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 12138,
+   "url": "https://www.cm.studio/_astro/router.wwaU8DuT.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 155712,
+   "url": "https://www.cm.studio/_astro/vendor-gsap.-FfEEfmX.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2077,
+   "url": "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 211,
+   "url": "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 2674,
+   "url": "https://www.cm.studio/_astro/SixComponent.Dt9MwuNM.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 679,
+   "url": "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 1254,
+   "url": "https://www.cm.studio/_astro/preload-helper.CVfkMyKi.js"
+  },
+  {
+   "type": "Script",
+   "mime_type": "application/javascript",
+   "content_size": 5453,
+   "url": "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  },
+  {
+   "type": "Font",
+   "mime_type": "font/woff2",
+   "content_size": 32348,
+   "url": "https://www.cm.studio/_astro/fonts/3f1258acbb65adda.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ"
+  }
+ ],
+ "metadata": {
+  "responses": [],
+  "dom_urls": [
+   {
+    "node_index": 4,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 5,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 6,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-light.svg",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 7,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-dark.svg",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 10,
+    "attribute": "href",
+    "url": "https://www.cm.studio/_astro/fonts/a2c236c069163de9.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 13,
+    "attribute": "href",
+    "url": "https://www.cm.studio/_astro/fonts/ccd80d05ccfa7a50.woff2?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 20,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/favicon-96x96.png",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 21,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/apple-touch-icon.png",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 23,
+    "attribute": "href",
+    "url": "https://www.cm.studio/favicon/site.webmanifest",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 24,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/CommonHead.astro_astro_type_script_index_0_lang.B_HEQi7G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 26,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 29,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 31,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 33,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 35,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 43,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/page.BQjOa83T.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 47,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 48,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_vercel/insights/script.js",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 51,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 52,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 57,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/PageFader.astro_astro_type_script_index_0_lang.ChOinbjw.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 70,
+    "attribute": "href",
+    "url": "https://www.cm.studio/",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 83,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixHeader.astro_astro_type_script_index_0_lang.DbhYuAJb.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 85,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/HeaderMenu.astro_astro_type_script_index_0_lang.zkA7htIG.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 86,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/NavMenu.astro_astro_type_script_index_0_lang.tJsLMLHp.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 87,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/BurgerMenu.astro_astro_type_script_index_0_lang.CQYp91ev.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 88,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/MuteBtn.astro_astro_type_script_index_0_lang.BqbL-83r.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 109,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 117,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 130,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 160,
+    "attribute": "href",
+    "url": "https://www.cm.studio/projects",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 171,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 225,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 233,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 241,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 249,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 257,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 265,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 278,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 296,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 301,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 306,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 334,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SubmenuPanel.astro_astro_type_script_index_0_lang.QYGbY3PE.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 336,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/BackgroundVideo.astro_astro_type_script_index_0_lang.DOEcx0hM.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 365,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 370,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 375,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 380,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 385,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 390,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 399,
+    "attribute": "href",
+    "url": "https://www.cm.studio/about",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 404,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 404,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 411,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 411,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 413,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 430,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 443,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/voices",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 448,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 448,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 455,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 455,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 457,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 474,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 487,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/subconscious",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 492,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 492,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 499,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 499,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 501,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 519,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 532,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/follow-through",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 537,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 537,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 544,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 544,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 546,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 564,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 577,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/wonder",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 582,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 582,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 589,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 589,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 591,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 608,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 621,
+    "attribute": "href",
+    "url": "https://www.cm.studio/labels/studio-rental",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 625,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 632,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 666,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 666,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 673,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 673,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 675,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 692,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 692,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 699,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 699,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 701,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 718,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 718,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 725,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 725,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 727,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 744,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 744,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 751,
+    "attribute": "src",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 751,
+    "attribute": "poster",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 753,
+    "attribute": "src",
+    "url": "https://www.cm.studio/nope",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 777,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixFourOhFour.astro_astro_type_script_index_0_lang.DAp12s8G.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 780,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/SixFooter.astro_astro_type_script_index_0_lang.ByUL1pZ_.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 782,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Clock.astro_astro_type_script_index_0_lang.W0i925wq.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 783,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/Pill.astro_astro_type_script_index_0_lang.klNyTcu3.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 912,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 940,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 945,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 950,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 956,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "unsupported"
+   },
+   {
+    "node_index": 964,
+    "attribute": "href",
+    "url": null,
+    "destination_scope": "outside_policy"
+   },
+   {
+    "node_index": 1007,
+    "attribute": "src",
+    "url": "https://www.cm.studio/_astro/CustomCursor.astro_astro_type_script_index_0_lang.DYP4q227.js?dpl=dpl_J6HQ6iGdyMQ2SwRw4jdvbits7tSJ",
+    "destination_scope": "approved"
+   },
+   {
+    "node_index": 1033,
+    "attribute": "src",
+    "url": "https://www.cm.studio/~partytown/partytown-sandbox-sw.html?1791936666209",
+    "destination_scope": "approved"
+   }
+  ],
+  "agent_hints": [],
+  "excluded_dom_urls": 64,
+  "headers_allowlisted": true
+ },
+ "limitations": [
+  "Observation starts when REA attaches; prior network and console activity is unavailable.",
+  "Raw network headers, bodies, cookies, storage values, console objects, and WebSocket payloads are never retained; explicitly requested primitive console text is retained verbatim, while payload captures retain value-free shapes.",
+  "Source maps are reported only as declarative URLs and are not fetched.",
+  "URL-less scripts and console events without an allowed source URL are excluded because their origin cannot be proven."
+ ]
+}

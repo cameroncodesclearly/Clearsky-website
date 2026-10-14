@@ -1,0 +1,31 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import VideoFrame from './VideoFrame.astro';
+import { parseVideo, posterFor } from '../lib/site';
+
+interface Props {
+  entry: CollectionEntry<'caseStudies'>;
+  ratio?: '16x9' | '16x10' | '9x16' | '4x5';
+  /** Use the vertical hero video's poster when the card is portrait. */
+  portrait?: boolean;
+  sizes?: string;
+  class?: string;
+}
+const { entry, ratio = '16x10', portrait = false, sizes, class: className } = Astro.props;
+const d = entry.data;
+const heroPoster = posterFor(parseVideo(d.videoUrl));
+const poster = portrait && heroPoster && heroPoster.height > heroPoster.width ? heroPoster : d.cover;
+---
+<a class:list={['work-card', className]} href={`/work/${entry.id}/`}>
+  <span class="caption">
+    <span class="ui">{d.client}</span>
+    <span class="ui ui-muted">{d.title}</span>
+  </span>
+  <VideoFrame video={d.videoUrl} poster={poster} alt={`${d.client}: ${d.title}`} ratio={portrait ? '9x16' : ratio} cursor="See the work" sizes={sizes} />
+</a>
+
+<style>
+  .work-card { display: block; }
+  .work-card :global(.frame img) { transition: transform 1.2s var(--ease); }
+  .work-card:hover :global(.frame img) { transform: scale(1.04); }
+</style>

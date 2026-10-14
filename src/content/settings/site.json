@@ -4,10 +4,26 @@
   "location": "Southern California",
   "bookingUrl": null,
   "socials": [
-    { "label": "Instagram", "url": "https://www.instagram.com/clearskycreations" },
-    { "label": "TikTok", "url": "https://www.tiktok.com/@clearskycreations" },
-    { "label": "YouTube", "url": "https://www.youtube.com/@clearskycreations" },
-    { "label": "LinkedIn", "url": "https://www.linkedin.com/company/clear-sky-creations" },
-    { "label": "Facebook", "url": "https://www.facebook.com/clearskycreationsco" }
-  ]
+    {
+      "label": "Instagram",
+      "url": "https://www.instagram.com/clearskycreations"
+    },
+    {
+      "label": "TikTok",
+      "url": "https://www.tiktok.com/@clearskycreations"
+    },
+    {
+      "label": "YouTube",
+      "url": "https://www.youtube.com/@clearskycreations"
+    },
+    {
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/company/clear-sky-creations"
+    },
+    {
+      "label": "Facebook",
+      "url": "https://www.facebook.com/clearskycreationsco"
+    }
+  ],
+  "intakeFormId": "nFKBasCSv8us"
 }

@@ -1,0 +1,134 @@
+---
+import { Image } from 'astro:assets';
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { publishedCaseStudies, SERVICE_LABELS, parseVideo, posterFor } from '../../lib/site';
+
+export async function getStaticPaths() {
+  const studies = await publishedCaseStudies();
+  return studies.map((entry) => ({ params: { slug: entry.id }, props: { entry, others: studies.filter((s) => s.id !== entry.id) } }));
+}
+
+const { entry, others } = Astro.props;
+const d = entry.data;
+const { Content } = await render(entry);
+const heroPoster = posterFor(parseVideo(d.videoUrl)) ?? d.cover;
+const heroVertical = heroPoster.height > heroPoster.width;
+const meta = [
+  ['Client', d.client],
+  ['Stage', d.clientType],
+  ['Industry', d.industry],
+  ['Location', d.location],
+  [d.completed && d.completed !== 'Ongoing' ? 'Completed' : 'Year', d.completed && d.completed !== 'Ongoing' ? d.completed : `${d.year}${d.completed === 'Ongoing' ? ', ongoing' : ''}`],
+  ['Services', d.services.map((s) => SERVICE_LABELS[s] ?? s).join(', ')],
+].filter(([, v]) => v);
+const vertical = d.videos.filter((v) => v.vertical || (v.poster && v.poster.height > v.poster.width));
+const landscape = d.videos.filter((v) => !vertical.includes(v));
+---
+<BaseLayout title={`${d.client}: ${d.title}`} description={d.summary} image={d.cover.src} theme={d.theme} footerTheme={d.theme === 'paper' || d.theme === 'butter' || d.theme === 'sky' ? 'blue' : 'ink'}>
+  <article class="case">
+    <header class="case__header container">
+      <p class="case__client">{d.client}</p>
+      <h1 class="case__title script">{d.title}</h1>
+    </header>
+
+    <div class:list={['case__hero container', { 'case__hero--vertical': heroVertical }]} data-reveal>
+      <VideoPlayer video={d.videoUrl} poster={heroPoster} title={`${d.client}: ${d.title}`} class="case__hero-frame" sizes="(min-width: 1440px) 1400px, 100vw" eager />
+    </div>
+
+    <dl class="case__meta container">
+      {meta.map(([k, v]) => (
+        <div><dt class="ui ui-muted">{k}</dt><dd class="ui">{v}</dd></div>
+      ))}
+    </dl>
+
+    <section class="case__story narrow">
+      {d.intro && <p class="statement case__intro" data-reveal>{d.intro}</p>}
+      <div class="prose case__body" data-reveal><Content /></div>
+    </section>
+
+    {d.results.length > 0 && (
+      <section class="case__results container" aria-label="Results">
+        {d.results.map((r) => (
+          <div data-reveal>
+            <p class="case__result-value">{r.value}</p>
+            <p class="ui">{r.label}</p>
+          </div>
+        ))}
+      </section>
+    )}
+
+    {(vertical.length > 0 || landscape.length > 0 || d.gallery.length > 0) && (
+      <section class="case__media container" aria-label="More from this project">
+        {vertical.length > 0 && (
+          <div class="case__row case__row--vertical">
+            {vertical.map((v) => <div data-reveal><VideoPlayer video={v.url} poster={v.poster} title={v.title} vertical sizes="(min-width: 900px) 30vw, 50vw" /></div>)}
+          </div>
+        )}
+        {landscape.length > 0 && (
+          <div class="case__row">
+            {landscape.map((v) => <div data-reveal><VideoPlayer video={v.url} poster={v.poster} title={v.title} sizes="(min-width: 900px) 50vw, 100vw" /></div>)}
+          </div>
+        )}
+        {d.gallery.length > 0 && (
+          <div class="case__row">
+            {d.gallery.map((g) => (
+              <figure class="frame ratio-16x10" data-reveal>
+                <Image src={g.image} alt={g.alt} widths={[640, 1080, 1600]} sizes="(min-width: 900px) 50vw, 100vw" />
+              </figure>
+            ))}
+          </div>
+        )}
+      </section>
+    )}
+
+    {d.testimonial?.quote && (
+      <figure class="case__quote narrow" data-reveal>
+        <blockquote class="statement">&ldquo;{d.testimonial.quote}&rdquo;</blockquote>
+        <figcaption class="ui">{d.testimonial.person}{d.testimonial.role && <span class="ui-muted">, {d.testimonial.role}</span>}</figcaption>
+      </figure>
+    )}
+
+    {others.length > 0 && (
+      <section class="more container" aria-labelledby="more-heading">
+        <div class="more__head">
+          <h2 id="more-heading" class="more__heading">More projects</h2>
+          <a class="pill" href="/work/">All work</a>
+        </div>
+        <div class="more__row">
+          {others.slice(0, 6).map((o, i) => <WorkCard entry={o} portrait={i % 3 === 0 && o.data.coverVertical} ratio="4x5" sizes="(min-width: 900px) 25vw, 70vw" />)}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .case__header { text-align: center; padding-top: calc(var(--header-h) + clamp(3rem, 7vw, 6rem)); padding-bottom: clamp(2rem, 4vw, 3.5rem); }
+  .case__client { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(2.4rem, 1.4rem + 4vw, 5.2rem); line-height: 0.88; }
+  .case__title { font-size: clamp(2rem, 1.2rem + 3vw, 4.4rem); line-height: 1; color: var(--accent); }
+  .case__hero :global(.case__hero-frame) { border-radius: var(--radius-lg); }
+  .case__hero--vertical { width: min(100% - 2 * var(--gutter), 460px); }
+  .case__meta { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 1.2rem; margin-top: 1.5rem; margin-bottom: 0; padding-block: 1rem; }
+  .case__meta div { display: grid; gap: 0.15rem; }
+  .case__meta dd { margin: 0; }
+  .case__story { padding-block: clamp(5rem, 9vw, 9rem); display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
+  .case__intro { max-width: 26ch; }
+  .case__body { max-width: 60ch; margin-left: auto; width: 100%; }
+  .case__results { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; padding-bottom: clamp(4rem, 8vw, 8rem); }
+  .case__result-value { font-family: var(--font-display); font-size: clamp(3.4rem, 2rem + 5vw, 7rem); line-height: 0.85; color: var(--accent); }
+  .case__media { display: grid; gap: clamp(1rem, 1.5vw, 1.5rem); padding-bottom: clamp(4rem, 8vw, 8rem); }
+  .case__row { display: grid; gap: clamp(1rem, 1.5vw, 1.5rem); grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+  .case__row--vertical { grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 320px)); justify-content: center; }
+  .case__row figure { margin: 0; }
+  .case__quote { padding-bottom: clamp(5rem, 9vw, 9rem); display: grid; gap: 1.5rem; }
+  .case__quote blockquote { margin: 0; max-width: 32ch; }
+  .more { padding-bottom: clamp(5rem, 9vw, 9rem); }
+  .more__head { display: flex; justify-content: space-between; align-items: end; margin-bottom: 1.5rem; }
+  .more__heading { font-size: var(--step-2); font-weight: 500; letter-spacing: -0.01em; }
+  .more__row { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: clamp(1rem, 1.5vw, 1.5rem); overflow-x: auto; padding-bottom: 1rem; scroll-snap-type: x mandatory; align-items: end; }
+  .more__row > :global(*) { scroll-snap-align: start; }
+  @media (max-width: 699px) { .more__row { grid-auto-columns: 72%; } }
+</style>

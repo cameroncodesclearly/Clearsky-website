@@ -1,0 +1,29 @@
+{
+  "reelUrl": "https://vimeo.com/1117275029/8f70d10f51",
+  "reelTitle": "How we work",
+  "proofValue": "500+",
+  "proofLabel": "Productions on the road",
+  "proofCaption": "Clients nationwide, crews wherever the story is",
+  "breezeHeading": "We make content creation a breeze",
+  "breezeHint": "Catch a breeze!",
+  "breezeNotes": [
+    "Shot list? Already in your inbox.",
+    "We'll bring the lights. And the snacks.",
+    "Your story first. Posts second.",
+    "Edits back within the week.",
+    "Creatives create, AI automates.",
+    "One shoot day, a month of posts.",
+    "Tell the truth beautifully.",
+    "Get un-stuck. We've got the plan."
+  ],
+  "manifesto": ["Story first", "People over posts", "Content unmatched"],
+  "clients": [
+    { "name": "Good Stuff Restaurants", "logo": null },
+    { "name": "Endera", "logo": "../../assets/clients/endera.webp" },
+    { "name": "Lucy's", "logo": "../../assets/clients/lucys.png" },
+    { "name": "Coachly", "logo": null },
+    { "name": "ABG Art Group", "logo": "../../assets/clients/abg.avif" },
+    { "name": "Age With Vitality", "logo": null },
+    { "name": "Dr. Hedi", "logo": "../../assets/clients/dr-hedi.png" }
+  ]
+}

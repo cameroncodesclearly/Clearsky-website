@@ -1,0 +1,44 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TalkCta from '../../components/TalkCta.astro';
+import { publishedServices } from '../../lib/site';
+
+const services = await publishedServices();
+---
+<BaseLayout title="Services" description="Strategy, video production, social media management, post-production, paid media, and design from Clear Sky Creations.">
+  <section class="services container">
+    <p class="ui ui-muted services__eyebrow">Services</p>
+    <h1 class="statement services__intro">From the first idea to the last post, one team and one clear plan.</h1>
+    <ol class="services__list">
+      {services.map((s, i) => (
+        <li data-reveal>
+          <a href={`/services/${s.id}/`} class="services__link">
+            <span class="ui ui-muted services__num">{String(i + 1).padStart(2, '0')}</span>
+            <span class="display services__name">{s.data.title}</span>
+            <span class="ui services__tag">{s.data.tagline}</span>
+          </a>
+        </li>
+      ))}
+    </ol>
+  </section>
+  <TalkCta />
+</BaseLayout>
+
+<style>
+  .services { padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 7rem)); }
+  .services__eyebrow { margin-bottom: 1rem; }
+  .services__intro { margin-bottom: clamp(3rem, 6vw, 5rem); }
+  .services__list { list-style: none; margin: 0; padding: 0; border-top: 1.5px solid var(--fg); }
+  .services__link {
+    display: grid; grid-template-columns: 3rem 1fr; gap: 0.3rem 1rem; align-items: baseline;
+    padding: clamp(1.2rem, 2.5vw, 2rem) 0; border-bottom: 1px solid var(--rule);
+    transition: color 0.3s var(--ease), padding 0.5s var(--ease);
+  }
+  .services__name { font-size: clamp(2rem, 1.2rem + 3.6vw, 4.8rem); }
+  .services__tag { grid-column: 2; color: var(--muted); }
+  .services__link:hover { color: var(--blue); padding-left: 0.6rem; }
+  @media (min-width: 900px) {
+    .services__link { grid-template-columns: 4rem 1fr minmax(0, 22rem); }
+    .services__tag { grid-column: 3; text-align: right; }
+  }
+</style>
