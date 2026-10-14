@@ -64,20 +64,12 @@ const isActive = (href: string) => href !== '/' && path.startsWith(href);
     transition: color 0.35s var(--ease);
   }
   .header.is-light:not(.menu-open):not(.submenu-open) { color: var(--paper); }
-  .header::before {
-    /* Soft paper wash so the nav stays readable over content while scrolling. */
-    content: ''; position: absolute; inset: 0 0 -24px; z-index: -1; pointer-events: none;
-    background: linear-gradient(var(--bg) 40%, transparent);
-    opacity: 0.92; transition: opacity 0.35s var(--ease);
-  }
-  .header.is-light::before { opacity: 0; }
   .header__logo { display: block; justify-self: start; padding-block: 0.4rem; }
   .header__nav { display: none; }
   .header__menu-btn { justify-self: end; padding: 0.6rem 0; }
   .header__menu-btn .close-label, .menu-open .header__menu-btn .open-label { display: none; }
   .menu-open .header__menu-btn .close-label { display: inline; }
   .menu-open { color: var(--paper); }
-  .menu-open::before { opacity: 0; }
 
   .mobile-menu {
     position: fixed; inset: 0; z-index: -1;

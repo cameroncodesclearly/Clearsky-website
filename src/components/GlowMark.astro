@@ -16,6 +16,7 @@ const { text = 'Clear Sky' } = Astro.props;
 <style>
   .glow-mark {
     --glow: #fff2a0;
+    --halo: 255, 236, 130;
     position: relative;
     display: inline-block;
     isolation: isolate;
@@ -30,7 +31,7 @@ const { text = 'Clear Sky' } = Astro.props;
     position: relative;
     z-index: 1;
     color: var(--glow);
-    text-shadow: 0 0 6px rgba(255, 242, 160, 0.55), 0 0 16px rgba(255, 236, 130, 0.3);
+    text-shadow: 0 0 6px rgba(var(--halo), 0.5), 0 0 16px rgba(var(--halo), 0.25);
     transition: color 0.35s var(--ease);
   }
   .glow-mark__mist {
@@ -40,8 +41,8 @@ const { text = 'Clear Sky' } = Astro.props;
     filter: blur(0.7px); /* softens the fibres into haze */
   }
   /* Pale yellow vanishes on the off-white pages; mustard stays readable there. */
-  :global(.header:not(.is-light)) .glow-mark { --glow: #d9b435; }
-  :global(html.theme-blue) .glow-mark, :global(html.theme-ink) .glow-mark { --glow: #fff2a0; }
+  :global(.header:not(.is-light)) .glow-mark { --glow: #d9b435; --halo: 217, 180, 53; }
+  :global(html.theme-blue) .glow-mark, :global(html.theme-ink) .glow-mark { --glow: #fff2a0; --halo: 255, 236, 130; }
 </style>
 
 <script>
@@ -145,14 +146,12 @@ const { text = 'Clear Sky' } = Astro.props;
         for (let k = 1; k <= COPIES; k++) {
           const p = k / COPIES;
           const d = len * p;
-          ctx.globalAlpha = strength * Math.pow(1 - p, 0.95);
+          // Faint right at the letters, strongest a little downwind, then fading out.
+          ctx.globalAlpha = strength * Math.min(1, p * 4.5) * Math.pow(1 - p, 0.95);
           ctx.drawImage(src, 0, y0 * dpr, src.width, BAND * dpr, d, y0 + d * slope + smear * p, src.width / dpr, BAND);
         }
       }
-      // Keep the letters themselves clean: the light streams from behind them.
       ctx.globalAlpha = 1;
-      ctx.globalCompositeOperation = 'destination-out';
-      ctx.drawImage(src, 0, 0, src.width / dpr, src.height / dpr);
       ctx.globalCompositeOperation = 'source-over';
       if (!reduce) requestAnimationFrame(frame);
     };
