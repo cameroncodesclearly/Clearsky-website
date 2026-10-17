@@ -23,8 +23,8 @@ const { text = 'Clear Sky' } = Astro.props;
 </style>
 
 <script>
-  // The mist follows the scroll: scrolling down pulls it downward, scrolling up
-  // pulls it upward, and at rest it settles into a soft glow around the letters.
+  // The mist trails behind the scroll: scrolling down leaves it above the letters,
+  // scrolling up leaves it below, and at rest it settles into a soft glow.
   const MIST_ALPHA = 0.45; // how strong the mist is next to the letters
 
   document.querySelectorAll<HTMLElement>('[data-glow-mark]').forEach((el) => {
@@ -35,7 +35,7 @@ const { text = 'Clear Sky' } = Astro.props;
       scrollV += (window.scrollY - lastY) * 0.3;
       lastY = window.scrollY;
       scrollV *= 0.92;
-      const vy = Math.max(-140, Math.min(140, scrollV * 3));
+      const vy = Math.max(-140, Math.min(140, -scrollV * 3));
       const s: string[] = [];
       for (let i = 1; i <= 24; i++) {
         const t = i / 24;
