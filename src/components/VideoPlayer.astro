@@ -52,9 +52,11 @@ const watchLabel = ref?.provider === 'instagram' ? 'Instagram' : ref?.provider =
 
 <script>
   import { onReady } from '../scripts/player';
+  import { track } from '../scripts/analytics';
   document.querySelectorAll<HTMLElement>('[data-player]').forEach((frame) => {
     const button = frame.querySelector('.player__play');
     button?.addEventListener('click', () => {
+      track('video_played', { title: button.getAttribute('aria-label')?.replace(/^Play /, ''), page: location.pathname });
       frame.querySelectorAll('iframe').forEach((f) => f.remove());
       // Keep the frame from loading its muted preview again.
       delete frame.dataset.embed;

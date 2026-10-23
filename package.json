@@ -18,6 +18,7 @@
     "@keystatic/core": "^0.6.9",
     "astro": "^7.3.8",
     "lottie-web": "^5.13.0",
+    "posthog-js": "^1.438.21",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"
   }

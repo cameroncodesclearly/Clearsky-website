@@ -52,6 +52,7 @@ const { heading, hint = 'Catch a breeze!', notes } = Astro.props;
 </style>
 
 <script>
+  import { track } from '../scripts/analytics';
   // Notes glide in along a gust, hold, then blow away along the rest of it.
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const easeOut = (t: number) => 1 - Math.pow(1 - t, 3);
@@ -110,6 +111,7 @@ const { heading, hint = 'Catch a breeze!', notes } = Astro.props;
 
     button.addEventListener('click', () => {
       if (!notes.length) return;
+      track('breeze_clicked');
       chime();
       if (live.length >= 5) {
         const old = live.shift()!;
