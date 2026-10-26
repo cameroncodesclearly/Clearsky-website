@@ -46,7 +46,15 @@ playing, so a private or domain-locked video quietly falls back to its poster.
 - Colours are tokens in `src/styles/global.css`. Page themes: paper, blue, sky, butter, ink.
 - Mustard and light blue are never used for body text on off-white (contrast).
 
-## The breeze animation
+## The glass loop
+
+The gold glass animation (preloader, homepage breeze section, footer, 404) lives in
+`public/glass/`: transparent WebM for most browsers, animated WebP for Safari and iOS,
+and a still poster for reduced motion. It was converted from a 142-frame .lottie. To
+replace it, export new frames and re-encode at the same file names (480 and 720 px
+WebM, 400 and 640 px WebP).
+
+## The line-boil doodles
 
 `scripts/make-breeze-lottie.mjs` generates the line-boil doodles in `public/lottie/`
 (breeze, sky, bubble) and `src/lib/breeze-paths.json` (the gust paths notes travel

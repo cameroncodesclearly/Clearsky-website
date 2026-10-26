@@ -53,6 +53,48 @@ if (doodles.length) {
   });
 }
 
+// Glass loop ---------------------------------------------------------------------
+// <GlassLoop /> starts as a still. Near the screen it becomes a transparent WebM,
+// or an animated WebP on Safari and iOS, which can't play WebM with transparency.
+const glassLoops = document.querySelectorAll<HTMLElement>('[data-glass]');
+if (glassLoops.length && !reduceMotion) {
+  const ua = navigator.userAgent;
+  const webkitOnly = /AppleWebKit/.test(ua) && !/Chrome\/|Chromium|Edg\//.test(ua);
+  const files = { sm: { webm: '/glass/loop-480.webm', webp: '/glass/loop-400.webp' }, lg: { webm: '/glass/loop-720.webm', webp: '/glass/loop-640.webp' } };
+  const start = (el: HTMLElement) => {
+    const src = files[el.dataset.glass === 'lg' ? 'lg' : 'sm'];
+    const still = el.querySelector('img')!;
+    if (webkitOnly) {
+      const img = new Image();
+      img.alt = '';
+      img.onload = () => still.replaceWith(img);
+      img.src = src.webp;
+      return;
+    }
+    const video = document.createElement('video');
+    Object.assign(video, { muted: true, loop: true, playsInline: true, autoplay: true, src: src.webm });
+    video.addEventListener('playing', () => still.remove(), { once: true });
+    el.append(video);
+    (el as HTMLElement & { _video?: HTMLVideoElement })._video = video;
+  };
+  const watcher = new IntersectionObserver(
+    (entries) => {
+      for (const entry of entries) {
+        const el = entry.target as HTMLElement & { _video?: HTMLVideoElement; _started?: boolean };
+        if (entry.isIntersecting && !el._started) {
+          el._started = true;
+          start(el);
+        } else if (el._video) {
+          if (entry.isIntersecting) el._video.play().catch(() => {});
+          else el._video.pause();
+        }
+      }
+    },
+    { rootMargin: '200px 0px' },
+  );
+  glassLoops.forEach((el) => watcher.observe(el));
+}
+
 // Cursor label ---------------------------------------------------------------
 // Anything with data-cursor="Text" shows a small pill that trails the pointer.
 if (finePointer) {

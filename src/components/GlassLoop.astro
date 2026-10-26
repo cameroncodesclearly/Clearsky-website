@@ -1,0 +1,18 @@
+---
+// The glass "Clear Sky" loop (sun, camera, lightbulb, heart). Shows a still
+// first; src/scripts/site.ts swaps in the moving version once it's near the screen.
+// sm: preloader, footer, 404. lg: the homepage breeze section.
+interface Props { size?: 'sm' | 'lg'; class?: string }
+const { size = 'sm', class: className } = Astro.props;
+const poster = size === 'lg' ? '/glass/poster-960.webp' : '/glass/poster-480.webp';
+---
+<div class:list={['glass-loop', className]} data-glass={size} aria-hidden="true">
+  <img src={poster} alt="" width="480" height="480" decoding="async" />
+</div>
+
+<style>
+  .glass-loop { aspect-ratio: 1; display: grid; }
+  .glass-loop > :global(img), .glass-loop > :global(video) {
+    grid-area: 1 / 1; width: 100%; height: 100%; object-fit: contain;
+  }
+</style>

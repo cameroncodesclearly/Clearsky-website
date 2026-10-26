@@ -1,4 +1,5 @@
 ---
+import GlassLoop from '../components/GlassLoop.astro';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -44,7 +45,7 @@ const themeColor = { paper: '#f1f2f4', blue: '#1a5276', sky: '#85c1e9', butter: 
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="preloader theme-blue" data-preloader aria-hidden="true">
-      <div class="preloader__doodle" data-doodle="/lottie/sky.json"></div>
+      <GlassLoop class="preloader__doodle" />
       <p class="ui" data-preloader-word></p>
     </div>
     <Header />
@@ -72,7 +73,7 @@ const themeColor = { paper: '#f1f2f4', blue: '#1a5276', sky: '#85c1e9', butter: 
   .js .preloader { display: grid; }
   html:not(.js) .preloader { display: none; }
   .preloader.is-done { opacity: 0; visibility: hidden; }
-  .preloader__doodle { width: min(46vw, 260px); aspect-ratio: 600 / 460; }
+  .preloader :global(.preloader__doodle) { width: min(52vw, 280px); }
   .fader {
     position: fixed; inset: 0; z-index: 250; pointer-events: none;
     background: var(--paper); opacity: 0; transition: opacity 0.45s var(--ease-out-expo);
