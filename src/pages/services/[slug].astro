@@ -3,7 +3,6 @@ import { getEntry, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import VideoFrame from '../../components/VideoFrame.astro';
 import WorkCard from '../../components/WorkCard.astro';
-import TalkCta from '../../components/TalkCta.astro';
 import { publishedServices, parseVideo, posterFor } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -18,7 +17,7 @@ const featured = d.featuredWork ? await getEntry('caseStudies', d.featuredWork) 
 const heroPoster = d.heroImage ?? posterFor(parseVideo(d.heroVideo));
 const hasBody = Boolean(entry.body?.trim());
 ---
-<BaseLayout title={d.title} description={d.intro} theme={d.theme}>
+<BaseLayout title={d.title} description={d.intro}>
   <section class="svc-hero" data-full-bleed data-header-light>
     <div class="svc-hero__card" data-shrink>
       <VideoFrame video={d.heroVideo} poster={heroPoster} ratio="free" class="svc-hero__media" sizes="100vw" eager />
@@ -69,7 +68,6 @@ const hasBody = Boolean(entry.body?.trim());
     </section>
   )}
 
-  <TalkCta />
 </BaseLayout>
 
 <style>

@@ -1,6 +1,6 @@
 ---
+import TitleSun from '../../components/TitleSun.astro';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TalkCta from '../../components/TalkCta.astro';
 import { publishedServices } from '../../lib/site';
 
 const services = await publishedServices();
@@ -8,7 +8,10 @@ const services = await publishedServices();
 <BaseLayout title="Services" description="Strategy, video production, social media management, post-production, paid media, and design from Clear Sky Creations.">
   <section class="services container">
     <p class="ui ui-muted services__eyebrow">Services</p>
-    <h1 class="statement services__intro">From the first idea to the last post, one team and one clear plan.</h1>
+    <div class="rise">
+      <TitleSun x="clamp(5rem, 14vw, 11rem)" size="min(30vw, 200px)" />
+      <h1 class="statement services__intro">From the first idea to the last post, one team and one clear plan.</h1>
+    </div>
     <ol class="services__list">
       {services.map((s, i) => (
         <li data-reveal>
@@ -21,7 +24,6 @@ const services = await publishedServices();
       ))}
     </ol>
   </section>
-  <TalkCta />
 </BaseLayout>
 
 <style>

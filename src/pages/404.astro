@@ -1,9 +1,11 @@
 ---
+import TitleSun from '../components/TitleSun.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
-<BaseLayout title="Page not found" theme="blue">
-  <section class="lost" data-full-bleed data-header-light>
-    <div class="lost__bottom">
+<BaseLayout title="Page not found">
+  <section class="lost">
+    <div class="lost__bottom rise">
+      <TitleSun x="clamp(6rem, 16vw, 14rem)" />
       <h1 class="mega lost__title" data-scramble='["Error 404","This page blew away","Lost in the clouds","Cloudy with a chance of 404"]'>Error 404</h1>
       <a class="pill pill--solid" href="/">Back to clear skies</a>
     </div>

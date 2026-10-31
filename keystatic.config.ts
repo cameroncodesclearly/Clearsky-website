@@ -17,16 +17,6 @@ const SERVICES = [
   { label: 'Web', value: 'web' },
 ] as const;
 
-// Each case study and service page can take its own page colour, the way
-// project pages pick up a project colour.
-const THEMES = [
-  { label: 'Paper (off-white)', value: 'paper' },
-  { label: 'Dark blue', value: 'blue' },
-  { label: 'Light blue', value: 'sky' },
-  { label: 'Light yellow', value: 'butter' },
-  { label: 'Near-black', value: 'ink' },
-] as const;
-
 // A video hosted on Vimeo or YouTube, with a still for cards and slow connections.
 const video = (label: string, directory: string) =>
   fields.object(
@@ -88,7 +78,6 @@ export default config({
           validation: { isRequired: true, length: { max: 220 } },
         }),
         intro: fields.text({ label: 'Big intro statement', description: 'One or two sentences set large at the top of the story.', multiline: true }),
-        theme: fields.select({ label: 'Page colour', options: THEMES, defaultValue: 'paper' }),
         cover: fields.image({
           label: 'Cover image',
           description: 'Poster frame for cards and the hero.',
@@ -162,7 +151,6 @@ export default config({
         intro: fields.text({ label: 'Intro sentence', multiline: true }),
         statement: fields.text({ label: 'Big statement', description: 'Set in display caps mid-page.', multiline: true }),
         capabilities: fields.array(fields.text({ label: 'Capability' }), { label: 'Capabilities', itemLabel: (p) => p.value }),
-        theme: fields.select({ label: 'Page colour', options: THEMES, defaultValue: 'paper' }),
         heroVideo: fields.url({ label: 'Hero video link', description: 'Vimeo or YouTube. Plays muted behind the title.' }),
         heroImage: fields.image({
           label: 'Hero still',

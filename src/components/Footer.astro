@@ -33,7 +33,7 @@ const year = new Date().getFullYear();
   </section>
 
   <div class="footer__bar">
-    <p class="ui">&copy; {site.name} {year} <span class="footer__credit">&middot; Weather data <a href="https://www.met.no/en" rel="noopener" target="_blank">MET Norway</a></span></p>
+    <p class="ui">&copy; {site.name} {year}</p>
     <ul class="footer__links">
       {site.socials.map((s) => <li><a class="ui" href={s.url} rel="me noopener" target="_blank">{s.label}</a></li>)}
       <li><a class="ui" href="/journal/">Journal</a></li>
@@ -41,6 +41,7 @@ const year = new Date().getFullYear();
     </ul>
   </div>
   <a href="/" class="footer__wordmark" aria-label={`${site.name} home`}>Clear Sky</a>
+  <p class="footer__credit">Weather data <a href="https://www.met.no/en" rel="noopener" target="_blank">MET Norway</a></p>
 </footer>
 
 <style>
@@ -92,7 +93,11 @@ const year = new Date().getFullYear();
   .footer__links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; }
   .footer__links a:hover { color: var(--accent); }
   /* MET Norway's licence (CC BY 4.0) asks for a credit; it can be this quiet. */
-  .footer__credit { opacity: 0.5; font-weight: 500; text-transform: none; letter-spacing: 0; }
+  .footer__credit {
+    position: relative; margin: 0 auto; padding: 0.4rem var(--gutter) 0.8rem; text-align: center;
+    font-size: 0.68rem; opacity: 0.5;
+  }
+  .footer__credit a { text-decoration: underline; text-underline-offset: 2px; }
   .footer__wordmark {
     position: relative;
     display: block; text-align: center; white-space: nowrap;

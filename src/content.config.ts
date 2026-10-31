@@ -4,7 +4,6 @@ import { z } from 'astro/zod';
 
 // Mirrors keystatic.config.ts. Keystatic owns the editing UI; this file owns
 // how the site reads and validates the same files at build time.
-const theme = z.enum(['paper', 'blue', 'sky', 'butter', 'ink']).default('paper');
 
 const videoItem = (image: () => z.ZodTypeAny) =>
   z.object({
@@ -29,7 +28,6 @@ const caseStudies = defineCollection({
       services: z.array(z.string()).default([]),
       summary: z.string(),
       intro: z.string().optional().default(''),
-      theme,
       cover: image(),
       coverVertical: z.boolean().default(false),
       coverVideo: z.string().nullish(),
@@ -55,7 +53,6 @@ const services = defineCollection({
       intro: z.string().optional().default(''),
       statement: z.string().optional().default(''),
       capabilities: z.array(z.string()).default([]),
-      theme,
       heroVideo: z.string().url().nullish(),
       heroImage: image().nullish(),
       media: z.array(videoItem(image)).default([]),

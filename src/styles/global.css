@@ -137,6 +137,8 @@ p { max-width: 64ch; }
 .narrow { width: min(100% - 2 * var(--gutter), 820px); margin-inline: auto; }
 .section { padding-block: clamp(5rem, 3rem + 8vw, 12rem); }
 .center { text-align: center; margin-inline: auto; }
+/* Box for a <TitleSun /> and the title it rises behind. */
+.rise { position: relative; }
 
 /* Pill buttons, small bold caps like the rest of the UI. */
 .pill {

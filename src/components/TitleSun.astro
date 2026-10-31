@@ -1,0 +1,49 @@
+---
+// A small sunrise behind a page title, the homepage sunrise in miniature: it
+// climbs from behind the title when the page opens and settles just above it.
+// Put it first inside a `.rise` box (position: relative) that holds the title;
+// everything after it in the box sits in front.
+//   x, y: where the sun settles, relative to the box (default: centred on its top edge)
+interface Props { x?: string; y?: string; size?: string }
+const { x = '50%', y = '0px', size = 'min(34vw, 260px)' } = Astro.props;
+---
+<span class="title-sun" style={`--sun-x: ${x}; --sun-y: ${y}; --d: ${size}`} aria-hidden="true">
+  <span class="title-sun__warmth"></span>
+  <span class="title-sun__rays"></span>
+  <span class="title-sun__disc"></span>
+</span>
+
+<style>
+  .title-sun {
+    position: absolute; z-index: 0; left: var(--sun-x); top: var(--sun-y);
+    width: var(--d); aspect-ratio: 1; translate: -50% -60%;
+    pointer-events: none;
+    animation: title-sun-rise 2.8s cubic-bezier(0.2, 0.7, 0.3, 1) 0.15s both;
+  }
+  :global(.title-sun ~ *) { position: relative; z-index: 1; }
+  .title-sun > * { position: absolute; }
+  .title-sun__warmth {
+    inset: -120%;
+    background: radial-gradient(closest-side, rgba(255, 214, 170, 0.6), rgba(255, 190, 200, 0.25) 45%, transparent);
+  }
+  .title-sun__rays {
+    inset: -65%;
+    background: repeating-conic-gradient(from 0deg, rgba(255, 228, 160, 0.4) 0deg 4deg, transparent 4deg 15deg);
+    mask: radial-gradient(closest-side, #000 22%, transparent 100%);
+    animation: title-sun-turn 2.8s cubic-bezier(0.2, 0.7, 0.3, 1) 0.15s both;
+  }
+  .title-sun__disc {
+    inset: 0; border-radius: 50%;
+    background: radial-gradient(circle, #fffdf3 0%, #fff3c4 40%, #ffd772 64%, #ffb04a 80%, #ff9a52 100%);
+    box-shadow: 0 0 calc(var(--d) * 0.08) rgba(255, 170, 90, 0.65), 0 0 calc(var(--d) * 0.25) rgba(255, 200, 120, 0.45);
+  }
+  @keyframes title-sun-rise {
+    from { transform: translateY(85%); opacity: 0; }
+    30% { opacity: 1; }
+    to { transform: none; opacity: 1; }
+  }
+  @keyframes title-sun-turn { from { rotate: -30deg; opacity: 0; } to { rotate: 0deg; opacity: 1; } }
+  @media (prefers-reduced-motion: reduce) {
+    .title-sun, .title-sun__rays { animation: none; }
+  }
+</style>

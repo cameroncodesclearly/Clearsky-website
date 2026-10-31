@@ -20,39 +20,6 @@ const revealer = new IntersectionObserver(
 );
 document.querySelectorAll('[data-reveal]').forEach((el) => revealer.observe(el));
 
-// Line-boil doodles (Lottie) --------------------------------------------------
-// <div data-doodle="/lottie/breeze.json"></div>. Plays only while on screen and
-// holds the first frame for people who prefer reduced motion.
-const doodles = document.querySelectorAll<HTMLElement>('[data-doodle]');
-if (doodles.length) {
-  import('lottie-web/build/player/lottie_light').then(({ default: lottie }) => {
-    const watcher = new IntersectionObserver((entries) => {
-      for (const entry of entries) {
-        const anim = (entry.target as HTMLElement & { _anim?: ReturnType<typeof lottie.loadAnimation> })._anim;
-        if (!anim || reduceMotion) continue;
-        if (entry.isIntersecting) anim.play();
-        else anim.pause();
-      }
-    });
-    doodles.forEach((el) => {
-      const anim = lottie.loadAnimation({
-        container: el,
-        renderer: 'svg',
-        loop: true,
-        autoplay: false,
-        path: el.dataset.doodle!,
-        rendererSettings: { preserveAspectRatio: 'xMidYMid meet' },
-      });
-      anim.addEventListener('DOMLoaded', () => {
-        anim.goToAndStop(0, true);
-        el.classList.add('is-ready');
-      });
-      (el as HTMLElement & { _anim?: typeof anim })._anim = anim;
-      watcher.observe(el);
-    });
-  });
-}
-
 // Glass loop ---------------------------------------------------------------------
 // <GlassLoop /> starts as a still. Near the screen it becomes a transparent WebM,
 // or an animated WebP on Safari and iOS, which can't play WebM with transparency.

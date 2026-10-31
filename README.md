@@ -29,8 +29,7 @@ and follow the prompt, then add the `KEYSTATIC_*` values from `.env.example` in 
 
 **Adding a case study:** create an entry, add a cover image, paste the Vimeo or YouTube
 link for the hero video, and tick "Feature on homepage" to put it in the homepage feed
-and hero. Private Vimeo links keep their hash (`vimeo.com/123456/abcdef`). Pick a page
-colour to theme the whole case study page.
+and hero. Private Vimeo links keep their hash (`vimeo.com/123456/abcdef`).
 
 **Video posters:** stills saved as `src/assets/video-posters/<vimeo id>.jpg` are used
 automatically for that video. Players only appear once Vimeo confirms the video is
@@ -43,7 +42,8 @@ playing, so a private or domain-locked video quietly falls back to its poster.
 - No em-dashes anywhere in copy.
 - Display type: Stapelia Hirsuta Sans (caps). Flourishes: Stapelia Hirsuta Script.
   UI and body: Poppins. Fonts live in `public/fonts`.
-- Colours are tokens in `src/styles/global.css`. Page themes: paper, blue, sky, butter, ink.
+- Colours are tokens in `src/styles/global.css`. Every page sits on the sky backdrop; page titles
+  get a small sunrise (`<TitleSun />` in a `.rise` box).
 - Mustard and light blue are never used for body text on off-white (contrast).
 
 ## Sky, sun and film grain
@@ -88,11 +88,6 @@ and a still poster for reduced motion. It was converted from a 142-frame .lottie
 replace it, export new frames and re-encode at the same file names (480 px WebM, 400 px
 WebP).
 
-## The line-boil doodles
-
-`scripts/make-breeze-lottie.mjs` generates the line-boil doodles in `public/lottie/`
-(breeze, sky, bubble) and `src/lib/breeze-paths.json` (the gust paths notes travel
-along). Edit the point lists in that script and run `node scripts/make-breeze-lottie.mjs`.
 
 ## Deploying
 

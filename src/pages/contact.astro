@@ -1,11 +1,14 @@
 ---
+import TitleSun from '../components/TitleSun.astro';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { site } from '../lib/site';
 ---
 <BaseLayout title="Contact" description="Tell Clear Sky Creations about your project. We read every message and reply with next steps.">
   <section class="contact container">
-    <div class="contact__doodle" data-doodle="/lottie/bubble.json" aria-hidden="true"></div>
-    <h1 class="mega center contact__heading">Let's talk.</h1>
+    <div class="rise">
+      <TitleSun />
+      <h1 class="mega center contact__heading">Let's talk.</h1>
+    </div>
     <p class="statement center contact__intro">Tell us about your brand and what you want to make. We'll learn how we can help and reach out with next steps.</p>
   </section>
 
@@ -28,7 +31,6 @@ import { site } from '../lib/site';
 
 <style>
   .contact { display: grid; justify-items: center; padding-top: calc(var(--header-h) + clamp(2rem, 5vw, 4rem)); padding-bottom: clamp(3rem, 6vw, 5rem); }
-  .contact__doodle { width: min(70vw, 420px); aspect-ratio: 600 / 420; margin-bottom: clamp(-7rem, -8vw, -3rem); position: relative; z-index: 1; }
   .contact__intro { margin-top: 2rem; max-width: 34ch; }
   .contact-form__embed { width: 100%; min-height: 560px; border-radius: var(--radius-lg); overflow: hidden; background: var(--white); }
   .contact-direct { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2rem; padding-block: clamp(4rem, 8vw, 8rem); }

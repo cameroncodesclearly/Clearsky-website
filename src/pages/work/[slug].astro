@@ -1,4 +1,5 @@
 ---
+import TitleSun from '../../components/TitleSun.astro';
 import { Image } from 'astro:assets';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
@@ -27,11 +28,14 @@ const meta = [
 const vertical = d.videos.filter((v) => v.vertical || (v.poster && v.poster.height > v.poster.width));
 const landscape = d.videos.filter((v) => !vertical.includes(v));
 ---
-<BaseLayout title={`${d.client}: ${d.title}`} description={d.summary} image={d.cover.src} theme={d.theme} grain={false}>
+<BaseLayout title={`${d.client}: ${d.title}`} description={d.summary} image={d.cover.src} grain={false}>
   <article class="case">
     <header class="case__header container">
-      <p class="case__client">{d.client}</p>
-      <h1 class="case__title script">{d.title}</h1>
+      <div class="rise">
+        <TitleSun />
+        <p class="case__client">{d.client}</p>
+        <h1 class="case__title script">{d.title}</h1>
+      </div>
     </header>
 
     <div class:list={['case__hero container', { 'case__hero--vertical': heroVertical }]} data-reveal>

@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import TalkCta from '../../components/TalkCta.astro';
 import { publishedPosts, formatDate } from '../../lib/site';
 
 export async function getStaticPaths() {
@@ -35,7 +34,6 @@ const { Content } = await render(entry);
       </nav>
     )}
   </article>
-  <TalkCta />
 </BaseLayout>
 
 <style>
