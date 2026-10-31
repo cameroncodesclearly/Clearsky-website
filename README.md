@@ -23,7 +23,7 @@ and follow the prompt, then add the `KEYSTATIC_*` values from `.env.example` in 
 | Case studies | Work > Case Studies | `src/content/case-studies/*.mdoc` |
 | Service pages | Services | `src/content/services/*.mdoc` |
 | Journal posts | Journal | `src/content/posts/*.mdoc` |
-| Homepage hero reel, proof number, breeze notes, manifesto, client logos | Site > Homepage | `src/content/settings/home.json` |
+| Homepage hero reel, sunrise headline, manifesto, client logos | Site > Homepage | `src/content/settings/home.json` |
 | About page | Site > About page | `src/content/settings/about.json` |
 | Email, phone, socials, intake form ID | Site > Site settings | `src/content/settings/site.json` |
 
@@ -57,16 +57,17 @@ playing, so a private or domain-locked video quietly falls back to its poster.
   photo, public domain), `glass` and `flare`. Compare them at `/sun-options/` (hidden from
   search), then set the `sun` prop on `<Breeze>` in `src/pages/index.astro`.
 - **Film grain** (`src/components/FilmGrain.astro`): 24 fps Portra-style grain and a faint
-  flicker over every page. Strength is `--grain` in `src/styles/global.css` (0.18 now).
+  flicker over type, the sky and animation. Work, video and photos (anything in a `.frame`,
+  plus the hero) sit above it, and case study pages turn it off (`grain={false}`). Strength is `--grain` in `src/styles/global.css` (0.18 now).
   Regenerate the tile with `python3 scripts/make-grain.py`. Reduced motion freezes it.
 
 ## The glass loop
 
-The gold glass animation (preloader, homepage breeze section, footer, 404) lives in
+The gold glass animation (loading screen only) lives in
 `public/glass/`: transparent WebM for most browsers, animated WebP for Safari and iOS,
 and a still poster for reduced motion. It was converted from a 142-frame .lottie. To
-replace it, export new frames and re-encode at the same file names (480 and 720 px
-WebM, 400 and 640 px WebP).
+replace it, export new frames and re-encode at the same file names (480 px WebM, 400 px
+WebP).
 
 ## The line-boil doodles
 

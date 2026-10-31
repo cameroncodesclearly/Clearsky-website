@@ -1,5 +1,4 @@
 ---
-import GlassLoop from './GlassLoop.astro';
 import { site } from '../lib/site';
 
 interface Props { theme?: string }
@@ -8,7 +7,6 @@ const year = new Date().getFullYear();
 ---
 <footer class={`footer theme-${theme}`} data-header-light={theme === 'blue' || theme === 'ink' ? '' : undefined}>
   <section class="footer__cta">
-    <GlassLoop class="footer__doodle" />
     <h2 class="footer__line">
       It's <span class="clock" data-clock>9:41 AM</span>.<br />
       Perfect weather to start something.
@@ -34,7 +32,6 @@ const year = new Date().getFullYear();
     display: grid; place-content: center; justify-items: center; gap: 2rem;
     padding: clamp(6rem, 12vw, 10rem) var(--gutter) 4rem; text-align: center;
   }
-  .footer__cta :global(.footer__doodle) { width: min(62vw, 320px); margin-bottom: -1rem; }
   .footer__line {
     font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
     font-size: clamp(2rem, 1.2rem + 3.4vw, 4.2rem); line-height: 0.98; max-width: 16ch;

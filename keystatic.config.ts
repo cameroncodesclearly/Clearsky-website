@@ -228,13 +228,7 @@ export default config({
       schema: {
         reelUrl: fields.url({ label: 'Reel video link', description: 'First slide of the hero. Vimeo or YouTube.' }),
         reelTitle: fields.text({ label: 'Reel title' }),
-        breezeHeading: fields.text({ label: 'Breeze heading', defaultValue: 'We make content creation a breeze' }),
-        breezeHint: fields.text({ label: 'Breeze cursor label', defaultValue: 'Catch a breeze!' }),
-        breezeNotes: fields.array(fields.text({ label: 'Note' }), {
-          label: 'Breeze notes',
-          description: 'Short lines that float along the wind when someone clicks the drawing.',
-          itemLabel: (p) => p.value,
-        }),
+        breezeHeading: fields.text({ label: 'Sunrise headline', description: 'The big line the sun rises over, under the hero.' }),
         manifesto: fields.array(fields.text({ label: 'Line' }), { label: 'Manifesto lines', itemLabel: (p) => p.value }),
         clients: fields.array(
           fields.object({

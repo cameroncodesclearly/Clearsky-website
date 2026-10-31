@@ -17,8 +17,10 @@ interface Props {
   footerTheme?: string;
   /** Keep this page out of search results. */
   noindex?: boolean;
+  /** Film grain over the page; off for case studies. */
+  grain?: boolean;
 }
-const { title, description = site.description, image = '/og-default.jpg', theme = 'paper', footerTheme, noindex = false } = Astro.props;
+const { title, description = site.description, image = '/og-default.jpg', theme = 'paper', footerTheme, noindex = false, grain = true } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Video and Social Content Studio`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const themeColor = { paper: '#cfe0f2', blue: '#1a5276', sky: '#85c1e9', butter: '#f7dc6f', ink: '#1a1307' }[theme] ?? '#f1f2f4';
@@ -60,7 +62,7 @@ const themeColor = { paper: '#cfe0f2', blue: '#1a5276', sky: '#85c1e9', butter: 
     </main>
     <Footer theme={footerTheme} />
     <div class="fader" data-fader aria-hidden="true"></div>
-    <FilmGrain />
+    {grain && <FilmGrain />}
     <script>
       import '../scripts/analytics.ts';
       import '../scripts/site.ts';
@@ -70,7 +72,7 @@ const themeColor = { paper: '#cfe0f2', blue: '#1a5276', sky: '#85c1e9', butter: 
 
 <style is:global>
   .preloader {
-    position: fixed; inset: 0; z-index: 300;
+    position: fixed; inset: 0; z-index: 1100;
     display: grid; place-content: center; justify-items: center; gap: 1.5rem;
     transition: opacity 0.7s var(--ease), visibility 0.7s;
     /* Safety net: hides itself even if the script never runs. */
@@ -82,13 +84,13 @@ const themeColor = { paper: '#cfe0f2', blue: '#1a5276', sky: '#85c1e9', butter: 
   .preloader.is-done { opacity: 0; visibility: hidden; }
   .preloader :global(.preloader__doodle) { width: min(52vw, 280px); }
   .fader {
-    position: fixed; inset: 0; z-index: 250; pointer-events: none;
+    position: fixed; inset: 0; z-index: 1050; pointer-events: none;
     background: var(--paper); opacity: 0; transition: opacity 0.45s var(--ease-out-expo);
   }
   .fader.is-in { opacity: 1; }
   .no-scroll { overflow: hidden; }
   .cursor-label {
-    position: fixed; left: 0; top: 0; z-index: 260; pointer-events: none;
+    position: fixed; left: 0; top: 0; z-index: 1060; pointer-events: none;
     margin: 14px 0 0 14px; padding: 0.55em 1em; border-radius: 999px;
     background: var(--ink); color: var(--paper);
     font-size: var(--step--1); font-weight: 700; letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; white-space: nowrap;

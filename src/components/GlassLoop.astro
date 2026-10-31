@@ -1,13 +1,11 @@
 ---
-// The glass "Clear Sky" loop (sun, camera, lightbulb, heart). Shows a still
-// first; src/scripts/site.ts swaps in the moving version once it's near the screen.
-// sm: preloader, footer, 404. lg: the homepage breeze section.
-interface Props { size?: 'sm' | 'lg'; class?: string }
-const { size = 'sm', class: className } = Astro.props;
-const poster = size === 'lg' ? '/glass/poster-960.webp' : '/glass/poster-480.webp';
+// The glass "Clear Sky" loop (sun, camera, lightbulb, heart) on the loading
+// screen. Shows a still first; src/scripts/site.ts swaps in the moving version.
+interface Props { class?: string }
+const { class: className } = Astro.props;
 ---
-<div class:list={['glass-loop', className]} data-glass={size} aria-hidden="true">
-  <img src={poster} alt="" width="480" height="480" decoding="async" />
+<div class:list={['glass-loop', className]} data-glass aria-hidden="true">
+  <img src="/glass/poster-480.webp" alt="" width="480" height="480" decoding="async" />
 </div>
 
 <style>

@@ -60,9 +60,8 @@ const glassLoops = document.querySelectorAll<HTMLElement>('[data-glass]');
 if (glassLoops.length && !reduceMotion) {
   const ua = navigator.userAgent;
   const webkitOnly = /AppleWebKit/.test(ua) && !/Chrome\/|Chromium|Edg\//.test(ua);
-  const files = { sm: { webm: '/glass/loop-480.webm', webp: '/glass/loop-400.webp' }, lg: { webm: '/glass/loop-720.webm', webp: '/glass/loop-640.webp' } };
+  const src = { webm: '/glass/loop-480.webm', webp: '/glass/loop-400.webp' };
   const start = (el: HTMLElement) => {
-    const src = files[el.dataset.glass === 'lg' ? 'lg' : 'sm'];
     const still = el.querySelector('img')!;
     if (webkitOnly) {
       const img = new Image();
