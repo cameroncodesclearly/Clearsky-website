@@ -2,14 +2,14 @@
 import { site } from '../lib/site';
 
 // The page ends on a Redondo Beach sunset: a 10 second seamless loop made in
-// Higgsfield (Kling 3.0, same first and last frame). The still first frame
+// Higgsfield (Seedance 2.5, 720p, same first and last frame). The still first frame
 // shows until the video is near the screen. On light pages the scene's sky
 // fades into the scrolling sunset above it (SkyBackdrop.astro).
 const year = new Date().getFullYear();
 ---
 <footer class="footer" data-header-light>
   <div class="footer__scene" aria-hidden="true">
-    <img src="/sky/beach-sunset.webp" srcset="/sky/beach-sunset-800.webp 800w, /sky/beach-sunset.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async" />
+    <img src="/sky/beach-sunset.webp" srcset="/sky/beach-sunset-800.webp 800w, /sky/beach-sunset.webp 1280w" sizes="100vw" alt="" loading="lazy" decoding="async" />
     <video muted loop playsinline preload="none" data-beach-video></video>
   </div>
   <section class="footer__cta">

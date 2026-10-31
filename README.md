@@ -52,7 +52,7 @@ playing, so a private or domain-locked video quietly falls back to its poster.
   sit on a fixed pastel sky photo with a few clouds drifting past at different depths.
   From about halfway down the page the sky and clouds turn pink, deepening into the
   footer's beach sunset: a 10 second seamless loop of Redondo Beach made in Higgsfield
-  (Kling 3.0, same first and last frame), in `public/sky/beach-sunset*` as WebM and MP4
+  (Seedance 2.5 at 720p, same first and last frame), in `public/sky/beach-sunset*` as WebM and MP4
   with a still poster. "no matter how beautiful" is set in Caveat Brush with an SVG chalk
   filter that re-draws at 7 fps (the cm.studio line boil).
   Images are in `public/sky/`, cut from CC0 photos on Wikimedia Commons
