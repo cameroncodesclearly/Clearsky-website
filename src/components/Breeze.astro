@@ -35,7 +35,8 @@ const { heading } = Astro.props;
   }
   /* Phones: headline dead centre of the frame. */
   @media (max-width: 699px) { .breeze__stage { align-content: center; padding-bottom: 0; } }
-  .breeze__heading { max-width: 12ch; position: relative; z-index: 1; }
+  /* Four lines must fit the locked frame on short screens (phones sideways). */
+  .breeze__heading { max-width: 12ch; position: relative; z-index: 1; font-size: min(var(--mega), 17svh); }
   /* Light type while a night or storm sky is still clearing behind it (--wx
      is set on the headline by weather.ts). */
   :global(html.sky-dark) .breeze__heading { color: color-mix(in srgb, var(--paper) calc(var(--wx, 0) * 100%), var(--ink)); }

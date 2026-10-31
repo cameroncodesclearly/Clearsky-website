@@ -47,6 +47,14 @@ const { slides } = Astro.props;
 
 <style>
   .hero { height: 100svh; min-height: 540px; position: relative; }
+  /* Short, wide screens (phones sideways): fit the screen and keep the title
+     clear of the logo by sizing it by height. */
+  @media (orientation: landscape) and (max-height: 540px) {
+    .hero { min-height: 0; }
+    .hero__client { font-size: 12svh; }
+    .hero__title { font-size: 10svh; }
+    .hero__thumb { width: 64px; }
+  }
   .hero__card {
     --shrink: 0;
     position: relative; height: 100%; overflow: hidden; color: var(--paper); background: var(--ink);
