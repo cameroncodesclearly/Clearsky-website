@@ -3,10 +3,58 @@
   "reelUrl": "https://vimeo.com/1117275029/8f70d10f51",
   "intro": "We help CEOs, creators, marketing leads, and the creatives inside companies change how content gets made and how it feels to watch. Strategy, production, post, and posting, under one roof and one clear plan.",
   "story": [
-    "It all started with Cameron. After college, with a Cinematic Arts degree and his Major League Baseball dreams retired, he mixed his two passions into a niche baseball account on Instagram, TikTok, and YouTube.",
-    "Over the next two years he discovered a skill that most businesses suddenly needed in 2020: making content people actually stop for. So he started Clear Sky, with one simple mission. Help businesses grow their visibility on social media through quality content.",
-    "Each project was better than the last. The team grew, the services widened, and over five years Clear Sky went from a one-person social content company to a full-service creative agency.",
-    "Then we noticed a trend. Social media is crowded with misleading ads, fake news, and a sales-at-all-costs mindset, and trust in brands is at an all-time low. We think social media needs a renaissance, and we want to help lead it."
+    {
+      "text": "It all started with Cameron. After college, with a Cinematic Arts degree and his Major League Baseball dreams retired, he mixed his two passions into a niche baseball account on Instagram, TikTok, and YouTube.",
+      "photos": [
+        {
+          "image": "../../assets/about/story/story-young-cameron.webp",
+          "alt": "Cameron as a kid on the beach"
+        },
+        {
+          "image": "../../assets/about/story/story-baseball.webp",
+          "alt": "Cameron running the bases in a baseball game"
+        }
+      ]
+    },
+    {
+      "text": "Over the next two years he discovered a skill that most businesses suddenly needed in 2020: making content people actually stop for. So he started Clear Sky, with one simple mission. Help businesses grow their visibility on social media through quality content.",
+      "photos": [
+        {
+          "image": "../../assets/about/story/story-cameron-camera.webp",
+          "alt": "Cameron with a cinema camera rig"
+        },
+        {
+          "image": "../../assets/about/story/story-thumbs-up.webp",
+          "alt": "Cameron behind the camera giving a thumbs up"
+        }
+      ]
+    },
+    {
+      "text": "Each project was better than the last. The team grew, the services widened, and over five years Clear Sky went from a one-person social content company to a full-service creative agency.",
+      "photos": [
+        {
+          "image": "../../assets/about/story/story-team.webp",
+          "alt": "The Clear Sky team"
+        },
+        {
+          "image": "../../assets/about/story/story-big-shoot.webp",
+          "alt": "A full crew setting up lights on a shoot"
+        }
+      ]
+    },
+    {
+      "text": "Then we noticed a trend. Social media is crowded with misleading ads, fake news, and a sales-at-all-costs mindset, and trust in brands is at an all-time low. We think social media needs a renaissance, and we want to help lead it.",
+      "photos": [
+        {
+          "image": "../../assets/about/story/story-evolus.webp",
+          "alt": "Cameron with the Evolus team on a shoot"
+        },
+        {
+          "image": "../../assets/about/story/story-interview.webp",
+          "alt": "Filming an interview in a bright studio"
+        }
+      ]
+    }
   ],
   "mission": "To build good brands with honest content. We want to lead the way back to trust-filled marketing, using ethical methods to promote your business.",
   "bigLine": "Changed companies change culture",

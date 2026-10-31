@@ -235,7 +235,19 @@ export default config({
         heading: fields.text({ label: 'Opening statement' }),
         reelUrl: fields.url({ label: 'Reel video link' }),
         intro: fields.text({ label: 'Intro', multiline: true }),
-        story: fields.array(fields.text({ label: 'Paragraph', multiline: true }), { label: 'Our story', itemLabel: (p) => p.value.slice(0, 60) }),
+        story: fields.array(
+          fields.object({
+            text: fields.text({ label: 'Paragraph', multiline: true }),
+            photos: fields.array(
+              fields.object({
+                image: fields.image({ label: 'Photo', directory: 'src/assets/about/story', publicPath: '../../assets/about/story/' }),
+                alt: fields.text({ label: 'Alt text' }),
+              }),
+              { label: 'Photos beside this paragraph (one or two)', itemLabel: (p) => p.fields.alt.value },
+            ),
+          }),
+          { label: 'Our story', itemLabel: (p) => p.fields.text.value.slice(0, 60) },
+        ),
         mission: fields.text({ label: 'Mission', multiline: true }),
         bigLine: fields.text({ label: 'Big line', description: 'Huge caps line with service tags scattered over it.' }),
         values: fields.array(

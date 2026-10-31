@@ -8,6 +8,8 @@ import { publishedServices, resolveImage } from '../lib/site';
 
 const services = await publishedServices();
 const photos = about.photos.map((p) => ({ ...p, img: resolveImage(p.image) })).filter((p) => p.img);
+// The story alternates paragraph and photos, like the old site's About page.
+const story = about.story.map((s) => ({ ...s, photos: s.photos.map((p) => ({ ...p, img: resolveImage(p.image) })).filter((p) => p.img) }));
 const team = about.team.map((t: { name: string; role: string; photo?: string | null }) => ({ ...t, img: resolveImage(t.photo) }));
 // Spots for the scattered service tags around the big line (percent of the block).
 const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [48, 90, -5]];
@@ -30,9 +32,22 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
 
   <section class="about-story container" aria-labelledby="story-heading">
     <h2 id="story-heading" class="ui ui-muted">Our story</h2>
-    <div class="about-story__cols">
-      {about.story.map((para) => <p data-reveal>{para}</p>)}
-    </div>
+    <ol class="about-story__beats">
+      {story.map((s, i) => (
+        <li class:list={['about-story__beat', { 'is-flipped': i % 2 === 1 }]}>
+          <p class="about-story__text" data-reveal>{s.text}</p>
+          {s.photos.length > 0 && (
+            <div class:list={['about-story__photos', { 'is-pair': s.photos.length > 1 }]}>
+              {s.photos.map((p, k) => (
+                <figure class="frame ratio-4x5" data-reveal style={`--k: ${k}`}>
+                  <Image src={p.img!} alt={p.alt} widths={[400, 700, 1000]} sizes="(min-width: 900px) 24vw, 46vw" />
+                </figure>
+              ))}
+            </div>
+          )}
+        </li>
+      ))}
+    </ol>
   </section>
 
   <section class="about-big section" aria-label="Our mission" data-shrink data-shrink-start="100vh">
@@ -99,8 +114,19 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
   .about-reel :global(.about-reel__frame) { border-radius: var(--radius-lg); }
   .about-intro { padding-block: clamp(5rem, 9vw, 9rem); }
   .about-story { display: grid; gap: 1.5rem; padding-bottom: clamp(4rem, 8vw, 8rem); }
-  .about-story__cols { columns: 2 320px; column-gap: clamp(2rem, 4vw, 4rem); font-size: var(--step-1); line-height: 1.5; }
-  .about-story__cols p { break-inside: avoid; margin-bottom: 1.2em; }
+  .about-story__beats { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(4rem, 9vw, 9rem); }
+  .about-story__beat { display: grid; gap: clamp(1.5rem, 3vw, 3rem); align-items: center; }
+  .about-story__text { font-size: var(--step-1); line-height: 1.5; max-width: 34ch; }
+  .about-story__photos { display: grid; gap: clamp(0.75rem, 1.5vw, 1.25rem); }
+  .about-story__photos figure { margin: 0; width: 100%; }
+  .about-story__photos.is-pair { grid-template-columns: 1fr 1fr; }
+  /* The second photo of a pair sits a little lower, like a loose contact sheet. */
+  .about-story__photos.is-pair figure:nth-child(2) { margin-top: clamp(2rem, 5vw, 4.5rem); }
+  @media (min-width: 900px) {
+    .about-story__beat { grid-template-columns: 1fr 1.15fr; }
+    .about-story__beat.is-flipped .about-story__text { order: 2; }
+    .about-story__beat.is-flipped .about-story__photos { order: 1; }
+  }
 
   .about-big { --shrink: 0; position: relative; padding-inline: var(--gutter); }
   .about-big__line { position: relative; z-index: 1; max-width: 12ch; }
