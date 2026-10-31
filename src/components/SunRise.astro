@@ -58,9 +58,12 @@
     animation-timing-function: cubic-bezier(0.25, 0.6, 0.4, 1);
     will-change: transform, opacity;
   }
+  /* Invisible until the sun is well on its way, so nothing hangs around the
+     headline before sunrise. */
   @keyframes warmth {
-    from { transform: translate(-50%, calc(var(--y0) - var(--d) * 1.7)); opacity: 0.2; }
-    to { transform: translate(-50%, calc(var(--y1) - var(--d) * 1.7)); opacity: 1; }
+    0% { transform: translate(-50%, calc(var(--y0) - var(--d) * 1.7)); opacity: 0; }
+    35% { opacity: 0; }
+    100% { transform: translate(-50%, calc(var(--y1) - var(--d) * 1.7)); opacity: 1; }
   }
 
   .sunrise__halo {

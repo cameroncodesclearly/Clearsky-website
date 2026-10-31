@@ -52,7 +52,7 @@ playing, so a private or domain-locked video quietly falls back to its poster.
   sit on a fixed pastel sky photo with a few clouds drifting past at different depths.
   From about halfway down the page the sky and clouds turn pink, deepening into the
   footer's beach sunset: a 10 second seamless loop of Redondo Beach made in Higgsfield
-  (Seedance 2.5 at 720p, same first and last frame), in `public/sky/beach-sunset*` as WebM and MP4
+  (Seedance 2.5 at 720p, with a half-second crossfade at the loop point), in `public/sky/beach-sunset*` as WebM and MP4
   with a still poster. "no matter how beautiful" is set in Caveat Brush with an SVG chalk
   filter that re-draws at 7 fps (the cm.studio line boil).
   Images are in `public/sky/`, cut from CC0 photos on Wikimedia Commons
@@ -71,6 +71,9 @@ playing, so a private or domain-locked video quietly falls back to its poster.
   sun rises from below the screen to sit above it (15% to 90%). All CSS scroll-driven
   animations on the `--rise` view timeline, with a JS fallback. Keep `overflow: clip`,
   not `hidden`, on the section or the pin and timeline break. Sun size is `--d`.
+- **Light leak** (`public/sky/light-leak.*`, 4 seconds, about 25 to 80 KB): plays once over the
+  homepage as the sun passes behind the headline, screen-blended so only the light shows.
+  It lives outside the sticky stage so the blend can see the sky.
 - **Film grain** (`src/components/FilmGrain.astro`): 24 fps grain and a faint flicker over
   type, the sky and animation. The grain tile is generated in the browser at the screen's
   pixel density (no image file). Work, video and photos (anything in a `.frame`, plus the

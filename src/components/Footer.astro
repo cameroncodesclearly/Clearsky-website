@@ -2,7 +2,8 @@
 import { site } from '../lib/site';
 
 // The page ends on a Redondo Beach sunset: a 10 second seamless loop made in
-// Higgsfield (Seedance 2.5, 720p, same first and last frame). The still first frame
+// Higgsfield (Seedance 2.5, 720p), re-cut with a half-second crossfade at the
+// loop point so it repeats without a jump. The still first frame
 // shows until the video is near the screen. On light pages the scene's sky
 // fades into the scrolling sunset above it (SkyBackdrop.astro).
 const year = new Date().getFullYear();
@@ -72,7 +73,7 @@ const year = new Date().getFullYear();
   }
   .footer__line {
     font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
-    font-size: clamp(1.7rem, 0.5rem + 6.2vw, 5.9rem); line-height: 0.94;
+    font-size: clamp(1.36rem, 0.4rem + 4.96vw, 4.72rem); line-height: 0.94;
     text-shadow: 0 2px 30px rgba(120, 40, 70, 0.35);
   }
   .footer__lead { display: block; white-space: nowrap; }
