@@ -63,7 +63,8 @@ const isActive = (href: string) => href !== '/' && path.startsWith(href);
     color: var(--fg);
     transition: color 0.35s var(--ease);
   }
-  .header.is-light:not(.menu-open):not(.submenu-open) { color: var(--paper); }
+  .header.is-light:not(.menu-open):not(.submenu-open),
+  .header.on-dark-sky:not(.menu-open):not(.submenu-open) { color: var(--paper); }
   .header__logo { display: block; justify-self: start; padding-block: 0.4rem; }
   .header__nav { display: none; }
   .header__menu-btn { justify-self: end; padding: 0.6rem 0; }

@@ -58,6 +58,8 @@
 
   /* Film grain strength over the whole site, 0 to 1. */
   --grain: 0.18;
+  /* Live weather strength on the homepage sky (weather.ts). */
+  --wx: 0;
 }
 
 .theme-paper { --bg: var(--paper); --fg: var(--ink); --accent: var(--blue); }

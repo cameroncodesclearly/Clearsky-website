@@ -3,22 +3,40 @@
 // drifting past at different depths as the page scrolls (src/scripts/sky.ts).
 // Toward the bottom of the page the sky and clouds turn to sunset, getting
 // pinker until the footer's beach scene takes over.
+// On the homepage the opening sky also shows the visitor's live weather and
+// time of day (src/scripts/weather.ts), clearing as the sun rises.
 // Sky and clouds are cut from CC0 photos by Raysonho and Shams948 on Wikimedia Commons.
 const clouds = [
   { src: '/sky/cloud-a.webp', w: 40, x: -6, y: 62, depth: 0.5 },
   { src: '/sky/cloud-d.webp', w: 13, x: 72, y: 16, depth: 0.22 },
   { src: '/sky/cloud-g.webp', w: 18, x: 58, y: 160, depth: 0.36 },
 ];
+// Extra cover that only shows in cloudy weather.
+const weatherClouds = [
+  { src: '/sky/cloud-a.webp', w: 52, x: 48, y: 4, depth: 0.3 },
+  { src: '/sky/cloud-f.webp', w: 34, x: -8, y: 30, depth: 0.42 },
+  { src: '/sky/cloud-a.webp', w: 46, x: 20, y: 96, depth: 0.26 },
+  { src: '/sky/cloud-f.webp', w: 30, x: 66, y: 128, depth: 0.48 },
+  { src: '/sky/cloud-g.webp', w: 26, x: 4, y: 176, depth: 0.34 },
+];
 ---
 <div class="sky" aria-hidden="true">
   <div class="sky__plate"></div>
   <div class="sky__dusk"></div>
   <div class="sky__dusk sky__dusk--deep"></div>
+  <div class="sky__tone"></div>
+  <div class="sky__moon"></div>
   <div class="sky__clouds" data-sky-clouds>
     {clouds.map((c) => (
       <img src={c.src} alt="" decoding="async" loading="lazy" style={`--w:${c.w}vw;--x:${c.x}vw`} data-y={c.y} data-depth={c.depth} />
     ))}
+    {weatherClouds.map((c) => (
+      <img class="sky__cover" src={c.src} alt="" decoding="async" loading="lazy" style={`--w:${c.w}vw;--x:${c.x}vw`} data-y={c.y} data-depth={c.depth} />
+    ))}
   </div>
+  <div class="sky__haze"></div>
+  <canvas class="sky__precip" data-sky-precip></canvas>
+  <div class="sky__flash" data-sky-flash></div>
 </div>
 
 <style>
@@ -47,14 +65,48 @@ const clouds = [
     position: absolute; inset: 0;
     filter: sepia(calc(var(--sunset) * 0.55)) saturate(calc(1 + var(--sunset) * 2.2)) hue-rotate(calc(var(--sunset) * -38deg));
   }
+  .sky__cover { opacity: var(--cover, 0); filter: brightness(var(--cover-light, 1)); }
   .sky__clouds img {
     position: absolute; left: 0; top: 0;
     width: max(var(--w), 160px); height: auto;
     translate: var(--x) 110vh;
     will-change: translate;
   }
+
+  /* Live weather. data-weather and data-phase are set on .sky by weather.ts;
+     every layer scales with --wx (on :root: 1 at the top of the homepage, 0 once
+     the sun is up) so it all clears together as the sun rises. */
+  .sky__tone, .sky__haze, .sky__moon, .sky__precip, .sky__flash { position: absolute; inset: 0; opacity: 0; }
+  .sky__precip { width: 100%; height: 100%; opacity: var(--wx); }
+  .sky__flash { background: #eef3ff; }
+
+  /* Time of day */
+  .sky[data-phase='morning'] .sky__tone { background: linear-gradient(to bottom, #bcd2ee, #ffe2c4 85%); opacity: calc(var(--wx) * 0.55); }
+  .sky[data-phase='sunset'] .sky__tone { background: linear-gradient(to bottom, #b7a6dc, #f3b6cc 55%, #ffc8a2); opacity: calc(var(--wx) * 0.75); }
+  .sky[data-phase='night'] .sky__tone { background: linear-gradient(to bottom, #070f24, #142449 60%, #2a3b63); opacity: calc(var(--wx) * 0.92); }
+  .sky[data-phase='night'] .sky__moon {
+    inset: 9vh auto auto 72vw; width: clamp(48px, 6vw, 84px); aspect-ratio: 1; border-radius: 50%;
+    background: radial-gradient(circle at 42% 40%, #fbf8ec, #e4e2d6 60%, #cfcdc2);
+    box-shadow: 0 0 40px 10px rgba(220, 230, 255, 0.28), 0 0 140px 40px rgba(160, 185, 240, 0.16);
+    opacity: var(--wx);
+  }
+  .sky[data-phase='night'] .sky__clouds { --cover-light: 0.45; }
+  .sky[data-phase='night'] .sky__clouds img:not(.sky__cover) { filter: brightness(calc(1 - var(--wx) * 0.55)); }
+
+  /* Conditions (tone layers stack over the time of day through a second gradient) */
+  .sky[data-weather='partly'] { --cover: calc(var(--wx) * 0.9); }
+  .sky[data-weather='overcast'], .sky[data-weather='rain'], .sky[data-weather='storm'], .sky[data-weather='snow'] {
+    --cover: var(--wx); --cover-light: 0.82;
+  }
+  .sky[data-weather='overcast'] .sky__haze { background: linear-gradient(to bottom, #9aa6b4, #c3cad3); opacity: calc(var(--wx) * 0.6); }
+  .sky[data-weather='rain'] .sky__haze { background: linear-gradient(to bottom, #6f7f93, #a5b1bf); opacity: calc(var(--wx) * 0.62); }
+  .sky[data-weather='storm'] { --cover-light: 0.55; }
+  .sky[data-weather='storm'] .sky__haze { background: linear-gradient(to bottom, #2f3848, #5d6878); opacity: calc(var(--wx) * 0.74); }
+  .sky[data-weather='snow'] .sky__haze { background: linear-gradient(to bottom, #c9d2de, #e9edf2); opacity: calc(var(--wx) * 0.55); }
+  .sky[data-weather='fog'] .sky__haze { background: linear-gradient(to bottom, rgba(236, 238, 242, 0.75), rgba(244, 245, 247, 0.95)); opacity: calc(var(--wx) * 0.85); }
 </style>
 
 <script>
   import '../scripts/sky.ts';
+  import '../scripts/weather.ts';
 </script>

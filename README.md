@@ -54,6 +54,14 @@ playing, so a private or domain-locked video quietly falls back to its poster.
   footer's beach sunset (`public/sky/beach-sunset.webp`, generated in Higgsfield).
   Images are in `public/sky/`, cut from CC0 photos on Wikimedia Commons
   (BlueSkyWhiteClouds21 by Raysonho, Clouds 07 by Shams948).
+- **Live weather** (`src/pages/api/sky.ts`, `src/scripts/weather.ts`): on the homepage the
+  open sky between the hero and the headline shows the visitor's weather (clear, partly
+  cloudy, overcast, rain, storm, snow, fog) and time of day (morning, afternoon, sunset,
+  night), then clears as the sun rises. Location comes from Vercel's IP headers (no
+  permission prompt), weather from MET Norway (free for commercial use, credited in the
+  footer), time of day from the sun's real elevation there. Results are cached 15 minutes.
+  Preview any look with `/?sky=storm&phase=night`. Anything failing falls back to the
+  normal pastel sky.
 - **Sunrise** (`src/components/SunRise.astro`, `src/scripts/sunrise.ts`): the sun climbs
   from behind the homepage headline on scroll, a lens flare (streak and ghosts) fades in
   over the last 30% of the climb, and the headline catches a brief warm glare. Sun size
