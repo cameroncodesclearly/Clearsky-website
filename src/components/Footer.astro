@@ -63,7 +63,7 @@ const year = new Date().getFullYear();
   }
   /* On light pages the photo's sky dissolves into the sunset sky above it. */
   :global(html.theme-paper) .footer { background: transparent; }
-  :global(html.theme-paper) .footer__scene { mask: linear-gradient(to bottom, transparent, #000 32%); }
+  :global(html.theme-paper) .footer__scene { mask: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.6) 22%, #000 48%); }
 
   .footer__cta {
     position: relative;

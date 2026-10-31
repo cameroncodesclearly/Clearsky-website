@@ -50,16 +50,17 @@ const weatherClouds = [
     background: #cfe0f2 url('/sky/sky-1280.webp') center / cover no-repeat;
   }
   @media (min-width: 1100px) { .sky__plate { background-image: url('/sky/sky.webp'); } }
-  /* Pastel dusk first (lavender to peach), then deeper: dusky blue overhead
-     over rose and coral, which is the sky at the top of the footer's beach scene. */
+  /* Pastel dusk first (lavender to peach), then deeper. The deep layer is the
+     sky column of the footer's beach video, top to bottom, so once the footer
+     fills the screen the sky behind its faded top matches the video exactly. */
   .sky__dusk {
     position: absolute; inset: 0;
     background: linear-gradient(to bottom, #c9b8e6 0%, #f2b8cf 45%, #ffc9a8 100%);
     opacity: calc(min(var(--sunset) * 1.6, 1) * 0.85);
   }
   .sky__dusk--deep {
-    background: linear-gradient(to bottom, #3f4a62 0%, #6c5c70 32%, #c27a80 66%, #e98a68 100%);
-    opacity: calc(max(var(--sunset) - 0.45, 0) / 0.55 * 0.9);
+    background: linear-gradient(to bottom, #364054 0%, #3a4657 25%, #544d53 42%, #6d5a5f 58%, #8a6560 76%, #996b5c 100%);
+    opacity: calc(max(var(--sunset) - 0.45, 0) / 0.55);
   }
   /* Clouds pick up the light: slightly pink, then rose. */
   .sky__clouds {

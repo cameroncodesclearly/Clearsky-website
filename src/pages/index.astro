@@ -4,7 +4,6 @@ import HeroCarousel, { type Slide } from '../components/HeroCarousel.astro';
 import Breeze from '../components/Breeze.astro';
 import WorkCard from '../components/WorkCard.astro';
 import Marquee from '../components/Marquee.astro';
-import Rays from '../components/Rays.astro';
 import home from '../content/settings/home.json';
 import { publishedCaseStudies, parseVideo, posterFor } from '../lib/site';
 
@@ -46,10 +45,9 @@ const placements = ['left', 'right', 'center', 'right-wide', 'left'];
   <Marquee clients={home.clients} />
 
   <section class="manifesto section" aria-label="What we believe">
-    {home.manifesto.map((line, i) => (
+    {home.manifesto.map((line) => (
       <p class="mega" data-reveal>
         {line}
-        {i === home.manifesto.length - 1 && <Rays class="manifesto__rays" />}
       </p>
     ))}
   </section>
@@ -71,6 +69,7 @@ const placements = ['left', 'right', 'center', 'right-wide', 'left'];
   }
 
   .manifesto { text-align: center; display: grid; gap: 0.12em; padding-inline: var(--gutter); }
-  .manifesto .mega { position: relative; }
-  .manifesto :global(.manifesto__rays) { display: inline-block; width: 0.6em; vertical-align: top; margin-left: 0.05em; translate: 0 -0.25em; }
+  /* Inverted against whatever sky is behind it: white type in difference mode
+     reads as the negative of the sky (dark on the pale day, light on dusk). */
+  .manifesto .mega { position: relative; color: #fff; mix-blend-mode: difference; }
 </style>
