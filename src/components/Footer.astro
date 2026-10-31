@@ -1,7 +1,7 @@
 ---
 import { site } from '../lib/site';
 
-// The page ends on a Redondo Beach sunset: an 8 second seamless loop made in
+// The page ends on a Redondo Beach sunset: a 10 second seamless loop made in
 // Higgsfield (Kling 3.0, same first and last frame). The still first frame
 // shows until the video is near the screen. On light pages the scene's sky
 // fades into the scrolling sunset above it (SkyBackdrop.astro).
@@ -14,7 +14,7 @@ const year = new Date().getFullYear();
   </div>
   <section class="footer__cta">
     <h2 class="footer__line">
-      Don't let the sun set on opportunity,
+      <span class="footer__lead">Don't let the sun set<br />on opportunity,</span>
       <span class="footer__chalk" data-chalk>no matter how beautiful</span>
     </h2>
     <!-- Chalk: a slow wobble that is redrawn at 7 fps (the cm.studio line boil)
@@ -72,13 +72,14 @@ const year = new Date().getFullYear();
   }
   .footer__line {
     font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
-    font-size: clamp(2rem, 1.2rem + 3.4vw, 4.2rem); line-height: 0.98; max-width: 18ch;
+    font-size: clamp(1.7rem, 0.5rem + 6.2vw, 5.9rem); line-height: 0.94;
     text-shadow: 0 2px 30px rgba(120, 40, 70, 0.35);
   }
+  .footer__lead { display: block; white-space: nowrap; }
   .footer__chalk {
-    display: block; margin-top: 0.12em;
+    display: block; margin-top: 0.2em; white-space: nowrap;
     font-family: var(--font-chalk); text-transform: none; letter-spacing: 0.01em;
-    font-size: 1.32em; line-height: 0.9; color: #fffaf0;
+    font-size: clamp(1.5rem, 0.9rem + 2.2vw, 2.9rem); line-height: 1; color: #fffaf0;
     rotate: -3deg;
     filter: url(#chalk);
   }

@@ -1,14 +1,16 @@
 // Live weather for the homepage sky. Fetches the visitor's conditions from
-// /api/sky, then drives --wx (weather strength) from scroll: full while the
-// hero scrolls away, clearing to nothing as the sun rises behind the headline.
+// /api/sky, then drives --wx (weather strength) from scroll: full until the
+// headline locks in place, then clearing over the first 40% of the locked
+// stretch as the sun starts to rise behind it.
 // Rain and snow are drawn on a canvas; storms add the odd lightning flash.
 // Preview any look with ?sky=rain&phase=night (sky: clear, partly, overcast,
 // rain, storm, snow, fog; phase: morning, afternoon, sunset, night).
 import type { Sky } from '../pages/api/sky';
 
 const sky = document.querySelector<HTMLElement>('.sky');
-const headline = document.querySelector<HTMLElement>('[data-sunrise] ~ h2');
-if (sky && document.querySelector('[data-sunrise]')) {
+const rise = document.querySelector<HTMLElement>('[data-rise]');
+const headline = rise?.querySelector<HTMLElement>('h2') ?? null;
+if (sky && rise) {
   const root = document.documentElement;
   const header = document.querySelector<HTMLElement>('[data-header]');
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -48,9 +50,9 @@ if (sky && document.querySelector('[data-sunrise]')) {
     let queued = false;
     const update = () => {
       queued = false;
-      const vh = window.innerHeight;
-      const top = headline ? headline.getBoundingClientRect().top : vh;
-      wx = 1 - Math.min(1, Math.max(0, (vh * 0.95 - top) / (vh * 0.35)));
+      const r = rise!.getBoundingClientRect();
+      const q = -r.top / Math.max(1, r.height - window.innerHeight); // 0 when locked, 1 when released
+      wx = 1 - Math.min(1, Math.max(0, q / 0.4));
       const value = wx.toFixed(3);
       if (value === written) return;
       written = value;

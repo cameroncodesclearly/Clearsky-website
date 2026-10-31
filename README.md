@@ -65,16 +65,17 @@ playing, so a private or domain-locked video quietly falls back to its poster.
   footer), time of day from the sun's real elevation there. Results are cached 15 minutes.
   Preview any look with `/?sky=storm&phase=night`. Anything failing falls back to the
   normal pastel sky.
-- **Sunrise** (`src/components/SunRise.astro`, `src/scripts/sunrise.ts`): the sun climbs
-  from behind the homepage headline on scroll (CSS scroll-driven animations on the
-  headline's view timeline, so it stays locked to the scroll; older browsers get a JS
-  fallback; keep `overflow: clip`, not `hidden`, on its section or the timeline breaks), a lens flare (streak and ghosts) fades in
-  over the last 30% of the climb, and the headline catches a brief warm glare. Sun size
-  is `--d` in SunRise.astro.
-- **Film grain** (`src/components/FilmGrain.astro`): 24 fps Portra-style grain and a faint
-  flicker over type, the sky and animation. Work, video and photos (anything in a `.frame`,
-  plus the hero) sit above it, and case study pages turn it off (`grain={false}`). Strength is `--grain` in `src/styles/global.css` (0.18 now).
-  Regenerate the tile with `python3 scripts/make-grain.py`. Reduced motion freezes it.
+- **Sunrise** (`src/components/SunRise.astro`, `src/scripts/sunrise.ts`, `Breeze.astro`):
+  the homepage headline scrolls in and locks mid-screen for about 1.6 screens of scrolling
+  (`.breeze__rise` height). While it is held the live weather clears (first 40%) and the
+  sun rises from below the screen to sit above it (15% to 90%). All CSS scroll-driven
+  animations on the `--rise` view timeline, with a JS fallback. Keep `overflow: clip`,
+  not `hidden`, on the section or the pin and timeline break. Sun size is `--d`.
+- **Film grain** (`src/components/FilmGrain.astro`): 24 fps grain and a faint flicker over
+  type, the sky and animation. The grain tile is generated in the browser at the screen's
+  pixel density (no image file). Work, video and photos (anything in a `.frame`, plus the
+  hero) sit above it, and case study pages turn it off (`grain={false}`). Strength is
+  `--grain` in `src/styles/global.css`. Reduced motion freezes it.
 
 ## The glass loop
 
