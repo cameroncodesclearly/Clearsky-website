@@ -24,5 +24,14 @@ chroma = [layer(0.9, 1.0) for _ in range(3)]
 chroma = [(c - c.mean()) / c.std() for c in chroma]
 rgb = np.stack([lum + 0.22 * chroma[0], lum + 0.16 * chroma[1], lum + 0.26 * chroma[2]], -1)
 img = np.clip(128 + rgb * 34, 0, 255).astype(np.uint8)
-Image.fromarray(img, 'RGB').save('public/sky/grain.webp', quality=88, method=6)
 print(img.mean(), img.std())
+
+# Transparent version used on the site: light and dark specks on clear, so the
+# overlay needs no blend mode (much cheaper to composite while scrolling).
+v = img.astype(np.float32).mean(-1)
+dev = (v - 128) / 128
+alpha = np.clip(np.abs(dev) * 1.6, 0, 1)
+base = np.where(dev[..., None] > 0, 255.0, 0.0)
+chroma = (img.astype(np.float32) - v[..., None]) * 2.5
+rgba = np.concatenate([np.clip(base + chroma, 0, 255), alpha[..., None] * 255], -1).astype(np.uint8)
+Image.fromarray(rgba, 'RGBA').save('public/sky/grain-alpha.webp', quality=72, alpha_quality=70, method=6)

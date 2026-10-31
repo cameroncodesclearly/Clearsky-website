@@ -1,10 +1,15 @@
 ---
 // A sun that rises from behind a headline as it scrolls into view. Place it as
 // the first child of a position: relative box, directly before the headline,
-// with room above the headline for the sun to finish in. src/scripts/sunrise.ts
-// drives the climb and sets --p (0 to 1) on the box, so the headline can react too.
+// with room above the headline for the sun to finish in.
+//
+// Every moving part is a CSS animation tied to the headline's scroll position
+// (scroll-driven animations), so the browser runs it in step with scrolling,
+// off the main thread. src/scripts/sunrise.ts only measures the start and end
+// heights on resize, and in browsers without scroll timelines it scrubs the
+// same animations from JS instead.
 // Near the top of the climb a restrained lens flare fades in: a horizontal
-// anamorphic streak and a few ghosts that slide across as the sun settles.
+// anamorphic streak and a few ghosts that slide in as the sun settles.
 ---
 <div class="sunrise" data-sunrise aria-hidden="true">
   <div class="sunrise__warmth"></div>
@@ -12,6 +17,7 @@
     <div class="sunrise__halo"></div>
     <div class="sunrise__rays"></div>
     <div class="sunrise__disc"></div>
+    <div class="sunrise__disc sunrise__disc--low"></div>
     <div class="sunrise__streak"></div>
   </div>
   <div class="sunrise__ghost" style="--k: 0.55; --s: 0.16; --tint: 255, 214, 170"></div>
@@ -22,64 +28,125 @@
 <style>
   .sunrise {
     --d: min(45vw, 380px); /* sun diameter */
-    --y: 0px;              /* set by sunrise.ts; --p is inherited from the box */
-    --flare: clamp(0, (var(--p, 1) - 0.7) / 0.3, 1); /* lens flare, last 30% of the climb */
+    --y0: 600px;           /* sun top at the start and end of the climb; sunrise.ts */
+    --y1: 0px;
     position: absolute; inset: 0 calc(50% - 50vw) -30vh; z-index: 0;
     overflow: hidden; pointer-events: none;
     mask: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
   }
-  .sunrise__sun {
-    position: absolute; left: 50%; top: 0;
-    width: var(--d); aspect-ratio: 1;
-    translate: -50% var(--y);
-    opacity: calc(0.3 + var(--p, 1) * 0.7);
-    will-change: translate, opacity;
-  }
-  /* The sky warms around the sun as it climbs. */
-  .sunrise__warmth {
-    position: absolute; left: 50%; top: 0;
-    width: calc(var(--d) * 4.4); aspect-ratio: 1.6;
-    translate: -50% calc(var(--y) - var(--d) * 1.7);
-    background: radial-gradient(closest-side, rgba(255, 214, 170, 0.75), rgba(255, 190, 200, 0.35) 45%, transparent);
-    opacity: calc(0.25 + var(--p, 1) * 0.75);
-  }
-  .sunrise__halo {
-    position: absolute; inset: -55%;
-    background: radial-gradient(closest-side, rgba(255, 236, 170, 0.9), rgba(255, 196, 140, 0.45) 35%, rgba(255, 170, 160, 0.14) 60%, transparent);
-    opacity: calc(0.45 + var(--p, 1) * 0.55);
-  }
-  .sunrise__disc {
-    position: absolute; inset: 0; border-radius: 50%;
-    background: radial-gradient(circle, #fffdf3 0%, #fff3c4 40%, #ffd772 64%, #ffb04a 80%, #ff9a52 100%);
-    box-shadow: 0 0 calc(var(--d) * 0.08) rgba(255, 170, 90, 0.65), 0 0 calc(var(--d) * 0.25) rgba(255, 200, 120, 0.45);
-    /* Lower in the sky the sun runs redder. */
-    filter: saturate(calc(1.5 - var(--p, 1) * 0.5)) hue-rotate(calc((1 - var(--p, 1)) * -14deg));
-  }
-  .sunrise__rays {
-    position: absolute; inset: -70%;
-    background: repeating-conic-gradient(from 0deg, rgba(255, 228, 160, 0.42) 0deg 4deg, transparent 4deg 15deg);
-    mask: radial-gradient(closest-side, #000 22%, transparent 100%);
-    rotate: calc(var(--p, 1) * 40deg);
-    opacity: calc(var(--p, 1) * 0.9);
+  .sunrise > *, .sunrise__sun > * { position: absolute; }
+
+  /* One timeline for the whole rig: the headline's top edge travelling from the
+     bottom of the screen to the middle (see .breeze__rise / timeline-scope). */
+  .sunrise__sun, .sunrise__warmth, .sunrise__halo, .sunrise__rays, .sunrise__disc--low,
+  .sunrise__streak, .sunrise__ghost {
+    animation-duration: auto; /* spans the whole scroll range */
+    animation-fill-mode: both;
+    animation-timing-function: linear;
+    animation-timeline: --rise;
+    animation-range: cover 0% cover 50vh;
   }
 
-  /* Lens flare */
+  .sunrise__sun {
+    left: 50%; top: 0; width: var(--d); aspect-ratio: 1;
+    animation-name: sun-climb;
+    animation-timing-function: cubic-bezier(0.25, 0.6, 0.4, 1);
+    will-change: transform, opacity;
+  }
+  @keyframes sun-climb {
+    from { transform: translate(-50%, var(--y0)); opacity: 0.3; }
+    to { transform: translate(-50%, var(--y1)); opacity: 1; }
+  }
+
+  /* The sky warms around the sun as it climbs. */
+  .sunrise__warmth {
+    left: 50%; top: 0; width: calc(var(--d) * 4.4); aspect-ratio: 1.6;
+    background: radial-gradient(closest-side, rgba(255, 214, 170, 0.75), rgba(255, 190, 200, 0.35) 45%, transparent);
+    animation-name: warmth;
+    animation-timing-function: cubic-bezier(0.25, 0.6, 0.4, 1);
+    will-change: transform, opacity;
+  }
+  @keyframes warmth {
+    from { transform: translate(-50%, calc(var(--y0) - var(--d) * 1.7)); opacity: 0.25; }
+    to { transform: translate(-50%, calc(var(--y1) - var(--d) * 1.7)); opacity: 1; }
+  }
+
+  .sunrise__halo {
+    inset: -55%;
+    background: radial-gradient(closest-side, rgba(255, 236, 170, 0.9), rgba(255, 196, 140, 0.45) 35%, rgba(255, 170, 160, 0.14) 60%, transparent);
+    animation-name: fade-up;
+  }
+  @keyframes fade-up { from { opacity: 0.45; } to { opacity: 1; } }
+
+  .sunrise__disc {
+    inset: 0; border-radius: 50%;
+    background: radial-gradient(circle, #fffdf3 0%, #fff3c4 40%, #ffd772 64%, #ffb04a 80%, #ff9a52 100%);
+    box-shadow: 0 0 calc(var(--d) * 0.08) rgba(255, 170, 90, 0.65), 0 0 calc(var(--d) * 0.25) rgba(255, 200, 120, 0.45);
+  }
+  /* Low in the sky the sun runs redder: a red disc on top that fades out. */
+  .sunrise__disc--low {
+    background: radial-gradient(circle, #fff1dc 0%, #ffd2a0 40%, #ff9f5c 66%, #ff7a45 84%, #f8603e 100%);
+    box-shadow: none;
+    animation-name: fade-out;
+  }
+  @keyframes fade-out { from { opacity: 1; } to { opacity: 0; } }
+
+  .sunrise__rays {
+    inset: -70%;
+    background: repeating-conic-gradient(from 0deg, rgba(255, 228, 160, 0.42) 0deg 4deg, transparent 4deg 15deg);
+    mask: radial-gradient(closest-side, #000 22%, transparent 100%);
+    animation-name: rays;
+    will-change: transform, opacity;
+  }
+  @keyframes rays {
+    from { transform: rotate(0deg); opacity: 0; }
+    to { transform: rotate(40deg); opacity: 0.9; }
+  }
+
+  /* Lens flare, the last 30% of the climb */
   .sunrise__streak {
-    position: absolute; left: 50%; top: 50%;
-    width: 260vw; height: calc(var(--d) * 0.03);
+    left: 50%; top: 50%; width: 260vw; height: calc(var(--d) * 0.03);
     translate: -50% -50%;
     background: linear-gradient(90deg, transparent, rgba(160, 205, 255, 0.25) 32%, rgba(240, 250, 255, 0.85) 50%, rgba(160, 205, 255, 0.25) 68%, transparent);
     filter: blur(2.5px);
-    opacity: calc(var(--flare) * 0.8);
+    animation-name: flare;
   }
-  /* Ghosts sit below and to the right of the sun and slide toward it as it settles. */
+  @keyframes flare { 0%, 70% { opacity: 0; } 100% { opacity: 0.8; } }
+
+  /* Ghosts sit below and right of the sun and slide toward it as it settles. */
   .sunrise__ghost {
-    position: absolute; top: 0;
-    left: calc(50% + var(--k) * 4vw + (1 - var(--flare)) * var(--k) * 8vw);
+    left: 50%; top: 0;
     width: calc(var(--d) * var(--s)); aspect-ratio: 1; border-radius: 50%;
-    translate: -50% calc(var(--y) + var(--d) * (0.75 + var(--k) * 0.9));
     background: radial-gradient(circle, rgba(var(--tint), 0.04) 38%, rgba(var(--tint), 0.22) 62%, rgba(var(--tint), 0.12) 72%, transparent 76%);
-    opacity: var(--flare);
+    animation-name: ghost;
+    will-change: transform, opacity;
+  }
+  @keyframes ghost {
+    0%, 70% {
+      opacity: 0;
+      transform: translate(calc(-50% + var(--k) * 12vw), calc(var(--y1) + var(--d) * (0.75 + var(--k) * 0.9)));
+    }
+    100% {
+      opacity: 1;
+      transform: translate(calc(-50% + var(--k) * 4vw), calc(var(--y1) + var(--d) * (0.75 + var(--k) * 0.9)));
+    }
+  }
+
+  /* Without scroll timelines, sunrise.ts scrubs the same animations: each is
+     paused and set to its progress through a negative delay. */
+  @supports not (animation-timeline: view()) {
+    .sunrise__sun, .sunrise__warmth, .sunrise__halo, .sunrise__rays, .sunrise__disc--low,
+    .sunrise__streak, .sunrise__ghost {
+      animation-duration: 1s;
+      animation-play-state: paused;
+      animation-delay: calc(var(--p, 1) * -1s);
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sunrise__sun, .sunrise__warmth, .sunrise__halo, .sunrise__rays, .sunrise__disc--low,
+    .sunrise__streak, .sunrise__ghost {
+      animation-timeline: auto; animation-duration: 1s; animation-play-state: paused; animation-delay: -1s;
+    }
   }
 </style>
 

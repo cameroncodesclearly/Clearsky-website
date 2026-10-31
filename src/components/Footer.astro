@@ -1,17 +1,33 @@
 ---
 import { site } from '../lib/site';
 
-// The page ends on a beach at sunset. On light pages the photo's sky fades into
-// the scrolling sunset above it (SkyBackdrop.astro); the image was generated
-// in Higgsfield to match that sunset's final colours.
+// The page ends on a Redondo Beach sunset: an 8 second seamless loop made in
+// Higgsfield (Kling 3.0, same first and last frame). The still first frame
+// shows until the video is near the screen. On light pages the scene's sky
+// fades into the scrolling sunset above it (SkyBackdrop.astro).
 const year = new Date().getFullYear();
 ---
 <footer class="footer" data-header-light>
   <div class="footer__scene" aria-hidden="true">
-    <img src="/sky/beach-sunset.webp" srcset="/sky/beach-sunset-800.webp 800w, /sky/beach-sunset.webp 1344w" sizes="100vw" alt="" loading="lazy" decoding="async" />
+    <img src="/sky/beach-sunset.webp" srcset="/sky/beach-sunset-800.webp 800w, /sky/beach-sunset.webp 1600w" sizes="100vw" alt="" loading="lazy" decoding="async" />
+    <video muted loop playsinline preload="none" data-beach-video></video>
   </div>
   <section class="footer__cta">
-    <h2 class="footer__line">Don't let the sun set on opportunity, no matter how beautiful</h2>
+    <h2 class="footer__line">
+      Don't let the sun set on opportunity,
+      <span class="footer__chalk" data-chalk>no matter how beautiful</span>
+    </h2>
+    <!-- Chalk: a slow wobble that is redrawn at 7 fps (the cm.studio line boil)
+         plus fine dust that knocks small gaps out of the strokes. -->
+    <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute">
+      <filter id="chalk" x="-5%" y="-25%" width="110%" height="150%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="1" result="wobble" data-chalk-boil />
+        <feDisplacementMap in="SourceGraphic" in2="wobble" scale="5" xChannelSelector="R" yChannelSelector="G" result="drawn" />
+        <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="7" result="dust" />
+        <feColorMatrix in="dust" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.6 0 0 0 2.1" result="holes" />
+        <feComposite in="drawn" in2="holes" operator="in" />
+      </filter>
+    </svg>
     <a class="pill pill--solid" href="/contact/">Work with us</a>
   </section>
 
@@ -34,7 +50,11 @@ const year = new Date().getFullYear();
     background: #2a1b2e;
   }
   .footer__scene { position: absolute; inset: 0; }
-  .footer__scene img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+  .footer__scene img, .footer__scene video {
+    position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%;
+  }
+  .footer__scene video { opacity: 0; transition: opacity 0.6s ease; }
+  .footer__scene video.is-playing { opacity: 1; }
   /* Darken the sand so the links and wordmark stay readable. */
   .footer__scene::after {
     content: ''; position: absolute; inset: 0;
@@ -54,6 +74,13 @@ const year = new Date().getFullYear();
     font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
     font-size: clamp(2rem, 1.2rem + 3.4vw, 4.2rem); line-height: 0.98; max-width: 18ch;
     text-shadow: 0 2px 30px rgba(120, 40, 70, 0.35);
+  }
+  .footer__chalk {
+    display: block; margin-top: 0.12em;
+    font-family: var(--font-chalk); text-transform: none; letter-spacing: 0.01em;
+    font-size: 1.32em; line-height: 0.9; color: #fffaf0;
+    rotate: -3deg;
+    filter: url(#chalk);
   }
   .footer__cta .pill { background: var(--paper); color: var(--ink); }
   .footer__bar {
@@ -76,3 +103,34 @@ const year = new Date().getFullYear();
     .footer__links { justify-content: center; }
   }
 </style>
+
+<script>
+  // Load and play the beach loop only once the footer is close, and only for
+  // people who haven't asked for reduced motion.
+  const video = document.querySelector<HTMLVideoElement>('[data-beach-video]');
+  if (video && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const io = new IntersectionObserver(([e]) => {
+      if (!e.isIntersecting) { video.pause(); return; }
+      if (!video.src) {
+        // WebM (VP9) where supported, H.264 MP4 for Safari.
+        const ext = video.canPlayType('video/webm; codecs="vp9"') ? 'webm' : 'mp4';
+        video.src = `/sky/beach-sunset${window.innerWidth < 900 ? '-960' : ''}.${ext}`;
+        video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
+      }
+      video.play().catch(() => {});
+    }, { rootMargin: '50% 0px' });
+    io.observe(video);
+  }
+
+  // Line boil: re-seed the wobble 7 times a second, cycling through 3 drawings.
+  const boil = document.querySelector('[data-chalk-boil]');
+  const chalk = document.querySelector('[data-chalk]');
+  if (boil && chalk && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    let frame = 0, timer = 0;
+    const io = new IntersectionObserver(([e]) => {
+      clearInterval(timer);
+      if (e.isIntersecting) timer = window.setInterval(() => boil.setAttribute('seed', String((frame = (frame + 1) % 3) + 1)), 1000 / 7);
+    });
+    io.observe(chalk);
+  }
+</script>

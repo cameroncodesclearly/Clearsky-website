@@ -10,21 +10,38 @@ const { heading } = Astro.props;
   <div class="breeze__rise">
     <SunRise />
     <h2 class="mega breeze__heading" id="breeze-heading" data-reveal>{heading}</h2>
+    <div class="breeze__glare" aria-hidden="true"></div>
   </div>
 </section>
 
 <style>
-  .breeze { text-align: center; padding-inline: var(--gutter); padding-top: 0; overflow: hidden; }
-  /* A screen of open sky before the headline: the live weather plays here and
-     clears as the sun comes up. */
-  .breeze__rise { position: relative; padding-top: max(18rem, 100vh); }
+  /* clip, not hidden: hidden would make this a scroll box and hijack the scroll timeline. */
+  .breeze { text-align: center; padding-inline: var(--gutter); padding-top: 0; overflow: clip; }
+  /* Open sky above the headline for the sun to rise into. timeline-scope lets
+     the sun (a sibling) animate on the headline's scroll timeline. */
+  .breeze__rise { position: relative; padding-top: max(20rem, 46vh); timeline-scope: --rise; }
   .breeze__heading {
     max-width: 12ch; margin-inline: auto; position: relative; z-index: 1;
-    /* A brief warm glare washes over the type as the sun peaks (around 75% of
-       the climb), then settles to crisp letters. */
-    --glare: clamp(0, 1 - max(var(--p, 1) - 0.75, 0.75 - var(--p, 1)) / 0.22, 1);
-    text-shadow: 0 0 calc(var(--glare) * 28px) rgba(255, 214, 150, calc(var(--glare) * 0.85));
+    view-timeline: --rise block;
   }
-  /* Light type while a night or storm sky is still clearing behind it. */
-  :global(html.sky-dark) .breeze__heading { color: color-mix(in srgb, var(--paper) calc(var(--wx) * 100%), var(--ink)); }
+  /* Light type while a night or storm sky is still clearing behind it (--wx
+     is set on the headline by weather.ts). */
+  :global(html.sky-dark) .breeze__heading { color: color-mix(in srgb, var(--paper) calc(var(--wx, 0) * 100%), var(--ink)); }
+
+  /* A brief warm glare washes over the type as the sun peaks, then settles. */
+  .breeze__glare {
+    position: absolute; z-index: 2; left: 50%; bottom: -10%; width: min(120vw, 1400px); height: 80%;
+    translate: -50% 0; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(255, 236, 196, 0.85), rgba(255, 214, 160, 0.4) 45%, transparent);
+    opacity: 0;
+    animation: glare auto linear both;
+    animation-timeline: --rise;
+    animation-range: cover 0% cover 50vh;
+    will-change: opacity;
+  }
+  @keyframes glare { 0%, 55% { opacity: 0; } 78% { opacity: 0.55; } 100% { opacity: 0; } }
+  @supports not (animation-timeline: view()) {
+    .breeze__glare { animation-duration: 1s; animation-play-state: paused; animation-delay: calc(var(--p, 1) * -1s); }
+  }
+  @media (prefers-reduced-motion: reduce) { .breeze__glare { display: none; } }
 </style>

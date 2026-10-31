@@ -42,6 +42,7 @@ const weatherClouds = [
 <style>
   .sky {
     --sunset: 0; /* 0 daytime, 1 full sunset; set by sky.ts from scroll depth */
+    --wx: 0;     /* live weather strength, 1 at the top of the homepage, 0 once the sun is up; weather.ts */
     position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
   }
   .sky__plate {
@@ -49,15 +50,15 @@ const weatherClouds = [
     background: #cfe0f2 url('/sky/sky-1280.webp') center / cover no-repeat;
   }
   @media (min-width: 1100px) { .sky__plate { background-image: url('/sky/sky.webp'); } }
-  /* Pastel dusk first (lavender to peach), then a deeper rose and coral that
-     matches the sky at the top of the footer's beach photo. */
+  /* Pastel dusk first (lavender to peach), then deeper: dusky blue overhead
+     over rose and coral, which is the sky at the top of the footer's beach scene. */
   .sky__dusk {
     position: absolute; inset: 0;
     background: linear-gradient(to bottom, #c9b8e6 0%, #f2b8cf 45%, #ffc9a8 100%);
     opacity: calc(min(var(--sunset) * 1.6, 1) * 0.85);
   }
   .sky__dusk--deep {
-    background: linear-gradient(to bottom, #a17eac 0%, #b77fa4 40%, #d38091 75%, #e97875 100%);
+    background: linear-gradient(to bottom, #3f4a62 0%, #6c5c70 32%, #c27a80 66%, #e98a68 100%);
     opacity: calc(max(var(--sunset) - 0.45, 0) / 0.55 * 0.9);
   }
   /* Clouds pick up the light: slightly pink, then rose. */
@@ -74,8 +75,7 @@ const weatherClouds = [
   }
 
   /* Live weather. data-weather and data-phase are set on .sky by weather.ts;
-     every layer scales with --wx (on :root: 1 at the top of the homepage, 0 once
-     the sun is up) so it all clears together as the sun rises. */
+     every layer scales with --wx so it all clears together as the sun rises. */
   .sky__tone, .sky__haze, .sky__moon, .sky__precip, .sky__flash { position: absolute; inset: 0; opacity: 0; }
   .sky__precip { width: 100%; height: 100%; opacity: var(--wx); }
   .sky__flash { background: #eef3ff; }

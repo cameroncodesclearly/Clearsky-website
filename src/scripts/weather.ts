@@ -42,17 +42,26 @@ if (sky && document.querySelector('[data-sunrise]')) {
     root.classList.toggle('sky-dark', dark);
 
     // Weather strength from scroll ------------------------------------------------
-    let wx = 1;
+    // Written only to the sky and the headline, and only when it changes, so a
+    // scroll never restyles the rest of the page.
+    let wx = 1, written = '';
+    let queued = false;
     const update = () => {
+      queued = false;
       const vh = window.innerHeight;
       const top = headline ? headline.getBoundingClientRect().top : vh;
       wx = 1 - Math.min(1, Math.max(0, (vh * 0.95 - top) / (vh * 0.35)));
-      root.style.setProperty('--wx', wx.toFixed(3));
+      const value = wx.toFixed(3);
+      if (value === written) return;
+      written = value;
+      sky!.style.setProperty('--wx', value);
+      headline?.style.setProperty('--wx', value);
       header?.classList.toggle('on-dark-sky', dark && wx > 0.5);
     };
+    const queue = () => { if (!queued) { queued = true; requestAnimationFrame(update); } };
     update();
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
+    window.addEventListener('scroll', queue, { passive: true });
+    window.addEventListener('resize', queue);
 
     if (reduce || !['rain', 'storm', 'snow'].includes(s.condition)) return;
 

@@ -11,16 +11,16 @@
   .grain { position: fixed; inset: 0; z-index: 900; pointer-events: none; overflow: hidden; }
   .grain__texture {
     position: absolute; inset: -256px;
-    background: url('/sky/grain.webp') 0 0 / 256px 256px repeat;
+    background: url('/sky/grain-alpha.webp') 0 0 / 256px 256px repeat;
     opacity: var(--grain);
-    mix-blend-mode: overlay;
+    will-change: transform;
   }
   /* Exposure breathing between frames, kept to a percent or two. */
   .grain__flicker {
     position: absolute; inset: 0;
     background: #fff6ea;
     opacity: 0;
-    mix-blend-mode: soft-light;
+    will-change: opacity;
   }
 </style>
 
@@ -34,7 +34,7 @@
       if (now - last >= 1000 / 24) {
         last = now;
         tex.style.transform = `translate(${Math.floor(Math.random() * 256)}px, ${Math.floor(Math.random() * 256)}px)`;
-        level += (Math.random() * 0.05 - level) * 0.5;
+        level += (Math.random() * 0.025 - level) * 0.5;
         flicker.style.opacity = level.toFixed(3);
       }
       requestAnimationFrame(tick);

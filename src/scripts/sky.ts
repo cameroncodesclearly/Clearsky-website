@@ -14,10 +14,12 @@ if (layer && sky) {
   }));
   const t0 = performance.now();
   const smooth = (t: number) => t * t * (3 - 2 * t);
+  let lastSunset = '';
   const draw = (now: number) => {
     const vh = window.innerHeight;
     const depth = window.scrollY / Math.max(1, document.documentElement.scrollHeight - vh);
-    sky.style.setProperty('--sunset', smooth(Math.min(1, Math.max(0, (depth - 0.45) / 0.55))).toFixed(3));
+    const sunset = smooth(Math.min(1, Math.max(0, (depth - 0.45) / 0.55))).toFixed(3);
+    if (sunset !== lastSunset) { lastSunset = sunset; sky.style.setProperty('--sunset', sunset); }
     const loop = vh * 2.4; // one full lap of the cloud field
     const drift = reduce ? 0 : (now - t0) / 1000;
     for (const c of clouds) {

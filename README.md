@@ -51,7 +51,10 @@ playing, so a private or domain-locked video quietly falls back to its poster.
 - **Sky backdrop** (`src/components/SkyBackdrop.astro`, `src/scripts/sky.ts`): light pages
   sit on a fixed pastel sky photo with a few clouds drifting past at different depths.
   From about halfway down the page the sky and clouds turn pink, deepening into the
-  footer's beach sunset (`public/sky/beach-sunset.webp`, generated in Higgsfield).
+  footer's beach sunset: a 10 second seamless loop of Redondo Beach made in Higgsfield
+  (Kling 3.0, same first and last frame), in `public/sky/beach-sunset*` as WebM and MP4
+  with a still poster. "no matter how beautiful" is set in Caveat Brush with an SVG chalk
+  filter that re-draws at 7 fps (the cm.studio line boil).
   Images are in `public/sky/`, cut from CC0 photos on Wikimedia Commons
   (BlueSkyWhiteClouds21 by Raysonho, Clouds 07 by Shams948).
 - **Live weather** (`src/pages/api/sky.ts`, `src/scripts/weather.ts`): on the homepage the
@@ -63,7 +66,9 @@ playing, so a private or domain-locked video quietly falls back to its poster.
   Preview any look with `/?sky=storm&phase=night`. Anything failing falls back to the
   normal pastel sky.
 - **Sunrise** (`src/components/SunRise.astro`, `src/scripts/sunrise.ts`): the sun climbs
-  from behind the homepage headline on scroll, a lens flare (streak and ghosts) fades in
+  from behind the homepage headline on scroll (CSS scroll-driven animations on the
+  headline's view timeline, so it stays locked to the scroll; older browsers get a JS
+  fallback; keep `overflow: clip`, not `hidden`, on its section or the timeline breaks), a lens flare (streak and ghosts) fades in
   over the last 30% of the climb, and the headline catches a brief warm glare. Sun size
   is `--d` in SunRise.astro.
 - **Film grain** (`src/components/FilmGrain.astro`): 24 fps Portra-style grain and a faint

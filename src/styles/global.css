@@ -4,6 +4,7 @@
 @import '@fontsource/poppins/latin-500.css';
 @import '@fontsource/poppins/latin-600.css';
 @import '@fontsource/poppins/latin-700.css';
+@import '@fontsource/caveat-brush/latin-400.css';
 
 @font-face {
   font-family: 'Stapelia Sans';
@@ -39,6 +40,7 @@
   --font-display: 'Stapelia Sans', 'Poppins', 'Arial Black', system-ui, sans-serif;
   --font-script: 'Stapelia Script', 'Brush Script MT', cursive;
   --font-body: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-chalk: 'Caveat Brush', 'Bradley Hand', cursive;
 
   --step--2: 0.72rem;
   --step--1: clamp(0.8rem, 0.78rem + 0.1vw, 0.86rem);
@@ -58,8 +60,6 @@
 
   /* Film grain strength over the whole site, 0 to 1. */
   --grain: 0.18;
-  /* Live weather strength on the homepage sky (weather.ts). */
-  --wx: 0;
 }
 
 .theme-paper { --bg: var(--paper); --fg: var(--ink); --accent: var(--blue); }
