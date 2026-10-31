@@ -9,12 +9,60 @@
   ],
   "clients": [
     {
+      "name": "Adidas",
+      "logo": "../../assets/clients/adidas.svg"
+    },
+    {
+      "name": "Easton",
+      "logo": "../../assets/clients/easton.svg"
+    },
+    {
+      "name": "SLB",
+      "logo": "../../assets/clients/slb.svg"
+    },
+    {
+      "name": "Evolus",
+      "logo": "../../assets/clients/evolus.svg"
+    },
+    {
       "name": "Good Stuff Restaurants",
-      "logo": null
+      "logo": "../../assets/clients/good-stuff-restaurants.svg"
     },
     {
       "name": "Endera",
-      "logo": "../../assets/clients/endera.webp"
+      "logo": "../../assets/clients/endera.svg"
+    },
+    {
+      "name": "Baseballism",
+      "logo": "../../assets/clients/baseballism.svg"
+    },
+    {
+      "name": "Age With Vitality",
+      "logo": "../../assets/clients/age-with-vitality.svg"
+    },
+    {
+      "name": "Lapiplasty",
+      "logo": "../../assets/clients/lapiplasty.svg"
+    },
+    {
+      "name": "Tarsus",
+      "logo": "../../assets/clients/tarsus.svg"
+    },
+    {
+      "name": "OC Raw",
+      "logo": "../../assets/clients/oc-raw.svg"
+    },
+    {
+      "name": "SeamsUp",
+      "logo": "../../assets/clients/seamsup.svg"
+    },
+    {
+      "name": "Darnaud Athletics",
+      "logo": "../../assets/clients/darnaud-athletics.svg"
+    },
+    {
+      "name": "Sona Creative Group",
+      "logo": "../../assets/clients/sona-creative-group.svg"
     },
     {
       "name": "Lucy's",
@@ -31,10 +79,6 @@
     {
       "name": "ABG Art Group",
       "logo": "../../assets/clients/abg.avif"
-    },
-    {
-      "name": "Age With Vitality",
-      "logo": null
     },
     {
       "name": "Dr. Hedi",

@@ -12,14 +12,14 @@ const items = clients.map((c) => ({ ...c, image: resolveImage(c.logo) }));
   <ul class="marquee__list">
     {items.map((c) => (
       <li class="marquee__item">
-        {c.image ? <Image src={c.image} alt={c.name} widths={[240, 480]} sizes="160px" /> : <span>{c.name}</span>}
+        {c.image ? (c.image.format === 'svg' ? <img src={c.image.src} alt={c.name} loading="lazy" /> : <Image src={c.image} alt={c.name} widths={[240, 480]} sizes="160px" />) : <span>{c.name}</span>}
       </li>
     ))}
   </ul>
   <ul class="marquee__list" aria-hidden="true">
     {items.map((c) => (
       <li class="marquee__item">
-        {c.image ? <Image src={c.image} alt="" widths={[240, 480]} sizes="160px" /> : <span>{c.name}</span>}
+        {c.image ? (c.image.format === 'svg' ? <img src={c.image.src} alt="" loading="lazy" /> : <Image src={c.image} alt="" widths={[240, 480]} sizes="160px" />) : <span>{c.name}</span>}
       </li>
     ))}
   </ul>

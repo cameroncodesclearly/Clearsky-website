@@ -257,7 +257,6 @@ export default config({
           }),
           { label: 'Team', itemLabel: (p) => p.fields.name.value },
         ),
-        baseLine: fields.text({ label: 'Where we work', description: 'Set in script near the bottom of the page.' }),
       },
     }),
   },

@@ -4,7 +4,7 @@ import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import VideoPlayer from '../components/VideoPlayer.astro';
 import about from '../content/settings/about.json';
-import { site, publishedServices, resolveImage } from '../lib/site';
+import { publishedServices, resolveImage } from '../lib/site';
 
 const services = await publishedServices();
 const photos = about.photos.map((p) => ({ ...p, img: resolveImage(p.image) })).filter((p) => p.img);
@@ -91,14 +91,6 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
     </section>
   )}
 
-  <section class="about-base section container">
-    <p class="script about-base__line" data-reveal>{about.baseLine}</p>
-    <dl class="about-base__details">
-      <div><dt class="ui ui-muted">Email</dt><dd class="ui"><a href={`mailto:${site.email}`}>{site.email}</a></dd></div>
-      <div><dt class="ui ui-muted">Phone</dt><dd class="ui"><a href={`tel:${site.phone.replace(/[^\d+]/g, '')}`}>{site.phone}</a></dd></div>
-      <div><dt class="ui ui-muted">Home base</dt><dd class="ui">{site.location}</dd></div>
-    </dl>
-  </section>
 </BaseLayout>
 
 <style>
@@ -142,10 +134,5 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
   .about-team__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
   .about-team__grid figure { margin: 0 0 0.6rem; }
 
-  .about-base { text-align: center; display: grid; gap: 3rem; justify-items: center; }
-  .about-base__line { font-size: clamp(2.2rem, 1.2rem + 4vw, 5.4rem); line-height: 1.05; color: var(--blue); max-width: 16ch; position: relative; }
-  .about-base__details { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem 3rem; margin: 0; }
-  .about-base__details div { display: grid; gap: 0.2rem; }
-  .about-base__details dd { margin: 0; }
   @media (max-width: 699px) { .about-photos__row { grid-auto-columns: 62%; } }
 </style>

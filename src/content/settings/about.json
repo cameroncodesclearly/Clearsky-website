@@ -11,19 +11,48 @@
   "mission": "To build good brands with honest content. We want to lead the way back to trust-filled marketing, using ethical methods to promote your business.",
   "bigLine": "Changed companies change culture",
   "values": [
-    { "title": "Transparency", "body": "You see the plan, the process, and the numbers. No surprises." },
-    { "title": "Integrity", "body": "We only make promises we can keep, and we keep them." },
-    { "title": "Love", "body": "We care about the people behind the brand and the people watching." },
-    { "title": "Selflessness", "body": "Your win is the point. When you grow, we grow with you." }
+    {
+      "title": "Transparency",
+      "body": "You see the plan, the process, and the numbers. No surprises."
+    },
+    {
+      "title": "Integrity",
+      "body": "We only make promises we can keep, and we keep them."
+    },
+    {
+      "title": "Love",
+      "body": "We care about the people behind the brand and the people watching."
+    },
+    {
+      "title": "Selflessness",
+      "body": "Your win is the point. When you grow, we grow with you."
+    }
   ],
   "photos": [
-    { "image": "../../assets/about/cameron-director.webp", "alt": "Cameron directing on set" },
-    { "image": "../../assets/about/bts-car-rig.webp", "alt": "Filming a vehicle from a moving car" },
-    { "image": "../../assets/about/bts-interview.webp", "alt": "A woman being interviewed on camera" },
-    { "image": "../../assets/about/bts-camera.webp", "alt": "A focused camera operator" },
-    { "image": "../../assets/about/bts-baseball.webp", "alt": "Photographing a player in a baseball uniform" },
-    { "image": "../../assets/about/team-cam-fidel.webp", "alt": "The Clear Sky team at work" }
+    {
+      "image": "../../assets/about/cameron-director.webp",
+      "alt": "Cameron directing on set"
+    },
+    {
+      "image": "../../assets/about/bts-car-rig.webp",
+      "alt": "Filming a vehicle from a moving car"
+    },
+    {
+      "image": "../../assets/about/bts-interview.webp",
+      "alt": "A woman being interviewed on camera"
+    },
+    {
+      "image": "../../assets/about/bts-camera.webp",
+      "alt": "A focused camera operator"
+    },
+    {
+      "image": "../../assets/about/bts-baseball.webp",
+      "alt": "Photographing a player in a baseball uniform"
+    },
+    {
+      "image": "../../assets/about/team-cam-fidel.webp",
+      "alt": "The Clear Sky team at work"
+    }
   ],
-  "team": [],
-  "baseLine": "Based in Southern California, shooting everywhere."
+  "team": []
 }

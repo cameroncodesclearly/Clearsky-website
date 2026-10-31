@@ -33,6 +33,8 @@ const placements = ['left', 'right', 'center', 'right-wide', 'left'];
 
   <Breeze heading={home.breezeHeading} />
 
+  <Marquee clients={home.clients} />
+
   <section class="feed" aria-label="Selected work">
     {featured.map((entry, i) => (
       <div class:list={['feed__item', `feed__item--${placements[i % placements.length]}`, { 'feed__item--portrait': entry.data.coverVertical }]} data-reveal>
@@ -41,8 +43,6 @@ const placements = ['left', 'right', 'center', 'right-wide', 'left'];
     ))}
     <div class="feed__more" data-reveal><a class="pill" href="/work/">See all work</a></div>
   </section>
-
-  <Marquee clients={home.clients} />
 
   <section class="manifesto section" aria-label="What we believe">
     {home.manifesto.map((line) => (

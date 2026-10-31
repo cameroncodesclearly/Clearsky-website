@@ -72,6 +72,8 @@ const isActive = (href: string) => href !== '/' && path.startsWith(href);
   .header__menu-btn .close-label, .menu-open .header__menu-btn .open-label { display: none; }
   .menu-open .header__menu-btn .close-label { display: inline; }
   .menu-open { color: var(--paper); }
+  /* Over light footage in the hero, dark menu text (HeroCarousel.astro). */
+  .header.is-light.over-light-media:not(.menu-open):not(.submenu-open) { color: var(--ink); }
 
   .mobile-menu {
     position: fixed; inset: 0; z-index: -1;
