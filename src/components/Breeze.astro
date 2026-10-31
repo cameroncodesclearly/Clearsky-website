@@ -13,12 +13,11 @@ const { heading } = Astro.props;
     <div class="breeze__stage">
       <SunRise />
       <h2 class="mega breeze__heading" id="breeze-heading" data-reveal>{heading}</h2>
-      <div class="breeze__glare" aria-hidden="true"></div>
     </div>
   </div>
   <!-- Outside the sticky stage on purpose: the stage is its own layer, and a
        screen blend inside it would have nothing (no sky) to blend with. -->
-  <video class="breeze__leak" muted playsinline preload="none" aria-hidden="true" data-leak></video>
+  <canvas class="breeze__leak" width="480" height="270" aria-hidden="true" data-leak></canvas>
 </section>
 
 <style>
@@ -26,8 +25,7 @@ const { heading } = Astro.props;
      sticky stage and the scroll timeline. */
   .breeze { text-align: center; padding-inline: var(--gutter); overflow: clip; }
   /* The tall box sets how long the headline stays locked: everything past one
-     screen of height is pinned time. It names the scroll timeline the sun and
-     glare run on. */
+     screen of height is pinned time. It names the scroll timeline the sun runs on. */
   .breeze__rise { height: 260vh; view-timeline: --rise block; }
   @media (max-width: 699px) { .breeze__rise { height: 210vh; } }
   .breeze__stage {
@@ -40,58 +38,52 @@ const { heading } = Astro.props;
      is set on the headline by weather.ts). */
   :global(html.sky-dark) .breeze__heading { color: color-mix(in srgb, var(--paper) calc(var(--wx, 0) * 100%), var(--ink)); }
 
-  /* A brief warm glare washes over the type as the sun peaks, then settles. */
-  .breeze__glare {
-    position: absolute; z-index: 2; left: 50%; bottom: 0; width: min(120vw, 1400px); height: 70%;
-    translate: -50% 0; pointer-events: none;
-    background: radial-gradient(closest-side, rgba(255, 236, 196, 0.85), rgba(255, 214, 160, 0.4) 45%, transparent);
-    animation: glare auto linear both;
-    animation-timeline: --rise;
-    animation-range: contain 15% contain 90%;
-    will-change: opacity;
-  }
-  @keyframes glare { 0%, 70% { opacity: 0; } 86% { opacity: 0.5; } 100% { opacity: 0; } }
-  @supports not (animation-timeline: view()) {
-    .breeze__glare { animation-duration: 1s; animation-play-state: paused; animation-delay: calc(var(--p, 1) * -1s); }
-  }
-  @media (prefers-reduced-motion: reduce) { .breeze__glare { display: none; } }
 
-  /* A real light leak (4 seconds on black) washes over the type as the sun
-     passes behind it. Screen blending drops the black, leaving only the light.
-     Hidden between plays so the blend costs nothing the rest of the time. */
+  /* A real light leak washes over the page as the sun passes behind the
+     headline, scrubbed by scroll (frame by frame from a 30-frame sheet).
+     Screen blending drops the black, leaving only the light. Hidden outside
+     its stretch so the blend costs nothing the rest of the time. */
   .breeze__leak {
     position: fixed; inset: 0; z-index: 899; width: 100%; height: 100%;
-    object-fit: cover; pointer-events: none;
-    mix-blend-mode: screen; opacity: 0; transition: opacity 0.3s ease;
+    pointer-events: none; mix-blend-mode: screen; opacity: 0.85;
+    visibility: hidden;
   }
-  .breeze__leak.is-playing { opacity: 0.85; }
+  .breeze__leak.is-on { visibility: visible; }
 </style>
 
 <script>
-  // Play the light leak once each time the sun passes behind the headline on
-  // the way down (about halfway through the locked stretch). Scrolling back
-  // above the start re-arms it.
+  // Light leak: from 45% to 95% of the locked stretch (the sun passing behind
+  // the headline until it settles) the frames play forward with the scroll,
+  // and backward when scrolling up. Neighbouring frames are cross-faded so
+  // it moves smoothly between the 30 frames.
   const rise = document.querySelector<HTMLElement>('[data-rise]');
-  const leak = document.querySelector<HTMLVideoElement>('[data-leak]');
-  if (rise && leak && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    let armed = true, queued = false;
-    const ext = leak.canPlayType('video/webm; codecs="vp9"') ? 'webm' : 'mp4';
-    const check = () => {
+  const canvas = document.querySelector<HTMLCanvasElement>('[data-leak]');
+  if (rise && canvas && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    const FRAMES = 30, COLS = 6, W = 480, H = 270;
+    const ctx = canvas.getContext('2d')!;
+    const sheet = new Image();
+    let ready = false, queued = false, lastT = -1;
+    sheet.onload = () => { ready = true; draw(); };
+    const draw = () => {
       queued = false;
       const r = rise.getBoundingClientRect();
       const q = -r.top / Math.max(1, r.height - window.innerHeight);
-      if (!leak.src && q > -0.6) leak.src = `/sky/light-leak.${ext}`; // load just before it's needed
-      if (armed && q > 0.5 && q < 1) {
-        armed = false;
-        leak.currentTime = 0;
-        leak.classList.add('is-playing');
-        leak.play().catch(() => leak.classList.remove('is-playing'));
-      } else if (q < 0.2) {
-        armed = true;
-      }
+      if (!sheet.src && q > -0.6) sheet.src = '/sky/light-leak-frames.jpg'; // load just before it's needed
+      const t = (q - 0.45) / 0.5;
+      const on = ready && t > 0 && t < 1;
+      canvas.classList.toggle('is-on', on);
+      if (!on || Math.abs(t - lastT) < 0.002) return;
+      lastT = t;
+      const f = t * (FRAMES - 1), i = Math.floor(f), mix = f - i;
+      const blit = (n: number, alpha: number) => {
+        ctx.globalAlpha = alpha;
+        ctx.drawImage(sheet, (n % COLS) * W, Math.floor(n / COLS) * H, W, H, 0, 0, W, H);
+      };
+      ctx.globalAlpha = 1;
+      blit(i, 1);
+      if (i + 1 < FRAMES && mix > 0) blit(i + 1, mix);
     };
-    leak.addEventListener('ended', () => leak.classList.remove('is-playing'));
-    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(check); } }, { passive: true });
-    check();
+    window.addEventListener('scroll', () => { if (!queued) { queued = true; requestAnimationFrame(draw); } }, { passive: true });
+    draw();
   }
 </script>
