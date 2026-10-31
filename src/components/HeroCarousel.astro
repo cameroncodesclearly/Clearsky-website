@@ -82,7 +82,7 @@ const { slides } = Astro.props;
 </style>
 
 <script>
-  import { onPlaying } from '../scripts/player';
+  import { onPlaying, fitToFrame } from '../scripts/player';
   const DURATION = 9000;
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.querySelectorAll<HTMLElement>('[data-hero]').forEach((hero) => {
@@ -130,6 +130,7 @@ const { slides } = Astro.props;
       iframe.tabIndex = -1;
       iframe.setAttribute('aria-hidden', 'true');
       slide.append(iframe);
+      fitToFrame(iframe, slide);
       onPlaying(iframe, () => slide.classList.add('is-playing'), () => iframe.remove());
     };
 

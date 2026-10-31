@@ -1,4 +1,4 @@
-import { onPlaying } from './player';
+import { onPlaying, fitToFrame } from './player';
 
 // Site-wide behaviour. Each block looks for its own data attribute, so pages
 // only pay for what they use.
@@ -139,6 +139,7 @@ if (embeds.length && !reduceMotion) {
           iframe.title = '';
           iframe.setAttribute('aria-hidden', 'true');
           el.append(iframe);
+          fitToFrame(iframe, el);
           onPlaying(iframe, () => el.classList.add('is-playing'), () => iframe.remove());
         } else if (!entry.isIntersecting && existing) {
           el.classList.remove('is-playing');

@@ -46,12 +46,12 @@ const watchLabel = ref?.provider === 'instagram' ? 'Instagram' : ref?.provider =
   }
   .player__play:hover svg { scale: 1.08; background: var(--butter); }
   :global(.player.is-open) .player__play { display: none; }
-  :global(.player.is-open > iframe) { pointer-events: auto; opacity: 1; width: 100%; height: 100%; translate: none; top: 0; left: 0; background: var(--white); }
+  :global(.player.is-open > iframe) { pointer-events: auto; opacity: 1; background: var(--ink); }
   :global(.player__fallback) { position: absolute; inset: auto 0 1rem; z-index: 3; display: flex; justify-content: center; }
 </style>
 
 <script>
-  import { onReady } from '../scripts/player';
+  import { onReady, fitToFrame } from '../scripts/player';
   import { track } from '../scripts/analytics';
   document.querySelectorAll<HTMLElement>('[data-player]').forEach((frame) => {
     const button = frame.querySelector('.player__play');
@@ -66,6 +66,7 @@ const watchLabel = ref?.provider === 'instagram' ? 'Instagram' : ref?.provider =
       iframe.allowFullscreen = true;
       iframe.title = button.getAttribute('aria-label') || 'Video';
       frame.append(iframe);
+      fitToFrame(iframe, frame);
       frame.classList.add('is-open');
       onReady(iframe, () => {}, () => {
         iframe.remove();

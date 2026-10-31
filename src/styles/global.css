@@ -179,14 +179,18 @@ p { max-width: 64ch; }
 .frame > img, .frame > video, .frame > picture > img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0;
 }
-/* Background players are 16:9 (or 9:16); size them to cover the frame like object-fit. */
+/* Players are sized to cover the frame like object-fit: cover, using the
+   film's real width / height (--vr, reported by the player via fitToFrame in
+   player.ts; 16:9 or 9:16 until it arrives). Any mismatch crops, never bars. */
+.frame { --vr: 1.7778; }
+.frame.is-vertical { --vr: 0.5625; }
 .frame > iframe {
   position: absolute; top: 50%; left: 50%; border: 0; pointer-events: none;
-  width: max(100cqw, 177.78cqh); height: max(100cqh, 56.25cqw); translate: -50% -50%;
+  width: max(100cqw, calc(100cqh * var(--vr))); height: max(100cqh, calc(100cqw / var(--vr))); translate: -50% -50%;
+  max-width: none; /* the global iframe max-width would squeeze it back and bring the bars */
   scale: 1.02; /* overscan so no hairline of the player's edge ever shows */
   opacity: 0; transition: opacity 0.8s var(--ease);
 }
-.frame.is-vertical > iframe { width: max(100cqw, 56.25cqh); height: max(100cqh, 177.78cqw); }
 .frame.is-playing > iframe { opacity: 1; }
 .ratio-16x9 { aspect-ratio: 16 / 9; }
 .ratio-16x10 { aspect-ratio: 16 / 10; }

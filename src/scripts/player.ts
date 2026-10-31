@@ -53,3 +53,34 @@ export function onReady(iframe: HTMLIFrameElement, ready: () => void, failed: ()
   }
   window.addEventListener('message', listen);
 }
+
+/**
+ * Size a Vimeo iframe to cover its frame using the film's real shape, so a
+ * film cut to any ratio (4:5, 2.39:1, vertical in a landscape slot) crops to
+ * fill instead of showing black bars. The frame gets --vr (width / height);
+ * the CSS in global.css does the rest.
+ */
+export function fitToFrame(iframe: HTMLIFrameElement, frame: HTMLElement) {
+  if (!iframe.src.includes('player.vimeo.com')) return;
+  const size: { w?: number; h?: number } = {};
+  const send = (method: string) => iframe.contentWindow?.postMessage(JSON.stringify({ method }), '*');
+  function listen(e: MessageEvent) {
+    if (e.source !== iframe.contentWindow) return;
+    let data = e.data;
+    try { if (typeof data === 'string') data = JSON.parse(data); } catch { return; }
+    if (data?.event === 'ready') {
+      send('getVideoWidth');
+      send('getVideoHeight');
+    } else if (data?.method === 'getVideoWidth') {
+      size.w = Number(data.value);
+    } else if (data?.method === 'getVideoHeight') {
+      size.h = Number(data.value);
+    }
+    if (size.w && size.h) {
+      frame.style.setProperty('--vr', (size.w / size.h).toFixed(4));
+      window.removeEventListener('message', listen);
+    }
+  }
+  window.addEventListener('message', listen);
+  setTimeout(() => window.removeEventListener('message', listen), 15000);
+}
