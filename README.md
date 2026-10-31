@@ -50,12 +50,14 @@ playing, so a private or domain-locked video quietly falls back to its poster.
 
 - **Sky backdrop** (`src/components/SkyBackdrop.astro`, `src/scripts/sky.ts`): light pages
   sit on a fixed pastel sky photo with a few clouds drifting past at different depths.
+  From about halfway down the page the sky and clouds turn pink, deepening into the
+  footer's beach sunset (`public/sky/beach-sunset.webp`, generated in Higgsfield).
   Images are in `public/sky/`, cut from CC0 photos on Wikimedia Commons
   (BlueSkyWhiteClouds21 by Raysonho, Clouds 07 by Shams948).
 - **Sunrise** (`src/components/SunRise.astro`, `src/scripts/sunrise.ts`): the sun climbs
-  from behind the homepage headline on scroll. Four looks: `golden`, `solar` (NASA SDO
-  photo, public domain), `glass` and `flare`. Compare them at `/sun-options/` (hidden from
-  search), then set the `sun` prop on `<Breeze>` in `src/pages/index.astro`.
+  from behind the homepage headline on scroll, a lens flare (streak and ghosts) fades in
+  over the last 30% of the climb, and the headline catches a brief warm glare. Sun size
+  is `--d` in SunRise.astro.
 - **Film grain** (`src/components/FilmGrain.astro`): 24 fps Portra-style grain and a faint
   flicker over type, the sky and animation. Work, video and photos (anything in a `.frame`,
   plus the hero) sit above it, and case study pages turn it off (`grain={false}`). Strength is `--grain` in `src/styles/global.css` (0.18 now).

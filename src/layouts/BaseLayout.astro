@@ -13,14 +13,12 @@ interface Props {
   image?: string;
   /** Page colour: paper, blue, sky, butter, or ink. */
   theme?: string;
-  /** Footer CTA colour; defaults to Clear Sky blue. */
-  footerTheme?: string;
   /** Keep this page out of search results. */
   noindex?: boolean;
   /** Film grain over the page; off for case studies. */
   grain?: boolean;
 }
-const { title, description = site.description, image = '/og-default.jpg', theme = 'paper', footerTheme, noindex = false, grain = true } = Astro.props;
+const { title, description = site.description, image = '/og-default.jpg', theme = 'paper', noindex = false, grain = true } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Video and Social Content Studio`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const themeColor = { paper: '#cfe0f2', blue: '#1a5276', sky: '#85c1e9', butter: '#f7dc6f', ink: '#1a1307' }[theme] ?? '#f1f2f4';
@@ -60,7 +58,7 @@ const themeColor = { paper: '#cfe0f2', blue: '#1a5276', sky: '#85c1e9', butter: 
     <main id="main">
       <slot />
     </main>
-    <Footer theme={footerTheme} />
+    <Footer />
     <div class="fader" data-fader aria-hidden="true"></div>
     {grain && <FilmGrain />}
     <script>
@@ -97,8 +95,6 @@ const themeColor = { paper: '#cfe0f2', blue: '#1a5276', sky: '#85c1e9', butter: 
     opacity: 0; scale: 0.6; transition: opacity 0.25s var(--ease), scale 0.35s var(--ease);
   }
   .cursor-label.is-on { opacity: 1; scale: 1; }
-  .blink { animation: blink 1s steps(1) infinite; }
-  @keyframes blink { 50% { opacity: 0; } }
   main > :first-child { padding-top: var(--header-h); }
   main > [data-full-bleed]:first-child { padding-top: 0; }
   html.dim-page main, html.dim-page footer { opacity: 0.18; transition: opacity 0.4s var(--ease); }

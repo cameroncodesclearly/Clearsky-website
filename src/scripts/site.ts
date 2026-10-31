@@ -184,19 +184,6 @@ if (embeds.length && !reduceMotion) {
   embeds.forEach((el) => io.observe(el));
 }
 
-// Live clock -------------------------------------------------------------------
-document.querySelectorAll<HTMLElement>('[data-clock]').forEach((el) => {
-  const fmt = new Intl.DateTimeFormat('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-  const render = () => {
-    const parts = fmt.formatToParts(new Date());
-    el.innerHTML = parts
-      .map((p) => (p.type === 'literal' && p.value === ':' ? '<span class="blink">:</span>' : p.value))
-      .join('')
-      .toUpperCase();
-  };
-  render();
-  setInterval(render, 1000);
-});
 
 // Header: dropdown, mobile menu, and colour over dark heroes -------------------
 const header = document.querySelector<HTMLElement>('[data-header]');

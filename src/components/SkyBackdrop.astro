@@ -1,17 +1,19 @@
 ---
 // Fixed pastel sky behind light pages: a still sky photograph with a few clouds
 // drifting past at different depths as the page scrolls (src/scripts/sky.ts).
+// Toward the bottom of the page the sky and clouds turn to sunset, getting
+// pinker until the footer's beach scene takes over.
 // Sky and clouds are cut from CC0 photos by Raysonho and Shams948 on Wikimedia Commons.
 const clouds = [
-  { src: '/sky/cloud-a.webp', w: 46, x: -6, y: 58, depth: 0.55 },
-  { src: '/sky/cloud-d.webp', w: 15, x: 70, y: 14, depth: 0.22 },
-  { src: '/sky/cloud-f.webp', w: 24, x: 8, y: 112, depth: 0.32 },
-  { src: '/sky/cloud-g.webp', w: 20, x: 62, y: 150, depth: 0.42 },
-  { src: '/sky/cloud-d.webp', w: 11, x: 30, y: 196, depth: 0.18 },
+  { src: '/sky/cloud-a.webp', w: 40, x: -6, y: 62, depth: 0.5 },
+  { src: '/sky/cloud-d.webp', w: 13, x: 72, y: 16, depth: 0.22 },
+  { src: '/sky/cloud-g.webp', w: 18, x: 58, y: 160, depth: 0.36 },
 ];
 ---
 <div class="sky" aria-hidden="true">
   <div class="sky__plate"></div>
+  <div class="sky__dusk"></div>
+  <div class="sky__dusk sky__dusk--deep"></div>
   <div class="sky__clouds" data-sky-clouds>
     {clouds.map((c) => (
       <img src={c.src} alt="" decoding="async" loading="lazy" style={`--w:${c.w}vw;--x:${c.x}vw`} data-y={c.y} data-depth={c.depth} />
@@ -20,12 +22,31 @@ const clouds = [
 </div>
 
 <style>
-  .sky { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .sky {
+    --sunset: 0; /* 0 daytime, 1 full sunset; set by sky.ts from scroll depth */
+    position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden;
+  }
   .sky__plate {
     position: absolute; inset: 0;
     background: #cfe0f2 url('/sky/sky-1280.webp') center / cover no-repeat;
   }
   @media (min-width: 1100px) { .sky__plate { background-image: url('/sky/sky.webp'); } }
+  /* Pastel dusk first (lavender to peach), then a deeper rose and coral that
+     matches the sky at the top of the footer's beach photo. */
+  .sky__dusk {
+    position: absolute; inset: 0;
+    background: linear-gradient(to bottom, #c9b8e6 0%, #f2b8cf 45%, #ffc9a8 100%);
+    opacity: calc(min(var(--sunset) * 1.6, 1) * 0.85);
+  }
+  .sky__dusk--deep {
+    background: linear-gradient(to bottom, #a17eac 0%, #b77fa4 40%, #d38091 75%, #e97875 100%);
+    opacity: calc(max(var(--sunset) - 0.45, 0) / 0.55 * 0.9);
+  }
+  /* Clouds pick up the light: slightly pink, then rose. */
+  .sky__clouds {
+    position: absolute; inset: 0;
+    filter: sepia(calc(var(--sunset) * 0.55)) saturate(calc(1 + var(--sunset) * 2.2)) hue-rotate(calc(var(--sunset) * -38deg));
+  }
   .sky__clouds img {
     position: absolute; left: 0; top: 0;
     width: max(var(--w), 160px); height: auto;

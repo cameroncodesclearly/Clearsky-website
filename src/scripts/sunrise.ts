@@ -22,7 +22,7 @@ if (rigs.length) {
       const start = headline.offsetTop + headline.offsetHeight + d * 0.2;
       const end = headline.offsetTop - d * 0.42;
       const centre = start + (end - start) * p;
-      rig.style.setProperty('--p', p.toFixed(3));
+      rig.parentElement!.style.setProperty('--p', p.toFixed(3));
       rig.style.setProperty('--y', `${(centre - d / 2).toFixed(1)}px`);
     }
   };

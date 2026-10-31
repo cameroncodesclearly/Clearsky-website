@@ -1,17 +1,18 @@
 ---
 import { site } from '../lib/site';
 
-interface Props { theme?: string }
-const { theme = 'blue' } = Astro.props;
+// The page ends on a beach at sunset. On light pages the photo's sky fades into
+// the scrolling sunset above it (SkyBackdrop.astro); the image was generated
+// in Higgsfield to match that sunset's final colours.
 const year = new Date().getFullYear();
 ---
-<footer class={`footer theme-${theme}`} data-header-light={theme === 'blue' || theme === 'ink' ? '' : undefined}>
+<footer class="footer" data-header-light>
+  <div class="footer__scene" aria-hidden="true">
+    <img src="/sky/beach-sunset.webp" srcset="/sky/beach-sunset-800.webp 800w, /sky/beach-sunset.webp 1344w" sizes="100vw" alt="" loading="lazy" decoding="async" />
+  </div>
   <section class="footer__cta">
-    <h2 class="footer__line">
-      It's <span class="clock" data-clock>9:41 AM</span>.<br />
-      Perfect weather to start something.
-    </h2>
-    <a class="pill pill--solid" href="/contact/">Let's talk</a>
+    <h2 class="footer__line">Don't let the sun set on opportunity, no matter how beautiful</h2>
+    <a class="pill pill--solid" href="/contact/">Work with us</a>
   </section>
 
   <div class="footer__bar">
@@ -26,27 +27,43 @@ const year = new Date().getFullYear();
 </footer>
 
 <style>
-  .footer { position: relative; overflow: hidden; }
+  .footer {
+    --fg: var(--paper); --accent: var(--butter);
+    position: relative; overflow: hidden; color: var(--fg);
+    background: #2a1b2e;
+  }
+  .footer__scene { position: absolute; inset: 0; }
+  .footer__scene img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 55%; }
+  /* Darken the sand so the links and wordmark stay readable. */
+  .footer__scene::after {
+    content: ''; position: absolute; inset: 0;
+    background: linear-gradient(to bottom, transparent 45%, rgba(30, 14, 30, 0.55) 80%, rgba(24, 10, 24, 0.85));
+  }
+  /* On light pages the photo's sky dissolves into the sunset sky above it. */
+  :global(html.theme-paper) .footer { background: transparent; }
+  :global(html.theme-paper) .footer__scene { mask: linear-gradient(to bottom, transparent, #000 32%); }
+
   .footer__cta {
+    position: relative;
     min-height: min(100svh, 980px);
     display: grid; place-content: center; justify-items: center; gap: 2rem;
-    padding: clamp(6rem, 12vw, 10rem) var(--gutter) 4rem; text-align: center;
+    padding: clamp(10rem, 22vw, 16rem) var(--gutter) 4rem; text-align: center;
   }
   .footer__line {
     font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
-    font-size: clamp(2rem, 1.2rem + 3.4vw, 4.2rem); line-height: 0.98; max-width: 16ch;
+    font-size: clamp(2rem, 1.2rem + 3.4vw, 4.2rem); line-height: 0.98; max-width: 18ch;
+    text-shadow: 0 2px 30px rgba(120, 40, 70, 0.35);
   }
-  .clock {
-    display: inline-block; padding: 0.02em 0.32em 0; border: 0.07em solid currentColor; border-radius: 999px;
-    font-variant-numeric: tabular-nums; line-height: 1; vertical-align: 0.04em; font-size: 0.82em;
-  }
+  .footer__cta .pill { background: var(--paper); color: var(--ink); }
   .footer__bar {
+    position: relative;
     display: flex; flex-wrap: wrap; justify-content: space-between; gap: 0.6rem 1.5rem;
     padding: 0 var(--gutter) 0.6rem;
   }
   .footer__links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.6rem 1.5rem; }
   .footer__links a:hover { color: var(--accent); }
   .footer__wordmark {
+    position: relative;
     display: block; text-align: center; white-space: nowrap;
     font-family: var(--font-display); text-transform: uppercase;
     font-size: 19.6vw; line-height: 0.8; letter-spacing: -0.01em;
