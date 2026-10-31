@@ -72,8 +72,8 @@ playing, so a private or domain-locked video quietly falls back to its poster.
   animations on the `--rise` view timeline, with a JS fallback. Keep `overflow: clip`,
   not `hidden`, on the section or the pin and timeline break. Sun size is `--d`.
 - **Light leak** (`public/sky/light-leak-frames.jpg`, 30 frames, 56 KB): scrubbed by scroll
-  over the homepage while the sun passes behind the headline (45% to 95% of the locked
-  stretch), drawn to a screen-blended canvas that lives outside the sticky stage.
+  over the homepage while the sun passes behind the headline (22% to 90% of the locked
+  stretch: from the sun first showing behind the type until it is all the way up), drawn to a screen-blended canvas that lives outside the sticky stage.
 - **Film grain** (`src/components/FilmGrain.astro`): 24 fps grain and a faint flicker over
   type, the sky and animation. The grain tile is generated in the browser at the screen's
   pixel density (no image file). Work, video and photos (anything in a `.frame`, plus the

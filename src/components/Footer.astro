@@ -11,7 +11,7 @@ const year = new Date().getFullYear();
 <footer class="footer" data-header-light>
   <div class="footer__scene" aria-hidden="true">
     <img src="/sky/beach-sunset.webp" srcset="/sky/beach-sunset-800.webp 800w, /sky/beach-sunset.webp 1280w" sizes="100vw" alt="" loading="lazy" decoding="async" />
-    <video muted loop playsinline preload="none" data-beach-video></video>
+    <video muted loop playsinline autoplay preload="none" data-beach-video></video>
   </div>
   <section class="footer__cta">
     <h2 class="footer__line">
@@ -108,18 +108,34 @@ const year = new Date().getFullYear();
 
 <script>
   // Load and play the beach loop only once the footer is close, and only for
-  // people who haven't asked for reduced motion.
+  // people who haven't asked for reduced motion. H.264 MP4 first (Safari and
+  // iOS play it reliably), VP9 WebM only where MP4 isn't supported. If the
+  // browser blocks autoplay (iPhone Low Power Mode, data saver), the first tap
+  // anywhere starts it.
   const video = document.querySelector<HTMLVideoElement>('[data-beach-video]');
   if (video && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    video.muted = true;
+    video.defaultMuted = true;
+    video.playsInline = true;
+    let visible = false;
+    const play = () => {
+      if (!visible) return;
+      video.play().catch(() => {
+        const retry = () => { if (visible) video.play().catch(() => {}); };
+        document.addEventListener('touchend', retry, { once: true, passive: true });
+        document.addEventListener('click', retry, { once: true });
+      });
+    };
     const io = new IntersectionObserver(([e]) => {
-      if (!e.isIntersecting) { video.pause(); return; }
+      visible = e.isIntersecting;
+      if (!visible) { video.pause(); return; }
       if (!video.src) {
-        // WebM (VP9) where supported, H.264 MP4 for Safari.
-        const ext = video.canPlayType('video/webm; codecs="vp9"') ? 'webm' : 'mp4';
+        const ext = video.canPlayType('video/mp4; codecs="avc1.64001f"') ? 'mp4' : 'webm';
         video.src = `/sky/beach-sunset${window.innerWidth < 900 ? '-960' : ''}.${ext}`;
         video.addEventListener('playing', () => video.classList.add('is-playing'), { once: true });
+        video.load();
       }
-      video.play().catch(() => {});
+      play();
     }, { rootMargin: '50% 0px' });
     io.observe(video);
   }

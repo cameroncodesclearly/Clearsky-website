@@ -40,7 +40,7 @@ const { heading } = Astro.props;
 
 
   /* A real light leak washes over the page as the sun passes behind the
-     headline, scrubbed by scroll (frame by frame from a 30-frame sheet).
+     headline and climbs, scrubbed by scroll (frame by frame from a 30-frame sheet).
      Screen blending drops the black, leaving only the light. Hidden outside
      its stretch so the blend costs nothing the rest of the time. */
   .breeze__leak {
@@ -52,8 +52,9 @@ const { heading } = Astro.props;
 </style>
 
 <script>
-  // Light leak: from 45% to 95% of the locked stretch (the sun passing behind
-  // the headline until it settles) the frames play forward with the scroll,
+  // Light leak: from 22% to 90% of the locked stretch (from the moment the sun
+  // first shows behind the headline until it is all the way up) the frames
+  // play forward with the scroll,
   // and backward when scrolling up. Neighbouring frames are cross-faded so
   // it moves smoothly between the 30 frames.
   const rise = document.querySelector<HTMLElement>('[data-rise]');
@@ -69,7 +70,7 @@ const { heading } = Astro.props;
       const r = rise.getBoundingClientRect();
       const q = -r.top / Math.max(1, r.height - window.innerHeight);
       if (!sheet.src && q > -0.6) sheet.src = '/sky/light-leak-frames.jpg'; // load just before it's needed
-      const t = (q - 0.45) / 0.5;
+      const t = (q - 0.22) / 0.68;
       const on = ready && t > 0 && t < 1;
       canvas.classList.toggle('is-on', on);
       if (!on || Math.abs(t - lastT) < 0.002) return;
