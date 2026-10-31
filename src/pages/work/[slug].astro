@@ -28,7 +28,7 @@ const meta = [
 const vertical = d.videos.filter((v) => v.vertical || (v.poster && v.poster.height > v.poster.width));
 const landscape = d.videos.filter((v) => !vertical.includes(v));
 ---
-<BaseLayout title={`${d.client}: ${d.title}`} description={d.summary} image={d.cover.src} grain={false}>
+<BaseLayout title={`${d.client}: ${d.title}`} description={d.summary} grain={false}>
   <article class="case">
     <header class="case__header container">
       <div class="rise">

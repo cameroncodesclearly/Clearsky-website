@@ -12,7 +12,7 @@ const { entry, next } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 ---
-<BaseLayout title={d.title} description={d.excerpt} image={d.cover?.src}>
+<BaseLayout title={d.title} description={d.excerpt}>
   <article class="post">
     <header class="post__header container">
       <p class="ui ui-muted">{formatDate(d.publishedDate)}{d.tags.length > 0 && `, ${d.tags.join(', ')}`}</p>
