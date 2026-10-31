@@ -13,7 +13,10 @@ const measure = () => {
     const d = rig.querySelector<HTMLElement>('.sunrise__sun')!.offsetWidth;
     // The rig fills the stage, so stage offsets are rig offsets.
     rig.style.setProperty('--y0', `${(stage.clientHeight + d * 0.1).toFixed(1)}px`);
-    rig.style.setProperty('--y1', `${(headline.offsetTop - d * 0.42 - d / 2).toFixed(1)}px`);
+    // Desktop: finish just above the headline. Phones: keep climbing until the
+    // sun is partly out of the top of the frame.
+    const end = window.innerWidth < 700 ? stage.clientHeight * 0.08 : headline.offsetTop - d * 0.42;
+    rig.style.setProperty('--y1', `${(end - d / 2).toFixed(1)}px`);
   }
 };
 

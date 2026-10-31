@@ -27,6 +27,8 @@
     overflow: hidden; pointer-events: none;
     mask: linear-gradient(to bottom, transparent, #000 18%);
   }
+  /* Phones: the sun leaves through the top edge, so no soft fade there. */
+  @media (max-width: 699px) { .sunrise { mask: none; } }
   .sunrise > *, .sunrise__sun > * { position: absolute; }
 
   /* The climb runs from 15% to 90% of the pinned stretch, after the headline

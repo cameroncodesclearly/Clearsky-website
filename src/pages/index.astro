@@ -72,4 +72,6 @@ const placements = ['left', 'right', 'center', 'right-wide', 'left'];
   /* Inverted against whatever sky is behind it: white type in difference mode
      reads as the negative of the sky (dark on the pale day, light on dusk). */
   .manifesto .mega { position: relative; color: #fff; mix-blend-mode: difference; }
+  /* Each idea on its own single line: scale to the longest one on narrow screens. */
+  @media (max-width: 899px) { .manifesto .mega { font-size: 11.2vw; white-space: nowrap; } }
 </style>

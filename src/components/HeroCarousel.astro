@@ -73,6 +73,9 @@ const { slides } = Astro.props;
   .hero__thumb.is-active .hero__progress { animation: hero-progress var(--hero-dur, 9s) linear forwards; }
   @keyframes hero-progress { to { transform: scaleX(1); } }
   @media (max-width: 699px) {
+    /* Phones: a cropped 4:5 frame instead of a full tall screen, so the
+       landscape films aren't zoomed in to a sliver. */
+    .hero { height: auto; min-height: 0; aspect-ratio: 4 / 5; }
     .hero__thumbs { flex-direction: column; bottom: auto; top: calc(var(--header-h) + 0.5rem); }
     .hero__text { max-width: 100%; }
   }

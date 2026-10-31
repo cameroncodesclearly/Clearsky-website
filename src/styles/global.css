@@ -172,6 +172,8 @@ p { max-width: 64ch; }
    on top of media (header, loader, page fader) is above 950. */
 .frame, .hero { z-index: 950; }
 [data-reveal]:has(.frame) { position: relative; z-index: 950; }
+/* Inside the hero the whole hero is already lifted; its slides stay under its text. */
+.hero .frame { z-index: 0; }
 .frame > img, .frame > video, .frame > picture > img {
   position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border: 0;
 }
