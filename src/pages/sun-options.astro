@@ -1,0 +1,41 @@
+---
+// Private preview: the four sunrise looks for the homepage, one after another.
+// Not linked anywhere and kept out of search and the sitemap.
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SunRise, { type SunVariant } from '../components/SunRise.astro';
+import home from '../content/settings/home.json';
+
+const options: { variant: SunVariant; name: string; note: string }[] = [
+  { variant: 'golden', name: 'A. Golden hour', note: 'Drawn warm sun with soft turning rays. Runs redder near the horizon.' },
+  { variant: 'solar', name: 'B. Real sun', note: "NASA's Solar Dynamics Observatory photograph (public domain), graded gold." },
+  { variant: 'glass', name: 'C. Glass sun', note: 'The Clear Sky glass sun from your animation, rising as one piece.' },
+  { variant: 'flare', name: 'D. Film flare', note: 'Overexposed sun with red halation, a lens streak and ghosts, like shooting into the sun on 35mm.' },
+];
+---
+<BaseLayout title="Sunrise options" noindex>
+  <section class="intro container">
+    <p class="ui ui-muted">Sunrise options</p>
+    <p class="lede">Scroll slowly. Each option rises over the same headline. Tell Claude the letter you like.</p>
+  </section>
+  {options.map((o) => (
+    <section class="option">
+      <div class="option__rise">
+        <SunRise variant={o.variant} />
+        <h2 class="mega option__heading">{home.breezeHeading}</h2>
+      </div>
+      <div class="option__label">
+        <p class="ui">{o.name}</p>
+        <p>{o.note}</p>
+      </div>
+    </section>
+  ))}
+</BaseLayout>
+
+<style>
+  .intro { padding-top: calc(var(--header-h) + 4rem); display: grid; gap: 0.8rem; }
+  .option { text-align: center; overflow: hidden; padding: 0 var(--gutter) 30vh; }
+  .option__rise { position: relative; padding-top: clamp(18rem, 62vh, 34rem); }
+  .option__heading { position: relative; z-index: 1; max-width: 12ch; margin-inline: auto; }
+  .option__label { margin: 3rem auto 0; display: grid; gap: 0.4rem; justify-items: center; }
+  .option__label p:last-child { max-width: 46ch; color: var(--muted); }
+</style>

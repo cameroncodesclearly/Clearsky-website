@@ -1,0 +1,39 @@
+---
+// Fixed pastel sky behind light pages: a still sky photograph with a few clouds
+// drifting past at different depths as the page scrolls (src/scripts/sky.ts).
+// Sky and clouds are cut from CC0 photos by Raysonho and Shams948 on Wikimedia Commons.
+const clouds = [
+  { src: '/sky/cloud-a.webp', w: 46, x: -6, y: 58, depth: 0.55 },
+  { src: '/sky/cloud-d.webp', w: 15, x: 70, y: 14, depth: 0.22 },
+  { src: '/sky/cloud-f.webp', w: 24, x: 8, y: 112, depth: 0.32 },
+  { src: '/sky/cloud-g.webp', w: 20, x: 62, y: 150, depth: 0.42 },
+  { src: '/sky/cloud-d.webp', w: 11, x: 30, y: 196, depth: 0.18 },
+];
+---
+<div class="sky" aria-hidden="true">
+  <div class="sky__plate"></div>
+  <div class="sky__clouds" data-sky-clouds>
+    {clouds.map((c) => (
+      <img src={c.src} alt="" decoding="async" loading="lazy" style={`--w:${c.w}vw;--x:${c.x}vw`} data-y={c.y} data-depth={c.depth} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .sky { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+  .sky__plate {
+    position: absolute; inset: 0;
+    background: #cfe0f2 url('/sky/sky-1280.webp') center / cover no-repeat;
+  }
+  @media (min-width: 1100px) { .sky__plate { background-image: url('/sky/sky.webp'); } }
+  .sky__clouds img {
+    position: absolute; left: 0; top: 0;
+    width: max(var(--w), 160px); height: auto;
+    translate: var(--x) 110vh;
+    will-change: translate;
+  }
+</style>
+
+<script>
+  import '../scripts/sky.ts';
+</script>

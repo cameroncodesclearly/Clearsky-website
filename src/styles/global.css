@@ -55,6 +55,9 @@
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --header-h: 64px;
+
+  /* Film grain strength over the whole site, 0 to 1. */
+  --grain: 0.18;
 }
 
 .theme-paper { --bg: var(--paper); --fg: var(--ink); --accent: var(--blue); }
@@ -63,6 +66,9 @@
 .theme-butter { --bg: var(--butter); --fg: var(--ink); --accent: var(--blue); }
 .theme-ink { --bg: var(--ink); --fg: var(--paper); --accent: var(--mustard); }
 [class*='theme-'] { background: var(--bg); color: var(--fg); }
+/* Light pages sit on the sky backdrop (SkyBackdrop.astro) instead of flat paper. */
+html.theme-paper { background: #cfe0f2; }
+html.theme-paper body { background: transparent; }
 
 *, *::before, *::after { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }

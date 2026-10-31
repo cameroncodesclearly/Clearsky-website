@@ -228,9 +228,6 @@ export default config({
       schema: {
         reelUrl: fields.url({ label: 'Reel video link', description: 'First slide of the hero. Vimeo or YouTube.' }),
         reelTitle: fields.text({ label: 'Reel title' }),
-        proofValue: fields.text({ label: 'Proof number', description: 'Big number in the callout under the hero.' }),
-        proofLabel: fields.text({ label: 'Proof label' }),
-        proofCaption: fields.text({ label: 'Proof caption' }),
         breezeHeading: fields.text({ label: 'Breeze heading', defaultValue: 'We make content creation a breeze' }),
         breezeHint: fields.text({ label: 'Breeze cursor label', defaultValue: 'Catch a breeze!' }),
         breezeNotes: fields.array(fields.text({ label: 'Note' }), {

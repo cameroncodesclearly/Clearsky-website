@@ -46,6 +46,20 @@ playing, so a private or domain-locked video quietly falls back to its poster.
 - Colours are tokens in `src/styles/global.css`. Page themes: paper, blue, sky, butter, ink.
 - Mustard and light blue are never used for body text on off-white (contrast).
 
+## Sky, sun and film grain
+
+- **Sky backdrop** (`src/components/SkyBackdrop.astro`, `src/scripts/sky.ts`): light pages
+  sit on a fixed pastel sky photo with a few clouds drifting past at different depths.
+  Images are in `public/sky/`, cut from CC0 photos on Wikimedia Commons
+  (BlueSkyWhiteClouds21 by Raysonho, Clouds 07 by Shams948).
+- **Sunrise** (`src/components/SunRise.astro`, `src/scripts/sunrise.ts`): the sun climbs
+  from behind the homepage headline on scroll. Four looks: `golden`, `solar` (NASA SDO
+  photo, public domain), `glass` and `flare`. Compare them at `/sun-options/` (hidden from
+  search), then set the `sun` prop on `<Breeze>` in `src/pages/index.astro`.
+- **Film grain** (`src/components/FilmGrain.astro`): 24 fps Portra-style grain and a faint
+  flicker over every page. Strength is `--grain` in `src/styles/global.css` (0.18 now).
+  Regenerate the tile with `python3 scripts/make-grain.py`. Reduced motion freezes it.
+
 ## The glass loop
 
 The gold glass animation (preloader, homepage breeze section, footer, 404) lives in

@@ -3,6 +3,8 @@ import GlassLoop from '../components/GlassLoop.astro';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import SkyBackdrop from '../components/SkyBackdrop.astro';
+import FilmGrain from '../components/FilmGrain.astro';
 import { site } from '../lib/site';
 
 interface Props {
@@ -13,11 +15,13 @@ interface Props {
   theme?: string;
   /** Footer CTA colour; defaults to Clear Sky blue. */
   footerTheme?: string;
+  /** Keep this page out of search results. */
+  noindex?: boolean;
 }
-const { title, description = site.description, image = '/og-default.jpg', theme = 'paper', footerTheme } = Astro.props;
+const { title, description = site.description, image = '/og-default.jpg', theme = 'paper', footerTheme, noindex = false } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Video and Social Content Studio`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
-const themeColor = { paper: '#f1f2f4', blue: '#1a5276', sky: '#85c1e9', butter: '#f7dc6f', ink: '#1a1307' }[theme] ?? '#f1f2f4';
+const themeColor = { paper: '#cfe0f2', blue: '#1a5276', sky: '#85c1e9', butter: '#f7dc6f', ink: '#1a1307' }[theme] ?? '#f1f2f4';
 ---
 <!doctype html>
 <html lang="en" class={`theme-${theme}`}>
@@ -27,6 +31,7 @@ const themeColor = { paper: '#f1f2f4', blue: '#1a5276', sky: '#85c1e9', butter: 
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
+    {noindex && <meta name="robots" content="noindex" />}
     <link rel="icon" href="/favicon.png" type="image/png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <link rel="preload" href="/fonts/StapeliaHirsutaSans.woff2" as="font" type="font/woff2" crossorigin />
@@ -44,6 +49,7 @@ const themeColor = { paper: '#f1f2f4', blue: '#1a5276', sky: '#85c1e9', butter: 
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
+    {theme === 'paper' && <SkyBackdrop />}
     <div class="preloader theme-blue" data-preloader aria-hidden="true">
       <GlassLoop class="preloader__doodle" />
       <p class="ui" data-preloader-word></p>
@@ -54,6 +60,7 @@ const themeColor = { paper: '#f1f2f4', blue: '#1a5276', sky: '#85c1e9', butter: 
     </main>
     <Footer theme={footerTheme} />
     <div class="fader" data-fader aria-hidden="true"></div>
+    <FilmGrain />
     <script>
       import '../scripts/analytics.ts';
       import '../scripts/site.ts';

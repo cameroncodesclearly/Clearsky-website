@@ -1,0 +1,111 @@
+---
+// A sun that rises from behind a headline as it scrolls into view. Place it as
+// the first child of a position: relative box, directly before the headline,
+// with room above the headline for the sun to finish in. src/scripts/sunrise.ts
+// drives the climb.
+//   golden: drawn warm sun with soft rays
+//   solar:  NASA SDO photograph of the sun (public domain)
+//   glass:  the Clear Sky glass sun
+//   flare:  overexposed film-style sun with halation and a lens streak
+export type SunVariant = 'golden' | 'solar' | 'glass' | 'flare';
+interface Props { variant?: SunVariant }
+const { variant = 'golden' } = Astro.props;
+---
+<div class={`sunrise sunrise--${variant}`} data-sunrise aria-hidden="true">
+  <div class="sunrise__warmth"></div>
+  <div class="sunrise__sun">
+    <div class="sunrise__halo"></div>
+    {variant === 'golden' && <><div class="sunrise__rays"></div><div class="sunrise__disc"></div></>}
+    {variant === 'solar' && <img class="sunrise__img" src="/sun/solar.webp" alt="" decoding="async" loading="lazy" />}
+    {variant === 'glass' && <img class="sunrise__img" src="/sun/glass.webp" alt="" decoding="async" loading="lazy" />}
+    {variant === 'flare' && <><div class="sunrise__streak"></div><div class="sunrise__core"></div></>}
+  </div>
+  {variant === 'flare' && (
+    <>
+      <div class="sunrise__ghost" style="--k: 0.55; --s: 0.22"></div>
+      <div class="sunrise__ghost" style="--k: 0.9; --s: 0.1"></div>
+      <div class="sunrise__ghost" style="--k: 1.3; --s: 0.34"></div>
+    </>
+  )}
+</div>
+
+<style>
+  .sunrise {
+    --d: min(64vw, 540px); /* sun diameter */
+    --p: 1;                /* 0 below the horizon, 1 fully risen */
+    --y: 0px;              /* set by sunrise.ts */
+    position: absolute; inset: 0 calc(50% - 50vw) -30vh; z-index: 0;
+    overflow: hidden; pointer-events: none;
+    mask: linear-gradient(to bottom, transparent, #000 25%, #000 75%, transparent);
+  }
+  .sunrise__sun {
+    position: absolute; left: 50%; top: 0;
+    width: var(--d); aspect-ratio: 1;
+    translate: -50% var(--y);
+    opacity: calc(0.3 + var(--p) * 0.7);
+    will-change: translate, opacity;
+  }
+  /* The sky warms around the sun as it climbs. */
+  .sunrise__warmth {
+    position: absolute; left: 50%; top: 0;
+    width: calc(var(--d) * 3.4); aspect-ratio: 1.6;
+    translate: -50% calc(var(--y) - var(--d) * 1.2);
+    background: radial-gradient(closest-side, rgba(255, 214, 170, 0.75), rgba(255, 190, 200, 0.35) 45%, transparent);
+    opacity: calc(0.25 + var(--p) * 0.75);
+  }
+  .sunrise__halo {
+    position: absolute; inset: -55%;
+    background: radial-gradient(closest-side, rgba(255, 236, 170, 0.9), rgba(255, 196, 140, 0.45) 35%, rgba(255, 170, 160, 0.14) 60%, transparent);
+    opacity: calc(0.45 + var(--p) * 0.55);
+  }
+
+  /* golden */
+  .sunrise__disc {
+    position: absolute; inset: 0; border-radius: 50%;
+    background: radial-gradient(circle, #fffdf3 0%, #fff3c4 40%, #ffd772 64%, #ffb04a 80%, #ff9a52 100%);
+    box-shadow: 0 0 calc(var(--d) * 0.08) rgba(255, 170, 90, 0.65), 0 0 calc(var(--d) * 0.25) rgba(255, 200, 120, 0.45);
+    /* Lower in the sky the sun runs redder. */
+    filter: saturate(calc(1.5 - var(--p) * 0.5)) hue-rotate(calc((1 - var(--p)) * -14deg));
+  }
+  .sunrise__rays {
+    position: absolute; inset: -70%;
+    background: repeating-conic-gradient(from 0deg, rgba(255, 228, 160, 0.42) 0deg 4deg, transparent 4deg 15deg);
+    mask: radial-gradient(closest-side, #000 22%, transparent 100%);
+    rotate: calc(var(--p) * 40deg);
+    opacity: calc(var(--p) * 0.9);
+  }
+
+  /* solar and glass */
+  .sunrise__img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: contain; }
+  .sunrise--solar .sunrise__img { filter: drop-shadow(0 0 calc(var(--d) * 0.06) rgba(255, 190, 80, 0.8)); }
+  .sunrise--glass .sunrise__img { inset: -12%; width: 124%; height: 124%; filter: drop-shadow(0 calc(var(--d) * 0.03) calc(var(--d) * 0.05) rgba(160, 110, 20, 0.25)); }
+
+  /* flare */
+  .sunrise__core {
+    position: absolute; inset: 22%; border-radius: 50%;
+    background: radial-gradient(circle, #fff 0 46%, #fff8e6 56%, rgba(255, 214, 160, 0.9) 66%, rgba(255, 140, 110, 0.55) 76%, transparent 86%);
+    filter: blur(1.5px);
+  }
+  .sunrise--flare .sunrise__halo {
+    background: radial-gradient(closest-side, rgba(255, 252, 240, 0.95), rgba(255, 210, 170, 0.6) 26%, rgba(255, 120, 100, 0.22) 50%, transparent);
+  }
+  .sunrise__streak {
+    position: absolute; left: 50%; top: 50%;
+    width: 300vw; height: calc(var(--d) * 0.035);
+    translate: -50% -50%;
+    background: linear-gradient(90deg, transparent, rgba(150, 200, 255, 0.35) 30%, rgba(235, 248, 255, 0.95) 50%, rgba(150, 200, 255, 0.35) 70%, transparent);
+    filter: blur(3px);
+    opacity: calc(0.35 + var(--p) * 0.65);
+  }
+  .sunrise__ghost {
+    position: absolute; left: calc(50% + (1 - var(--p)) * var(--k) * 12vw); top: 0;
+    width: calc(var(--d) * var(--s)); aspect-ratio: 1; border-radius: 50%;
+    translate: -50% calc(var(--y) + var(--d) * (0.7 + var(--k) * (1.2 - var(--p) * 0.6)));
+    background: radial-gradient(circle, rgba(200, 230, 255, 0.05) 40%, rgba(170, 220, 255, 0.28) 62%, rgba(255, 200, 220, 0.18) 72%, transparent 76%);
+    opacity: calc(var(--p) * 0.85);
+  }
+</style>
+
+<script>
+  import '../scripts/sunrise.ts';
+</script>
