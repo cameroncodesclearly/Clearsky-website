@@ -15,9 +15,8 @@ const labels: Record<string, string> = {
 ---
 <section class="service-flights" aria-labelledby="service-flights-heading" data-service-flights>
   <header class="service-flights__header">
-    <p class="ui service-flights__eyebrow">A little lift for your brand</p>
     <h2 class="mega" id="service-flights-heading">Our services</h2>
-    <p class="service-flights__hint">Pick a banner. See where we can take you.</p>
+    <p class="service-flights__hint">Tap on a banner... If you're quick enough</p>
     <button class="service-flights__toggle ui" type="button" aria-pressed="false" hidden>Gather the planes</button>
   </header>
 
@@ -72,7 +71,6 @@ const labels: Record<string, string> = {
     overflow: clip; color: var(--ink);
   }
   .service-flights__header { position: relative; z-index: 3; pointer-events: none; text-align: center; display: grid; justify-items: center; gap: 1.3rem; }
-  .service-flights__eyebrow { letter-spacing: 0.12em; }
   .service-flights__header h2 { font-size: clamp(3.5rem, 10vw, 10rem); }
   .service-flights__hint { font-size: var(--step-0); }
   .service-flights__toggle { pointer-events: auto; padding: 0.6rem 1rem; border: 1px solid currentColor; border-radius: 999px; }
