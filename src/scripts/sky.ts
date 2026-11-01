@@ -17,7 +17,7 @@ if (layer && sky) {
   const header = document.querySelector<HTMLElement>('[data-header]');
   const t0 = performance.now();
   const smooth = (t: number) => t * t * (3 - 2 * t);
-  let lastSunset = '';
+  let lastSunset = '', lastFt = '';
   const draw = (now: number) => {
     const vh = window.innerHeight;
     const max = Math.max(1, document.documentElement.scrollHeight - vh);
@@ -30,6 +30,9 @@ if (layer && sky) {
       // Light header text once the dusk sky is dark enough.
       header?.classList.toggle('on-dusk', Number(sunset) > 0.55);
     }
+    // Clouds fade out above the footer, so none drift into the beach scene.
+    const ft = footer ? Math.round(Math.min(vh * 2, Math.max(-vh, footer.offsetTop - window.scrollY))) + 'px' : '';
+    if (ft !== lastFt) { lastFt = ft; layer.style.setProperty('--ft', ft); }
     const loop = vh * 2.4; // one full lap of the cloud field
     const drift = reduce ? 0 : (now - t0) / 1000;
     for (const c of clouds) {

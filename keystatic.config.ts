@@ -112,6 +112,14 @@ export default config({
           }),
           { label: 'Gallery', itemLabel: (p) => p.fields.alt.value || 'Image' },
         ),
+        beforeAfter: fields.object(
+          {
+            before: fields.image({ label: 'Before image', directory: 'src/assets/case-studies', publicPath: '../../assets/case-studies/' }),
+            after: fields.image({ label: 'After image', directory: 'src/assets/case-studies', publicPath: '../../assets/case-studies/' }),
+            caption: fields.text({ label: 'Caption' }),
+          },
+          { label: 'Before and after slider', description: 'Optional. The before image shows first; visitors slide across to the after.' },
+        ),
         results: fields.array(
           fields.object({
             value: fields.text({ label: 'Value', description: 'e.g. 100+' }),
@@ -214,8 +222,7 @@ export default config({
       path: 'src/content/settings/home',
       format: { data: 'json' },
       schema: {
-        reelUrl: fields.url({ label: 'Reel video link', description: 'First slide of the hero. Vimeo or YouTube.' }),
-        reelTitle: fields.text({ label: 'Reel title' }),
+        reelTitle: fields.text({ label: 'Opening video title', description: 'Shown over the sizzle, the first slide of the hero. It links to About.' }),
         breezeHeading: fields.text({ label: 'Sunrise headline', description: 'The big line the sun rises over, under the hero.' }),
         manifesto: fields.array(fields.text({ label: 'Line' }), { label: 'Manifesto lines', itemLabel: (p) => p.value }),
         clients: fields.array(

@@ -65,6 +65,8 @@ const weatherClouds = [
   /* Clouds pick up the light: slightly pink, then rose. */
   .sky__clouds {
     position: absolute; inset: 0;
+    --ft: 300vh; /* footer top on screen; sky.ts */
+    mask: linear-gradient(to bottom, #000 calc(var(--ft) - 40vh), transparent calc(var(--ft) - 5vh));
     filter: sepia(calc(var(--sunset) * 0.55)) saturate(calc(1 + var(--sunset) * 2.2)) hue-rotate(calc(var(--sunset) * -38deg));
   }
   .sky__cover { opacity: var(--cover, 0); filter: brightness(var(--cover-light, 1)); }

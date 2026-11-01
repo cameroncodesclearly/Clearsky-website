@@ -34,6 +34,9 @@ const caseStudies = defineCollection({
       videoUrl: z.string().url().nullish(),
       videos: z.array(videoItem(image)).default([]),
       gallery: z.array(z.object({ image: image(), alt: z.string() })).default([]),
+      beforeAfter: z
+        .object({ before: image().nullish(), after: image().nullish(), caption: z.string().optional().default('') })
+        .nullish(),
       results: z.array(z.object({ value: z.string(), label: z.string() })).default([]),
       testimonial: z
         .object({ quote: z.string().optional().default(''), person: z.string().optional().default(''), role: z.string().optional().default('') })

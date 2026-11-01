@@ -8,6 +8,8 @@ export interface Slide {
   title: string;
   href: string;
   video?: string | null;
+  /** Self-hosted MP4 (full size and a smaller one for phones), instead of a Vimeo link. */
+  file?: { src: string; small: string } | null;
   poster: ImageMetadata;
 }
 interface Props { slides: Slide[] }
@@ -18,7 +20,7 @@ const { slides } = Astro.props;
     {slides.map((s, i) => {
       const ref = parseVideo(s.video);
       return (
-        <div class:list={['frame hero__slide', { 'is-active': i === 0 }]} data-slide data-src={ref ? backgroundEmbed(ref) : undefined}>
+        <div class:list={['frame hero__slide', { 'is-active': i === 0 }]} data-slide data-src={ref ? backgroundEmbed(ref) : undefined} data-file={s.file?.src} data-file-small={s.file?.small}>
           <Image src={s.poster} alt="" widths={[800, 1280, 1920]} sizes="100vw" loading={i === 0 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} />
         </div>
       );
@@ -64,6 +66,9 @@ const { slides } = Astro.props;
   }
   .hero__slide { position: absolute; inset: 0; border-radius: 0; opacity: 0; transition: opacity 1s var(--ease); background: var(--ink); }
   .hero__slide.is-active { opacity: 1; }
+  .hero__slide video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 0.6s ease; }
+  .hero__slide.is-playing video { opacity: 1; }
+  .hero__slide video::-webkit-media-controls-start-playback-button { display: none !important; -webkit-appearance: none; }
   .hero__shade { position: absolute; inset: 0; background: linear-gradient(transparent 55%, rgba(26, 19, 7, 0.55)); pointer-events: none; }
   .hero__texts { position: absolute; left: var(--gutter); bottom: var(--gutter); right: var(--gutter); }
   .hero__text {
@@ -100,38 +105,22 @@ const { slides } = Astro.props;
     let current = 0;
     let timer = 0;
 
-    // Menu colour follows the film: sample the top band of each slide's still
-    // (where the header sits) and use dark menu text over light footage.
-    const header = document.querySelector<HTMLElement>('[data-header]');
-    const tone = new Map<HTMLElement, boolean>();
-    const isLight = (slide: HTMLElement) => {
-      if (tone.has(slide)) return tone.get(slide)!;
-      const img = slide.querySelector('img');
-      if (!img || !img.complete || !img.naturalWidth) return false;
-      try {
-        const c = document.createElement('canvas');
-        c.width = 64; c.height = 12;
-        const ctx = c.getContext('2d')!;
-        ctx.drawImage(img, 0, 0, img.naturalWidth, img.naturalHeight * 0.18, 0, 0, 64, 12);
-        const d = ctx.getImageData(0, 0, 64, 12).data;
-        let sum = 0;
-        for (let i = 0; i < d.length; i += 4) sum += 0.2126 * d[i] + 0.7152 * d[i + 1] + 0.0722 * d[i + 2];
-        const light = sum / (d.length / 4) > 150;
-        tone.set(slide, light);
-        return light;
-      } catch { return false; }
-    };
-    const setMenuTone = () => {
-      const slide = slides[current];
-      const apply = () => header?.classList.toggle('over-light-media', hero.getBoundingClientRect().top < 40 && hero.getBoundingClientRect().bottom > 40 && isLight(slide));
-      const img = slide.querySelector('img');
-      if (img && !img.complete) img.addEventListener('load', apply, { once: true });
-      apply();
-    };
-    window.addEventListener('scroll', () => requestAnimationFrame(setMenuTone), { passive: true });
-
     const loadVideo = (slide: HTMLElement) => {
-      if (reduce || !slide.dataset.src || slide.querySelector('iframe')) return;
+      if (reduce) return;
+      if (slide.dataset.file) {
+        let video = slide.querySelector('video');
+        if (!video) {
+          video = document.createElement('video');
+          Object.assign(video, { muted: true, defaultMuted: true, loop: true, playsInline: true, autoplay: true, preload: 'auto' });
+          video.setAttribute('aria-hidden', 'true');
+          video.src = window.innerWidth < 900 ? slide.dataset.fileSmall! : slide.dataset.file;
+          video.addEventListener('playing', () => slide.classList.add('is-playing'));
+          slide.append(video);
+        }
+        video.play().catch(() => {});
+        return;
+      }
+      if (!slide.dataset.src || slide.querySelector('iframe')) return;
       const iframe = document.createElement('iframe');
       iframe.src = slide.dataset.src;
       iframe.allow = 'autoplay; fullscreen';
@@ -156,9 +145,12 @@ const { slides } = Astro.props;
         t.setAttribute('aria-selected', String(k === current));
       });
       loadVideo(slides[current]);
-      setMenuTone();
       // Drop the previous player after the crossfade so only one video streams.
-      if (prev !== slides[current]) setTimeout(() => { prev.querySelector('iframe')?.remove(); prev.classList.remove('is-playing'); }, 1100);
+      if (prev !== slides[current]) setTimeout(() => {
+        prev.querySelector('iframe')?.remove();
+        prev.querySelector('video')?.pause();
+        prev.classList.remove('is-playing');
+      }, 1100);
       clearTimeout(timer);
       if (slides.length > 1 && !reduce) timer = window.setTimeout(() => show(current + 1), DURATION);
     };

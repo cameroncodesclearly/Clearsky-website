@@ -1,0 +1,69 @@
+---
+// Before / after comparison. The "before" image shows first; dragging the
+// handle (or the slider underneath it, for keyboards) wipes across to "after".
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+interface Props { before: ImageMetadata; after: ImageMetadata; beforeAlt?: string; afterAlt?: string }
+const { before, after, beforeAlt = 'Before', afterAlt = 'After' } = Astro.props;
+---
+<figure class="ba" data-ba style="--pos: 100%">
+  <Image class="ba__img" src={after} alt={afterAlt} widths={[800, 1280, 1920]} sizes="(min-width: 1440px) 1400px, 100vw" />
+  <div class="ba__before">
+    <Image class="ba__img" src={before} alt={beforeAlt} widths={[800, 1280, 1920]} sizes="(min-width: 1440px) 1400px, 100vw" />
+  </div>
+  <div class="ba__handle" aria-hidden="true"><span class="ba__knob">&larr;&nbsp;&rarr;</span></div>
+  <input class="ba__range" type="range" min="0" max="100" value="100" step="0.1" aria-label="Slide from before to after" data-ba-range />
+</figure>
+
+<style>
+  .ba {
+    position: relative; margin: 0; overflow: hidden; border-radius: var(--radius, 12px);
+    aspect-ratio: 16 / 9; touch-action: pan-y; user-select: none; background: var(--ink);
+    /* Media sits above the film grain, like every other frame. */
+    z-index: 950;
+  }
+  .ba :global(.ba__img) { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+  .ba__before { position: absolute; inset: 0; clip-path: inset(0 calc(100% - var(--pos)) 0 0); }
+  .ba__handle {
+    position: absolute; top: 0; bottom: 0; left: var(--pos); width: 3px; translate: -50% 0;
+    background: var(--paper); box-shadow: 0 0 12px rgba(0, 0, 0, 0.35); pointer-events: none;
+  }
+  .ba__knob {
+    position: absolute; top: 50%; left: 50%; translate: -50% -50%;
+    display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 50%;
+    background: var(--paper); color: var(--ink); font-size: 1rem; font-weight: 600; white-space: nowrap;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  }
+  /* Keep the knob on screen when the wipe is at either edge. */
+  .ba[data-edge='end'] .ba__knob { translate: calc(-100% + 1px) -50%; }
+  .ba[data-edge='start'] .ba__knob { translate: -1px -50%; }
+  .ba__range {
+    position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: ew-resize;
+    -webkit-appearance: none; appearance: none;
+  }
+  .ba__range:focus-visible + .ba__handle, .ba:has(.ba__range:focus-visible) .ba__knob { outline: 2px solid var(--blue); outline-offset: 3px; }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-ba]').forEach((ba) => {
+    const range = ba.querySelector<HTMLInputElement>('[data-ba-range]')!;
+    const set = (v: number) => {
+      ba.style.setProperty('--pos', `${v}%`);
+      ba.dataset.edge = v > 96 ? 'end' : v < 4 ? 'start' : '';
+    };
+    range.addEventListener('input', () => set(Number(range.value)));
+    // Dragging anywhere on the image moves the wipe to the pointer.
+    let dragging = false;
+    const move = (e: PointerEvent) => {
+      const r = ba.getBoundingClientRect();
+      const v = Math.min(100, Math.max(0, ((e.clientX - r.left) / r.width) * 100));
+      range.value = String(v);
+      set(v);
+    };
+    ba.addEventListener('pointerdown', (e) => { dragging = true; ba.setPointerCapture(e.pointerId); move(e); });
+    ba.addEventListener('pointermove', (e) => { if (dragging) move(e); });
+    ba.addEventListener('pointerup', () => (dragging = false));
+    ba.addEventListener('pointercancel', () => (dragging = false));
+    set(100);
+  });
+</script>

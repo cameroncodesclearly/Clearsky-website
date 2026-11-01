@@ -6,15 +6,16 @@ import WorkCard from '../components/WorkCard.astro';
 import Marquee from '../components/Marquee.astro';
 import ServiceFlights from '../components/ServiceFlights.astro';
 import home from '../content/settings/home.json';
+import sizzlePoster from '../assets/hero/sizzle-poster.jpg';
 import { publishedCaseStudies, parseVideo, posterFor } from '../lib/site';
 
 const studies = await publishedCaseStudies();
 const featured = studies.filter((s) => s.data.featured);
 
-// Hero: the reel first, then featured work that has a landscape video.
-const reelPoster = posterFor(parseVideo(home.reelUrl));
+// Hero: the sizzle first (self-hosted, compressed; it links to About), then
+// featured work that has a landscape video.
 const slides: Slide[] = [
-  ...(reelPoster ? [{ client: 'Clear Sky', title: home.reelTitle, href: '/work/', video: home.reelUrl, poster: reelPoster }] : []),
+  { client: 'Clear Sky', title: home.reelTitle, href: '/about/', file: { src: '/video/sizzle.mp4', small: '/video/sizzle-960.mp4' }, poster: sizzlePoster },
   ...featured
     .map((s) => {
       const poster = posterFor(parseVideo(s.data.videoUrl));

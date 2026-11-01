@@ -18,7 +18,7 @@ const { text = 'Clear Sky' } = Astro.props;
     transition: color 0.35s var(--ease);
   }
   /* Pale yellow vanishes on the off-white pages; mustard stays readable there. */
-  :global(.header:not(.is-light)) .glow-mark, :global(.header.over-light-media) .glow-mark { color: #d9b435; }
+  :global(.header:not(.is-light, .on-dark-sky, .on-dusk, .menu-open) + .header__logo) .glow-mark { color: #d9b435; }
 </style>
 
 <script>

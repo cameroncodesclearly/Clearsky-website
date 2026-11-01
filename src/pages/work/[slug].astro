@@ -4,6 +4,7 @@ import { Image } from 'astro:assets';
 import { render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import VideoPlayer from '../../components/VideoPlayer.astro';
+import BeforeAfter from '../../components/BeforeAfter.astro';
 import WorkCard from '../../components/WorkCard.astro';
 import { publishedCaseStudies, SERVICE_LABELS, parseVideo, posterFor } from '../../lib/site';
 
@@ -52,6 +53,13 @@ const landscape = d.videos.filter((v) => !vertical.includes(v));
       {d.intro && <p class="statement case__intro" data-reveal>{d.intro}</p>}
       <div class="prose case__body" data-reveal><Content /></div>
     </section>
+
+    {d.beforeAfter?.before && d.beforeAfter?.after && (
+      <section class="case__ba container" aria-label="Before and after" data-reveal>
+        <BeforeAfter before={d.beforeAfter.before} after={d.beforeAfter.after} beforeAlt={`${d.client} social feed before`} afterAlt={`${d.client} social feed after`} />
+        {d.beforeAfter.caption && <p class="ui ui-muted case__ba-caption">{d.beforeAfter.caption}</p>}
+      </section>
+    )}
 
     {d.results.length > 0 && (
       <section class="case__results container" aria-label="Results">
@@ -121,6 +129,8 @@ const landscape = d.videos.filter((v) => !vertical.includes(v));
   .case__story { padding-block: clamp(5rem, 9vw, 9rem); display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
   .case__intro { max-width: 26ch; }
   .case__body { max-width: 60ch; margin-left: auto; width: 100%; }
+  .case__ba { padding-bottom: clamp(3rem, 6vw, 6rem); }
+  .case__ba-caption { margin: 0.8rem auto 0; text-align: center; }
   .case__results { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; padding-bottom: clamp(4rem, 8vw, 8rem); }
   .case__result-value { font-family: var(--font-display); font-size: clamp(3.4rem, 2rem + 5vw, 7rem); line-height: 0.85; color: var(--accent); }
   .case__media { display: grid; gap: clamp(1rem, 1.5vw, 1.5rem); padding-bottom: clamp(4rem, 8vw, 8rem); }
