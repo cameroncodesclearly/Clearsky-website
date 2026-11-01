@@ -4,6 +4,7 @@ import HeroCarousel, { type Slide } from '../components/HeroCarousel.astro';
 import Breeze from '../components/Breeze.astro';
 import WorkCard from '../components/WorkCard.astro';
 import Marquee from '../components/Marquee.astro';
+import ServiceFlights from '../components/ServiceFlights.astro';
 import home from '../content/settings/home.json';
 import { publishedCaseStudies, parseVideo, posterFor } from '../lib/site';
 
@@ -32,6 +33,8 @@ const placements = ['left', 'right', 'center', 'right-wide', 'left'];
 
 
   <Breeze heading={home.breezeHeading} />
+
+  <ServiceFlights />
 
   <Marquee clients={home.clients} />
 
