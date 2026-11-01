@@ -1,0 +1,284 @@
+---
+import { publishedServices } from '../lib/site';
+
+const services = await publishedServices();
+// Short labels keep the fabric banners readable; destinations and accessible
+// names always come from the same collection that builds the service pages.
+const labels: Record<string, string> = {
+  'content-strategy': 'Strategy & Creative',
+  'video-production': 'Video Production',
+  'social-media': 'Social Media',
+  'post-production': 'Post-Production',
+  'paid-media': 'Paid Media',
+  'design-and-web': 'Design & Web',
+};
+---
+<section class="service-flights" aria-labelledby="service-flights-heading" data-service-flights>
+  <header class="service-flights__header">
+    <p class="ui service-flights__eyebrow">A little lift for your brand</p>
+    <h2 class="mega" id="service-flights-heading">Our services</h2>
+    <p class="service-flights__hint">Pick a banner. See where we can take you.</p>
+    <button class="service-flights__toggle ui" type="button" aria-pressed="false" hidden>Gather the planes</button>
+  </header>
+
+  <svg width="0" height="0" aria-hidden="true" focusable="false" style="position: absolute">
+    <filter id="service-banner-chalk" x="-5%" y="-25%" width="110%" height="150%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="2" seed="1" result="wobble" />
+      <feDisplacementMap in="SourceGraphic" in2="wobble" scale="1.2" xChannelSelector="R" yChannelSelector="G" result="drawn" />
+      <feTurbulence type="fractalNoise" baseFrequency="1.6" numOctaves="1" seed="7" result="dust" />
+      <feColorMatrix in="dust" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  -2.6 0 0 0 2.1" result="holes" />
+      <feComposite in="drawn" in2="holes" operator="in" />
+    </filter>
+  </svg>
+  <ul class="service-flights__sky" aria-label="Explore our services">
+    {services.map((service, i) => (
+      <li class:list={['service-flights__lane', { 'service-flights__lane--reverse': i % 2 === 1 }]}>
+        <a class="service-flight" href={`/services/${service.id}/`} aria-label={`Explore ${service.data.title}`}>
+          <svg class="service-flight__plane" viewBox="0 0 160 106" fill="none" aria-hidden="true">
+            <g stroke="#263f4d" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round">
+              <!-- Two wings, struts, open cockpit, landing gear and propeller. -->
+              <path d="M51 38 62 72M99 38 88 72M53 70 96 39M96 70 59 39" />
+              <path d="m25 55-14-23 20 3 20 24" fill="var(--plane-color)" />
+              <path d="M18 62c23-5 36-9 61-9h41c12 0 20 6 20 12s-7 12-21 12H70L18 68Z" fill="var(--plane-color)" />
+              <path d="M78 53c-1 11 13 13 20 0" fill="#263f4d" />
+              <path d="M99 53v-9c8 0 12 3 12 9" fill="#bde1eb" />
+              <path d="m16 67-9 8h30l15-7" fill="var(--plane-color)" />
+              <path d="M46 33c25-4 51-4 78 0l-4 9H49Z" fill="var(--plane-color)" />
+              <path d="M46 70c25-4 51-4 78 0l-4 9H49Z" fill="var(--plane-color)" />
+              <path d="m80 78 5 15m18-15L88 93" />
+              <circle cx="86" cy="94" r="7" fill="#263f4d" />
+              <circle cx="86" cy="94" r="2" fill="#f9edce" stroke="none" />
+              <path d="M135 58v15" />
+              <path class="service-flight__propeller" d="M144 43q-7 20 0 43" stroke-width="4" />
+              <path d="M140 65h10" />
+            </g>
+          </svg>
+          <span class="service-flight__rope" aria-hidden="true"></span>
+          <span class="service-flight__banner">
+            <span class="service-flight__number" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+            <span class="service-flight__label">{labels[service.id] ?? service.data.title}</span>
+            <span class="service-flight__arrow" aria-hidden="true">↗</span>
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+  <a class="service-flights__all ui" href="/services/">Explore all services <span aria-hidden="true">↗</span></a>
+</section>
+
+<style>
+  .service-flights {
+    position: relative; padding: clamp(4rem, 9vw, 9rem) var(--gutter) 4rem;
+    overflow: clip; color: var(--ink);
+  }
+  .service-flights__header { position: relative; z-index: 3; pointer-events: none; text-align: center; display: grid; justify-items: center; gap: 1.3rem; }
+  .service-flights__eyebrow { letter-spacing: 0.12em; }
+  .service-flights__header h2 { font-size: clamp(3.5rem, 10vw, 10rem); }
+  .service-flights__hint { font-size: var(--step-0); }
+  .service-flights__toggle { pointer-events: auto; padding: 0.6rem 1rem; border: 1px solid currentColor; border-radius: 999px; }
+  .service-flights__toggle[hidden] { display: none; }
+  .service-flights__toggle:hover { background: var(--ink); color: var(--paper); }
+  .service-flights__sky {
+    list-style: none; padding: 2rem 0; margin: 0 calc(-1 * var(--gutter));
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .service-flights__lane {
+    --plane-color: #d9b435;
+    position: relative; height: 180px; display: grid; place-items: center;
+  }
+  .service-flights__lane:nth-child(2) { --plane-color: #d87652; }
+  .service-flights__lane:nth-child(3) { --plane-color: #7b9c93; }
+  .service-flights__lane:nth-child(4) { --plane-color: #7195b5; }
+  .service-flights__lane:nth-child(5) { --plane-color: #c0888a; }
+  .service-flights__lane:nth-child(6) { --plane-color: #d9b435; }
+  .service-flight {
+    display: flex; flex-direction: row-reverse; align-items: center;
+    width: min(100% - 50px, 440px); color: #263f4d;
+    transform-origin: center; text-decoration: none;
+  }
+  /* One shared airspace. A whole plane and banner clear the edge before
+     wrapping, so the reset is invisible. Static layout remains the fallback. */
+  .has-airspace .service-flights__sky { position: relative; display: block; height: calc(640px + var(--flight-header-height, 280px)); margin-top: calc(-1 * var(--flight-header-height, 280px)); overflow: clip; }
+  .has-airspace .service-flights__lane { position: absolute; inset: 0; height: auto; display: block; pointer-events: none; }
+  .has-airspace .service-flights__header { position: absolute; top: clamp(4rem, 9vw, 9rem); left: var(--gutter); right: var(--gutter); transform: translateY(var(--flight-title-y, 0px)); will-change: transform; }
+  .has-airspace .service-flights__sky { margin-top: 0; }
+  .has-airspace .service-flight { position: absolute; top: 0; left: 0; width: clamp(310px, 32vw, 440px); pointer-events: auto; will-change: transform; }
+  .has-airspace .service-flights__lane:has(.service-flight:hover),
+  .has-airspace .service-flights__lane:has(.service-flight:focus) { z-index: 20 !important; }
+  .service-flight:focus-visible { outline: 3px solid #263f4d; outline-offset: 8px; border-radius: 6px; }
+  .service-flight__plane { width: 27%; flex-shrink: 0; overflow: visible; }
+  .service-flight__rope { width: 8%; flex-shrink: 0; height: 1px; background: #263f4d; opacity: 0.6; }
+  .service-flight__banner {
+    display: flex; align-items: center; gap: 0.5rem; flex: 1; min-width: 0;
+    position: relative; padding: 1rem 1.1rem 1rem 1.8rem; min-height: 68px;
+    background: var(--paper); color: var(--ink);
+    clip-path: polygon(0 0, 100% 4%, 100% 96%, 0 100%, 5% 50%);
+    box-shadow: inset 0 2px #263f4d, inset 0 -2px #263f4d;
+    transition: box-shadow 180ms ease;
+  }
+  .service-flight:hover .service-flight__banner, .service-flight:focus-visible .service-flight__banner { background: var(--paper); box-shadow: inset 0 3px var(--ink), inset 0 -3px var(--ink); }
+  .service-flight__number { font-size: 0.65rem; align-self: start; padding-top: 0.15rem; }
+  /* Same Caveat Brush face and chalk treatment as the beach sunset line.
+     The smaller displacement preserves legibility at banner size. */
+  .service-flight__label { font-family: var(--font-chalk); font-weight: 400; letter-spacing: 0.01em; text-transform: none; font-size: clamp(1rem, 1.65vw, 1.65rem); line-height: 1.1; filter: url(#service-banner-chalk); }
+  .service-flight__arrow { margin-left: auto; font-size: 1.3rem; }
+  .service-flights__lane--reverse .service-flight { flex-direction: row; }
+  .service-flights__lane--reverse .service-flight__plane { transform: scaleX(-1); }
+  .service-flights__lane--reverse .service-flight__banner { clip-path: polygon(0 4%, 100% 0, 95% 50%, 100% 100%, 0 96%); padding: 1rem 1.8rem 1rem 1.1rem; }
+  .service-flight__propeller { transform-box: fill-box; transform-origin: center; animation: propeller 160ms linear infinite paused; }
+  .is-flying .service-flight__propeller { animation-play-state: running; }
+  .is-paused .service-flight__propeller, .service-flights:has(.service-flight:focus) .service-flight__propeller,
+  .service-flight:hover .service-flight__propeller { animation-play-state: paused; }
+  .service-flights__all { display: block; width: fit-content; margin: 1rem auto 0; padding-bottom: 0.3rem; border-bottom: 1px solid currentColor; }
+  @keyframes propeller { 50% { transform: scaleY(0.2); } }
+  @media (max-width: 899px) {
+    .service-flights__sky { grid-template-columns: 1fr; padding-top: 2rem; }
+    .service-flights__lane { height: 150px; }
+    .has-airspace .service-flights__sky { height: calc(680px + var(--flight-header-height, 280px)); }
+    .has-airspace .service-flights__lane { height: auto; }
+    .has-airspace .service-flight { width: min(83vw, 380px); }
+    .service-flight { width: min(100% - 60px, 460px); }
+    .service-flight__label { font-size: clamp(1rem, 4vw, 1.65rem); }
+    .service-flight__banner { min-height: 60px; padding-block: 0.7rem; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .service-flight, .service-flight__propeller { animation: none; }
+    .service-flights__toggle { display: none; }
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-service-flights]').forEach((section) => {
+    const toggle = section.querySelector<HTMLButtonElement>('button');
+    const sky = section.querySelector<HTMLElement>('.service-flights__sky');
+    const links = [...section.querySelectorAll<HTMLAnchorElement>('.service-flight')];
+    const header = section.querySelector<HTMLElement>('.service-flights__header')!;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (!toggle || !sky) return;
+    let gathered = false, visible = false;
+    let frame = 0, lastTime = 0;
+    let skyWidth = 0, skyHeight = 0, headerHeight = 0;
+    let headerY = 0;
+    let transition: { elapsed: number; header: number; from: { x: number; y: number; angle: number; vx: number; vy: number }[] } | null = null;
+    // Fixed initial spacing avoids an opening traffic jam. Each subsequent
+    // crossing gets fresh, bounded variation rather than an erratic random walk.
+    const flights = links.map((link, i) => ({
+      link, reverse: i % 2 === 1, phase: [0.13, 0.53, 0.76, 0.28, 0.47, 0.85][i % 6],
+      duration: 22 + i * 1.7, speed: [1, 1, 1.4, 1.4, 1.9, 1.9][i % 6], seed: i * 1.9, band: (i + 0.5) / links.length,
+      width: 0, height: 0, x: 0, y: 0, renderX: NaN, renderY: 0, angle: 0, vx: 0, vy: 0,
+    }));
+    const beginTransition = () => {
+      transition = { elapsed: 0, header: headerY, from: flights.map((f) => ({ x: f.renderX, y: f.renderY, angle: f.angle, vx: f.vx, vy: f.vy })) };
+    };
+    flights.forEach((flight, i) => { flight.link.parentElement!.style.zIndex = String([4, 1, 5, 0, 2, 4][i % 6]); });
+    const draw = (delta = 0) => {
+      if (transition) transition.elapsed += delta;
+      const progress = transition ? Math.min(1, transition.elapsed / 1.5) : 1;
+      const blend = progress ** 3 * (progress * (progress * 6 - 15) + 10);
+      const targetHeader = gathered ? 0 : (skyHeight - headerHeight) / 2;
+      headerY = transition ? transition.header + (targetHeader - transition.header) * blend : targetHeader;
+      header.style.setProperty('--flight-title-y', `${headerY}px`);
+      for (const [i, flight] of flights.entries()) {
+        const distance = skyWidth + flight.width + 160;
+        flight.x = flight.reverse
+          ? skyWidth + 80 - flight.phase * distance
+          : -flight.width - 80 + flight.phase * distance;
+        const theta = flight.phase * Math.PI * 2 + flight.seed;
+        flight.y = 60 + flight.band * (skyHeight - flight.height - 120)
+          + Math.sin(theta) * 32 + Math.sin(theta * 2) * 8;
+        const slope = (Math.cos(theta) * 64 * Math.PI + Math.cos(theta * 2) * 32 * Math.PI) / distance;
+        let angle = Math.atan(slope) * 180 / Math.PI * (flight.reverse ? -1 : 1);
+        if (gathered) {
+          const columns = skyWidth >= 900 ? 2 : 1;
+          const rows = Math.ceil(flights.length / columns);
+          flight.x = (i % columns + 0.5) * skyWidth / columns - flight.width / 2;
+          flight.y = headerHeight + 30 + (Math.floor(i / columns) + 0.5) * (skyHeight - headerHeight - 50) / rows - flight.height / 2;
+          angle = 0;
+        }
+        if (transition && !reducedMotion.matches) {
+          const from = transition.from[i];
+          flight.x = (from.x + from.vx * transition.elapsed) * (1 - blend) + flight.x * blend;
+          flight.y = (from.y + from.vy * transition.elapsed) * (1 - blend) + flight.y * blend;
+          angle = from.angle + (angle - from.angle) * blend;
+        }
+        flight.vx = delta && Number.isFinite(flight.renderX) ? Math.max(-120, Math.min(120, (flight.x - flight.renderX) / delta)) : flight.vx;
+        flight.vy = delta ? Math.max(-60, Math.min(60, (flight.y - flight.renderY) / delta)) : flight.vy;
+        flight.renderX = flight.x; flight.renderY = flight.y; flight.angle = angle;
+        flight.link.style.transform = `translate3d(${flight.x}px, ${flight.y}px, 0) rotate(${angle}deg)`;
+      }
+      if (progress === 1) transition = null;
+    };
+    const measure = () => {
+      if (reducedMotion.matches) return;
+      headerHeight = header.offsetHeight;
+      section.style.setProperty('--flight-header-height', `${headerHeight}px`);
+      skyWidth = sky.clientWidth;
+      skyHeight = sky.clientHeight;
+      for (const flight of flights) {
+        flight.width = flight.link.offsetWidth;
+        flight.height = flight.link.offsetHeight;
+      }
+      draw();
+    };
+    const tick = (time: number) => {
+      const delta = lastTime ? Math.min((time - lastTime) / 1000, 0.05) : 0;
+      lastTime = time;
+      for (const flight of flights) {
+        if (gathered) continue;
+        flight.phase += delta * 4.8 * flight.speed / flight.duration;
+        if (flight.phase >= 1) {
+          flight.phase -= 1;
+          // Position and tangent repeat continuously; the horizontal wrap is
+          // entirely outside the screen, with no spring or hard vertical clamp.
+          flight.link.parentElement!.style.zIndex = String(Math.floor(Math.random() * 6));
+        }
+      }
+      draw(delta);
+      frame = requestAnimationFrame(tick);
+    };
+    const update = () => {
+      const enhanced = !reducedMotion.matches;
+      const running = enhanced && visible && !document.hidden;
+      section.classList.toggle('has-airspace', enhanced);
+      section.classList.toggle('is-flying', running);
+      section.classList.toggle('is-gathered', gathered);
+      toggle.hidden = !enhanced;
+      toggle.setAttribute('aria-pressed', String(gathered));
+      toggle.textContent = gathered ? 'Scatter them' : 'Gather the planes';
+      cancelAnimationFrame(frame);
+      lastTime = 0;
+      if (enhanced) {
+        measure();
+        if (running) frame = requestAnimationFrame(tick);
+      } else {
+        links.forEach((link) => link.style.removeProperty('transform'));
+      }
+    };
+    links.forEach((link) => link.addEventListener('focus', () => {
+      if (!gathered && link.matches(':focus-visible')) {
+        gathered = true; beginTransition(); update();
+      }
+    }));
+    toggle.addEventListener('click', () => {
+      gathered = !gathered;
+      if (!gathered) {
+        // Depart directly from the formation instead of jumping to an old route.
+        flights.forEach((flight) => {
+          const distance = skyWidth + flight.width + 160;
+          flight.phase = flight.reverse
+            ? (skyWidth + 80 - flight.renderX) / distance
+            : (flight.renderX + flight.width + 80) / distance;
+        });
+      }
+      beginTransition();
+      update();
+    });
+    reducedMotion.addEventListener('change', update);
+    document.addEventListener('visibilitychange', update);
+    const resizeObserver = new ResizeObserver(measure);
+    resizeObserver.observe(sky);
+    resizeObserver.observe(header);
+    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; update(); }).observe(section);
+    update();
+  });
+</script>
