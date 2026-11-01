@@ -206,8 +206,6 @@ export default config({
       path: 'src/content/settings/site',
       format: { data: 'json' },
       schema: {
-        email: fields.text({ label: 'Contact email' }),
-        phone: fields.text({ label: 'Phone' }),
         location: fields.text({ label: 'Location' }),
         bookingUrl: fields.url({ label: 'Booking link', description: 'Calendly or similar.' }),
         intakeFormId: fields.text({ label: 'Fillout form ID', description: 'The intake form on the Contact page.' }),
