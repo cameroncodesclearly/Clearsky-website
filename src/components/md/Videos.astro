@@ -1,0 +1,8 @@
+---
+// Several video links in a row on a Notion page, side by side.
+---
+<div class="md-videos md-wide"><slot /></div>
+
+<style>
+  .md-videos { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 1rem; margin-block: 3rem; align-items: start; }
+</style>

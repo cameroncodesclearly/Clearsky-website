@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "check": "astro check"
+    "check": "astro check",
+    "notion": "node scripts/notion-sync.mjs"
   },
   "dependencies": {
     "@astrojs/markdoc": "^2.0.11",

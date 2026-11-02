@@ -4,6 +4,11 @@ import { z } from 'astro/zod';
 
 // Mirrors keystatic.config.ts. Keystatic owns the editing UI; this file owns
 // how the site reads and validates the same files at build time.
+// Each collection also reads src/content/notion/<collection>/, written by
+// scripts/notion-sync.mjs from the Notion "Website CMS" databases. The entry id
+// (its web address) is the file name, wherever the file lives.
+const fileId = ({ entry }: { entry: string }) => entry.split('/').pop()!.replace(/\.mdoc$/, '');
+const seo = { seoTitle: z.string().optional(), seoDescription: z.string().optional() };
 
 const videoItem = (image: () => z.ZodTypeAny) =>
   z.object({
@@ -14,7 +19,7 @@ const videoItem = (image: () => z.ZodTypeAny) =>
   });
 
 const caseStudies = defineCollection({
-  loader: glob({ pattern: '**/*.mdoc', base: './src/content/case-studies' }),
+  loader: glob({ pattern: ['case-studies/**/*.mdoc', 'notion/case-studies/**/*.mdoc'], base: './src/content', generateId: fileId }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -44,6 +49,7 @@ const caseStudies = defineCollection({
       featured: z.boolean().default(false),
       order: z.number().int().default(100),
       draft: z.boolean().default(false),
+      ...seo,
     }),
 });
 
@@ -65,7 +71,7 @@ const services = defineCollection({
 });
 
 const posts = defineCollection({
-  loader: glob({ pattern: '**/*.mdoc', base: './src/content/posts' }),
+  loader: glob({ pattern: ['posts/**/*.mdoc', 'notion/posts/**/*.mdoc'], base: './src/content', generateId: fileId }),
   schema: ({ image }) =>
     z.object({
       title: z.string(),
@@ -74,7 +80,10 @@ const posts = defineCollection({
       author: z.string().default('Clear Sky Creations'),
       cover: image().nullish(),
       tags: z.array(z.string()).default([]),
+      category: z.string().optional(),
+      keyword: z.string().optional(),
       draft: z.boolean().default(false),
+      ...seo,
     }),
 });
 

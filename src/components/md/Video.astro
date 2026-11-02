@@ -1,0 +1,18 @@
+---
+// A Vimeo / YouTube / Instagram link on its own line in a Notion page: the
+// site's looping, click-for-sound player. Portrait or landscape comes from the
+// poster the sync step downloaded.
+import VideoPlayer from '../VideoPlayer.astro';
+interface Props { url: string }
+const { url } = Astro.props;
+---
+<div class="md-video" data-reveal>
+  <VideoPlayer video={url} title="Video" sizes="(min-width: 1440px) 1200px, 100vw" />
+</div>
+
+<style>
+  .md-video { margin-block: 3rem; }
+  /* Portrait videos on their own stay a sensible size. */
+  .md-video:has(:global(.is-vertical)) { max-width: 420px; margin-inline: auto; }
+  :global(.md-videos) .md-video { margin: 0; max-width: none; }
+</style>

@@ -29,7 +29,7 @@ const meta = [
 const vertical = d.videos.filter((v) => v.vertical || (v.poster && v.poster.height > v.poster.width));
 const landscape = d.videos.filter((v) => !vertical.includes(v));
 ---
-<BaseLayout title={`${d.client}: ${d.title}`} description={d.summary} grain={false}>
+<BaseLayout title={d.seoTitle || `${d.client}: ${d.title}`} description={d.seoDescription || d.summary} grain={false}>
   <article class="case">
     <header class="case__header container">
       <div class="rise">
@@ -128,7 +128,11 @@ const landscape = d.videos.filter((v) => !vertical.includes(v));
   .case__meta dd { margin: 0; }
   .case__story { padding-block: clamp(5rem, 9vw, 9rem); display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
   .case__intro { max-width: 26ch; }
-  .case__body { max-width: 60ch; margin-left: auto; width: 100%; }
+  .case__body { width: 100%; }
+  /* Text keeps its 60ch measure on the right; images, videos and galleries
+     from Notion pages use the full width. */
+  .case__body > :global(article > :not(.md-wide, .md-video, .md-figure)),
+  .case__body > :global(:not(article)) { max-width: 40.5rem; margin-left: auto; }
   .case__ba { padding-bottom: clamp(3rem, 6vw, 6rem); }
   .case__ba-caption { margin: 0.8rem auto 0; text-align: center; }
   .case__results { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; padding-bottom: clamp(4rem, 8vw, 8rem); }

@@ -230,3 +230,14 @@ p { max-width: 64ch; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
   .js [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* Galleries, video rows and before/after sliders from Notion pages break out
+   of the narrow text column to the full content width. */
+.md-wide {
+  --w: min(100vw - 2 * var(--gutter), var(--max));
+  width: var(--w); max-width: none;
+  margin-inline: calc((100% - var(--w)) / 2);
+}
+/* The text column spaces out loose images; media inside frames and Notion
+   blocks size themselves. */
+.prose .frame img, .prose .md-figure img, .prose .ba img { margin: 0; }

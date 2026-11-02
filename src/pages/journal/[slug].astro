@@ -12,7 +12,18 @@ const { entry, next } = Astro.props;
 const d = entry.data;
 const { Content } = await render(entry);
 ---
-<BaseLayout title={d.title} description={d.excerpt}>
+<BaseLayout title={d.seoTitle || d.title} description={d.seoDescription || d.excerpt}>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: d.title,
+    description: d.seoDescription || d.excerpt,
+    datePublished: d.publishedDate.toISOString(),
+    author: { '@type': d.author === 'Clear Sky Creations' ? 'Organization' : 'Person', name: d.author },
+    publisher: { '@type': 'Organization', name: 'Clear Sky Creations' },
+    mainEntityOfPage: new URL(`/journal/${entry.id}/`, Astro.site).href,
+    ...(d.keyword ? { keywords: d.keyword } : {}),
+  })} />
   <article class="post">
     <header class="post__header container">
       <p class="ui ui-muted">{formatDate(d.publishedDate)}{d.tags.length > 0 && `, ${d.tags.join(', ')}`}</p>

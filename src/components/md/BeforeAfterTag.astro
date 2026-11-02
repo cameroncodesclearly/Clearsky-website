@@ -1,0 +1,19 @@
+---
+// A "Before and after" toggle in a Notion page: the slide-across comparison.
+import BeforeAfter from '../BeforeAfter.astro';
+import { resolveImage } from '../../lib/site';
+interface Props { before: string; after: string; caption?: string }
+const { before, after, caption } = Astro.props;
+const b = resolveImage(before), a = resolveImage(after);
+---
+{b && a && (
+  <div class="md-ba md-wide" data-reveal>
+    <BeforeAfter before={b} after={a} />
+    {caption && <p class="ui ui-muted md-ba__caption">{caption}</p>}
+  </div>
+)}
+
+<style>
+  .md-ba { margin-block: 3rem; }
+  .md-ba__caption { margin: 0.8rem auto 0; text-align: center; }
+</style>
