@@ -3,8 +3,9 @@ import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import { parseVideo, playerEmbed, backgroundEmbed, posterFor, watchUrl } from '../lib/site';
 
-// Poster with a play button. A muted preview loops behind it while in view;
-// clicking loads the full player with sound.
+// A muted preview loops while in view, with no play button over it. The whole
+// frame is clickable and loads the full player with sound; a small muted-speaker
+// badge in the corner says sound is there.
 interface Props {
   video?: string | null;
   poster?: ImageMetadata | null;
@@ -31,20 +32,24 @@ const watchLabel = ref?.provider === 'instagram' ? 'Instagram' : ref?.provider =
   {still && <Image src={still} alt="" widths={[640, 1080, 1600, 2000]} sizes={sizes} loading={eager ? 'eager' : 'lazy'} />}
   {ref && (
     <button class="player__play" type="button" data-cursor="Play with sound" aria-label={`Play ${title}`}>
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5.5v13l11-6.5z" /></svg>
+      <span class="player__sound" aria-hidden="true">
+        <svg viewBox="0 0 24 24"><path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" /><path d="M16 9.5l5 5M21 9.5l-5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" /></svg>
+      </span>
     </button>
   )}
 </div>
 
 <style>
-  .player__play {
-    position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; width: 100%;
+  .player__play { position: absolute; inset: 0; z-index: 2; width: 100%; cursor: pointer; }
+  .player__sound {
+    position: absolute; right: 0.8rem; bottom: 0.8rem; display: grid; place-items: center;
+    width: 2.1rem; height: 2.1rem; border-radius: 50%;
+    color: var(--paper); background: rgba(20, 16, 10, 0.45); backdrop-filter: blur(6px);
+    transition: background-color 0.3s, scale 0.3s var(--ease);
   }
-  .player__play svg {
-    width: clamp(56px, 7vw, 88px); height: auto; padding: 1.1rem 1rem 1.1rem 1.25rem; border-radius: 50%;
-    fill: var(--ink); background: var(--paper); transition: scale 0.4s var(--ease), background-color 0.3s;
-  }
-  .player__play:hover svg { scale: 1.08; background: var(--butter); }
+  .player__sound svg { width: 1.1rem; height: 1.1rem; fill: currentColor; }
+  .player__play:hover .player__sound { background: rgba(20, 16, 10, 0.7); scale: 1.08; }
+  .player__play:focus-visible { outline: 3px solid var(--butter); outline-offset: -3px; }
   :global(.player.is-open) .player__play { display: none; }
   :global(.player.is-open > iframe) { pointer-events: auto; opacity: 1; background: var(--ink); }
   :global(.player__fallback) { position: absolute; inset: auto 0 1rem; z-index: 3; display: flex; justify-content: center; }
