@@ -1,4 +1,5 @@
 ---
+import ConsentBanner from '../components/ConsentBanner.astro';
 import GlassLoop from '../components/GlassLoop.astro';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
@@ -60,6 +61,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
       <slot />
     </main>
     <Footer />
+    <ConsentBanner />
     <div class="fader" data-fader aria-hidden="true"></div>
     {grain && <FilmGrain />}
     <script>

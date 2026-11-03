@@ -1,0 +1,38 @@
+---
+// Privacy banner (logic in src/scripts/consent.ts). Hidden until the script
+// decides it's needed. "Decline" is as easy to reach as "Accept".
+---
+<aside class="consent" data-consent hidden aria-label="Privacy choices" role="dialog" aria-live="polite">
+  <p class="consent__text" data-consent-text-optin>
+    We'd like to use analytics cookies to see which pages and videos people enjoy. Nothing is tracked unless you say yes.
+  </p>
+  <p class="consent__text" data-consent-text-optout hidden>
+    We use privacy-friendly analytics to see which pages and videos people enjoy. We never sell your data. You can turn it off here any time.
+  </p>
+  <div class="consent__actions">
+    <button class="pill pill--solid consent__btn" type="button" data-consent-accept>Accept</button>
+    <button class="pill consent__btn" type="button" data-consent-decline>Decline</button>
+    <a class="ui consent__link" href="/privacy/">Privacy policy</a>
+  </div>
+</aside>
+
+<style>
+  .consent {
+    position: fixed; z-index: 1080; left: var(--gutter); bottom: var(--gutter);
+    width: min(26rem, calc(100vw - 2 * var(--gutter)));
+    padding: 1.1rem 1.2rem 1.2rem; border-radius: 18px;
+    background: rgba(255, 252, 244, 0.94); color: var(--ink);
+    backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 18px 50px rgba(20, 16, 10, 0.22);
+    opacity: 0; translate: 0 16px; transition: opacity 0.4s var(--ease), translate 0.5s var(--ease);
+  }
+  .consent.is-on { opacity: 1; translate: 0 0; }
+  .consent[hidden] { display: none; }
+  .consent__text { font-size: 0.92rem; line-height: 1.5; margin: 0; }
+  .consent__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 0.8rem; margin-top: 0.9rem; }
+  .consent__btn { min-width: 6.5rem; justify-content: center; }
+  /* Declining is as easy and as visible as accepting. */
+  .consent__btn:not(.pill--solid) { box-shadow: inset 0 0 0 1.5px var(--ink); }
+  .consent__link { margin-left: auto; text-decoration: underline; text-underline-offset: 0.2em; }
+  @media (prefers-reduced-motion: reduce) { .consent { transition: none; translate: none; } }
+</style>

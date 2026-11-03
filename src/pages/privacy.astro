@@ -1,0 +1,120 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../lib/site';
+
+// Keep this page in step with what the site actually does. If a new tool that
+// touches personal data is added (another analytics or form provider, ads
+// pixels, a chat widget), add it to "Who we share it with" and the cookie table.
+const updated = 'November 3, 2026';
+---
+<BaseLayout title="Privacy Policy" description="How Clear Sky Creations collects, uses and protects your information, and the choices you have.">
+  <article class="privacy narrow">
+    <h1 class="display privacy__title">Privacy Policy</h1>
+    <p class="ui ui-muted">Last updated {updated}</p>
+
+    <div class="prose">
+      <p>{site.name} ("we", "us") is a video production and social media studio based in {site.location}. This policy explains what information our website collects, why, who we share it with, and the choices you have. It applies to this website and to the contact form on it.</p>
+
+      <h2>The short version</h2>
+      <ul>
+        <li>We collect what you choose to send us through our contact form, so we can reply.</li>
+        <li>With your permission (or, in some places, unless you opt out) we use analytics to see how people use the site.</li>
+        <li>We do not sell your personal information, and we do not use it for targeted advertising.</li>
+        <li>You can ask to see, correct or delete your information at any time.</li>
+      </ul>
+
+      <h2>What we collect</h2>
+      <h3>Information you give us</h3>
+      <p>When you fill in our contact form we receive what you enter, such as your name, email address, phone number, company, budget and project details.</p>
+
+      <h3>Information collected automatically</h3>
+      <ul>
+        <li><strong>Analytics.</strong> If analytics is on for you (see "Your choices"), we record the pages you visit, links and buttons you click, how far you scroll, your browser and device type, your approximate location (country or city) and how you arrived at the site. We may also record anonymized session replays of how the page was used. Anything you type is masked and never recorded.</li>
+        <li><strong>Approximate location for the live sky.</strong> Our homepage shows the current weather and time of day near you. To do this our hosting provider estimates your city from your IP address, and we send rounded coordinates (about 1 km) to the Norwegian Meteorological Institute for a forecast. We do not store your IP address or location for this.</li>
+        <li><strong>Server logs.</strong> Like every website, our host keeps short-lived technical logs (IP address, browser, pages requested) to run and secure the service.</li>
+      </ul>
+
+      <h2>How we use it</h2>
+      <ul>
+        <li>To reply to your inquiry and, if we work together, to plan and deliver your project.</li>
+        <li>To understand which pages and work people find useful and to improve the site.</li>
+        <li>To keep the site secure and working.</li>
+      </ul>
+      <p>If you are in the European Economic Area, the UK or Switzerland, our legal bases are: taking steps at your request before entering into a contract (your inquiry), your consent (analytics), and our legitimate interest in running a secure website (server logs and the live sky feature).</p>
+
+      <h2>Who we share it with</h2>
+      <p>We share information only with service providers that process it for us, under contracts that limit how they can use it:</p>
+      <ul>
+        <li><strong>Vercel</strong> hosts the website.</li>
+        <li><strong>Fillout</strong> runs our contact form and stores what you submit.</li>
+        <li><strong>PostHog</strong> provides our analytics, hosted in the United States.</li>
+        <li><strong>Vimeo, YouTube and Instagram</strong> play the videos embedded on the site. Vimeo videos play with tracking turned off and YouTube videos use its privacy-enhanced mode.</li>
+        <li><strong>MET Norway</strong> receives rounded coordinates (never your IP address) to return a weather forecast.</li>
+      </ul>
+      <p>We may also disclose information if the law requires it, or to protect our rights, or as part of a business sale or merger. We do not sell or share personal information for cross-context behavioral advertising, as those terms are defined under California law, and we have not done so in the past 12 months.</p>
+
+      <h2>Cookies and similar technologies</h2>
+      <div class="privacy__table">
+        <table>
+          <thead><tr><th>Name</th><th>Purpose</th><th>Type</th><th>Lasts</th></tr></thead>
+          <tbody>
+            <tr><td>cs-consent</td><td>Remembers your privacy choice</td><td>Strictly necessary (local storage)</td><td>Until you change it</td></tr>
+            <tr><td>cs-preloader, cs-geo</td><td>Shows the loading screen once and remembers which privacy rules apply where you are</td><td>Strictly necessary (session storage)</td><td>Until you close the tab</td></tr>
+            <tr><td>ph_*_posthog</td><td>Analytics (only when analytics is on for you)</td><td>Analytics cookie and local storage</td><td>Up to 1 year</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Embedded video players and the contact form may set their own cookies, which are covered by those providers' policies.</p>
+
+      <h2>Your choices</h2>
+      <ul>
+        <li><strong>In the EEA, UK, Switzerland, Quebec and Brazil</strong> no analytics runs until you choose "Accept".</li>
+        <li><strong>Everywhere else</strong> analytics is on by default, and you can turn it off with "Decline".</li>
+        <li><strong>Global Privacy Control and Do Not Track.</strong> If your browser sends either signal, we treat it as a request to opt out and analytics stays off.</li>
+      </ul>
+      <p>You can change your choice at any time from <button class="privacy__choices" type="button" data-privacy-choices>Privacy choices</button>, also in the footer of every page.</p>
+
+      <h2>Your rights</h2>
+      <p>Depending on where you live, you may have the right to:</p>
+      <ul>
+        <li>know what personal information we hold about you and get a copy of it;</li>
+        <li>correct it if it is wrong;</li>
+        <li>have it deleted;</li>
+        <li>object to or restrict how we use it, or withdraw consent at any time;</li>
+        <li>opt out of the sale or sharing of personal information and of targeted advertising (we do neither);</li>
+        <li>receive your data in a portable format;</li>
+        <li>complain to your local data protection authority.</li>
+      </ul>
+      <p>These rights come from laws such as the EU and UK GDPR, the California Consumer Privacy Act (as amended by the CPRA) and similar laws in other US states, Canada's privacy laws and Brazil's LGPD. We will not treat you differently for using them.</p>
+      <p>To make a request, send us a message through our <a href="/contact/">contact form</a> and say what you would like us to do. We may need to confirm your identity before acting on a request, and we will respond within the time the law allows (usually 30 to 45 days). You can also use an authorized agent to make a request for you.</p>
+
+      <h2>How long we keep it</h2>
+      <p>We keep inquiries for as long as we need them to talk with you and, if we work together, for the length of the project plus the time required for our business and tax records. Analytics data is kept for up to 12 months. Server logs are kept for a short period by our host.</p>
+
+      <h2>International transfers</h2>
+      <p>We are based in the United States and our service providers may process information in the US and other countries. Where the law requires it, transfers are covered by safeguards such as the European Commission's Standard Contractual Clauses or the EU-US Data Privacy Framework.</p>
+
+      <h2>Security</h2>
+      <p>The site is served only over encrypted connections (HTTPS) with modern security settings, we limit who can access your information, and we work with providers that protect data with industry-standard safeguards. No method of transmission or storage is completely secure, but we work to protect your information and will let you know if a breach affects you where the law requires it.</p>
+
+      <h2>Children</h2>
+      <p>This site is meant for businesses and is not directed to children under 16. We do not knowingly collect their personal information. If you think a child has sent us information, contact us and we will delete it.</p>
+
+      <h2>Changes to this policy</h2>
+      <p>We will update this page when our practices change and change the date at the top. If a change is significant we will make it clear on the site.</p>
+
+      <h2>Contact us</h2>
+      <p>Questions about this policy or your information? Reach us through our <a href="/contact/">contact form</a>.</p>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .privacy { padding-top: calc(var(--header-h) + clamp(3rem, 7vw, 6rem)); padding-bottom: clamp(5rem, 9vw, 9rem); }
+  .privacy__title { margin-bottom: 0.6rem; }
+  .privacy .prose { margin-top: 2.5rem; }
+  .privacy__table { overflow-x: auto; }
+  .privacy__table table { width: 100%; border-collapse: collapse; font-size: 0.92rem; }
+  .privacy__table th, .privacy__table td { text-align: left; padding: 0.6rem 0.8rem 0.6rem 0; border-bottom: 1px solid color-mix(in srgb, var(--ink) 18%, transparent); vertical-align: top; }
+  .privacy__choices { text-decoration: underline; text-underline-offset: 0.2em; font: inherit; color: inherit; }
+</style>
