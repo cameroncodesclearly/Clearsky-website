@@ -3,7 +3,6 @@ import TitleSun from '../components/TitleSun.astro';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LocalVideo from '../components/LocalVideo.astro';
-import ServiceFlights from '../components/ServiceFlights.astro';
 import sizzlePoster from '../assets/hero/sizzle-poster.jpg';
 import about from '../content/settings/about.json';
 import { resolveImage } from '../lib/site';
@@ -49,7 +48,7 @@ const team = about.team.map((t: { name: string; role: string; photo?: string | n
   </section>
 
   <section class="about-big" aria-label="Our mission">
-    <ServiceFlights title={about.bigLine} id="about-big-heading" compact />
+    <h2 class="mega center about-big__line" data-reveal>{about.bigLine}</h2>
     <p class="statement center about-big__mission" data-reveal>{about.mission}</p>
   </section>
 
@@ -102,7 +101,8 @@ const team = about.team.map((t: { name: string; role: string; photo?: string | n
     .about-story__beat.is-flipped .about-story__photos { order: 1; }
   }
 
-  .about-big { position: relative; padding-bottom: clamp(4rem, 8vw, 8rem); }
+  .about-big { position: relative; padding: clamp(5rem, 10vw, 10rem) var(--gutter) clamp(4rem, 8vw, 8rem); }
+  .about-big__line { max-width: 12ch; margin: 0 auto 2.5rem; }
   .about-big__mission { margin: 0 auto; max-width: 30ch; padding-inline: var(--gutter); }
     position: absolute; pointer-events: auto;
     padding: 0.7rem 1rem; border-radius: 12px; background: var(--blue); color: var(--paper);
