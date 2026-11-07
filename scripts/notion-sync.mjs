@@ -465,22 +465,30 @@ async function syncPhotos() {
   const rows = await queryPublished(DATABASES.photos);
   const out = [];
   for (const row of rows) {
+    // One row can hold any number of photos: every file in the Photo field,
+    // plus any images dropped into the row's page. They all share the row's
+    // pages, name and order, and print in the order they appear.
     const name = text(row, 'Name') || 'Photo';
-    const url = files(row, 'Photo')[0];
     const pages = multi(row, 'Pages');
-    if (!url || !pages.length) {
-      console.warn(`[notion] Photo "${name}" skipped: needs a photo and at least one page.`);
+    const body = await children(row.id).catch(() => []);
+    const urls = [...files(row, 'Photo'), ...body.filter((b) => b.type === 'image').map((b) => fileUrl(b.image))].filter(Boolean);
+    if (!urls.length || !pages.length) {
+      console.warn(`[notion] Photo row "${name}" skipped: needs at least one photo and one page.`);
       continue;
     }
-    try {
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`download failed (${res.status})`);
-      const id = row.id.replace(/-/g, '');
-      const want = text(row, 'Orientation').toLowerCase();
-      const orientation = await framePolaroid(Buffer.from(await res.arrayBuffer()), path.join(OUT.polaroids, `${id}.jpg`), want);
-      out.push({ src: `/polaroids/notion/${id}.jpg`, alt: name, orientation, pages, order: num(row, 'Order') ?? 100 });
-    } catch (e) {
-      console.warn(`[notion] Photo "${name}" skipped: ${e.message}`);
+    const id = row.id.replace(/-/g, '');
+    const want = text(row, 'Orientation').toLowerCase();
+    const order = num(row, 'Order') ?? 100;
+    for (const [i, url] of urls.entries()) {
+      try {
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`download failed (${res.status})`);
+        const file = `${id}-${i + 1}.jpg`;
+        const orientation = await framePolaroid(Buffer.from(await res.arrayBuffer()), path.join(OUT.polaroids, file), want);
+        out.push({ src: `/polaroids/notion/${file}`, alt: urls.length > 1 ? `${name} (${i + 1})` : name, orientation, pages, order: order + i / 1000 });
+      } catch (e) {
+        console.warn(`[notion] "${name}" photo ${i + 1} skipped: ${e.message}`);
+      }
     }
   }
   await fs.writeFile(OUT.polaroidData, JSON.stringify(out, null, 2) + '\n');
