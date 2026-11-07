@@ -6,11 +6,13 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import VideoPlayer from '../../components/VideoPlayer.astro';
 import BeforeAfter from '../../components/BeforeAfter.astro';
 import WorkCard from '../../components/WorkCard.astro';
-import { publishedCaseStudies, SERVICE_LABELS, parseVideo, posterFor } from '../../lib/site';
+import BuildingInProgress from '../../components/BuildingInProgress.astro';
+import { publishedCaseStudies, allCaseStudies, SERVICE_LABELS, parseVideo, posterFor } from '../../lib/site';
 
 export async function getStaticPaths() {
+  // Placeholders (status "building") get a page too, so links to them work.
   const studies = await publishedCaseStudies();
-  return studies.map((entry) => ({ params: { slug: entry.id }, props: { entry, others: studies.filter((s) => s.id !== entry.id) } }));
+  return (await allCaseStudies()).map((entry) => ({ params: { slug: entry.id }, props: { entry, others: studies.filter((s) => s.id !== entry.id) } }));
 }
 
 const { entry, others } = Astro.props;
@@ -29,6 +31,11 @@ const meta = [
 const vertical = d.videos.filter((v) => v.vertical || (v.poster && v.poster.height > v.poster.width));
 const landscape = d.videos.filter((v) => !vertical.includes(v));
 ---
+{d.status === 'building' ? (
+<BaseLayout title={d.client} description={d.summary} noindex>
+  <BuildingInProgress name={d.client} kind="case study" />
+</BaseLayout>
+) : (
 <BaseLayout title={d.seoTitle || `${d.client}: ${d.title}`} description={d.seoDescription || d.summary} grain={false}>
   <article class="case">
     <header class="case__header container">
@@ -116,6 +123,7 @@ const landscape = d.videos.filter((v) => !vertical.includes(v));
     )}
   </article>
 </BaseLayout>
+)}
 
 <style>
   .case__header { text-align: center; padding-top: calc(var(--header-h) + clamp(3rem, 7vw, 6rem)); padding-bottom: clamp(2rem, 4vw, 3.5rem); }

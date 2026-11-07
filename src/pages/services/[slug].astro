@@ -1,99 +1,154 @@
 ---
-import { getEntry, render } from 'astro:content';
+// Service page, laid out as in the "Our Services" Google Doc (see
+// src/content.config.ts). Services with status "building" show the
+// "Building in progress" page. The photo carousel (photos tagged with this
+// page in Notion) and the sunset footer are added by BaseLayout.
+import { getEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import VideoFrame from '../../components/VideoFrame.astro';
+import TitleSun from '../../components/TitleSun.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
 import WorkCard from '../../components/WorkCard.astro';
-import { publishedServices, parseVideo, posterFor } from '../../lib/site';
+import BuildingInProgress from '../../components/BuildingInProgress.astro';
+import { publishedServices } from '../../lib/site';
 
 export async function getStaticPaths() {
   const services = await publishedServices();
   return services.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
 }
-
 const { entry } = Astro.props;
 const d = entry.data;
-const { Content } = await render(entry);
-const featured = d.featuredWork ? await getEntry('caseStudies', d.featuredWork) : undefined;
-const heroPoster = d.heroImage ?? posterFor(parseVideo(d.heroVideo));
-const hasBody = Boolean(entry.body?.trim());
+const study = async (slug?: string) => (slug ? await getEntry('caseStudies', slug) : undefined);
+const rows = await Promise.all(d.rows.map(async (r) => ({ ...r, entry: await study(r.caseStudy) })));
+const studies = (await Promise.all(d.caseStudies.map(study))).filter((s) => s && !s.data.draft);
 ---
-<BaseLayout title={d.title} description={d.intro}>
-  <section class="svc-hero" data-full-bleed data-header-light>
-    <div class="svc-hero__card" data-shrink>
-      <VideoFrame video={d.heroVideo} poster={heroPoster} ratio="free" class="svc-hero__media" sizes="100vw" eager />
-      <div class="svc-hero__shade" aria-hidden="true"></div>
-      <h1 class="mega svc-hero__title">{d.title}</h1>
-      {d.tagline && <p class="ui svc-hero__tag">{d.tagline}</p>}
-    </div>
-  </section>
+<BaseLayout
+  title={d.seoTitle || d.title}
+  description={d.seoDescription || d.lead || d.rows[0]?.text || `${d.title} from Clear Sky Creations.`}
+>
+  {d.status === 'building' ? (
+    <BuildingInProgress name={d.title} kind="service" />
+  ) : (
+    <article class="svc">
+      <header class="svc-hero container">
+        <p class="ui ui-muted">{d.title}</p>
+        <div class="rise">
+          <TitleSun size="min(30vw, 220px)" />
+          <h1 class="mega svc-hero__headline">{d.headline || d.title}</h1>
+        </div>
+      </header>
 
-  {d.intro && (
-    <section class="svc-intro narrow" data-reveal>
-      <p class="statement"><span class="ui-muted">{d.title}.</span> {d.intro}</p>
-    </section>
+      {d.video && (
+        <section class="svc-video container" data-reveal>
+          <VideoPlayer video={d.video} title={d.title} class="svc-video__frame" sizes="(min-width: 1440px) 1400px, 100vw" />
+        </section>
+      )}
+
+      {(d.subtitle || d.lead) && (
+        <section class="svc-lead narrow" data-reveal>
+          {d.subtitle && <p class="display svc-lead__subtitle">{d.subtitle}</p>}
+          {d.lead && <p class="statement">{d.lead}</p>}
+        </section>
+      )}
+
+      {rows.length > 0 && (
+        <section class="svc-rows container">
+          {rows.map((r, i) => (
+            <div class:list={['svc-row', { 'is-flipped': i % 2 === 1 }]}>
+              <p class="statement svc-row__text" data-reveal>{r.text}</p>
+              {r.entry && (
+                <div class="svc-row__study" data-reveal>
+                  <WorkCard entry={r.entry} ratio="16x10" sizes="(min-width: 900px) 45vw, 100vw" />
+                </div>
+              )}
+            </div>
+          ))}
+        </section>
+      )}
+
+      {d.included.length > 0 && (
+        <section class="svc-included container" aria-label="What's included">
+          <ul>{d.included.map((item) => <li class="mega" data-reveal>{item}</li>)}</ul>
+        </section>
+      )}
+
+      {d.stat && <p class="statement svc-stat narrow" data-reveal>{d.stat}</p>}
+
+      {(d.packages.length > 0 || d.customQuote) && (
+        <section class="svc-packages container" aria-label="Packages">
+          {d.packages.length > 0 && d.packagesIntro && <p class="statement svc-packages__intro" data-reveal>{d.packagesIntro}</p>}
+          {d.packages.length > 0 && (
+            <div class="svc-packages__grid">
+              {d.packages.map((p) => (
+                <div class="svc-package" data-reveal>
+                  <h3 class="display">{p.name}</h3>
+                  {p.price && <p class="svc-package__price">{p.price}</p>}
+                  {p.summary && <p>{p.summary}</p>}
+                  {p.includes.length > 0 && <ul>{p.includes.map((x) => <li>{x}</li>)}</ul>}
+                </div>
+              ))}
+            </div>
+          )}
+          {d.customQuote && <a class="pill pill--solid svc-packages__quote" href="/contact/">{d.customQuote}</a>}
+        </section>
+      )}
+
+      {d.steps.length > 0 && (
+        <section class="svc-steps container" aria-labelledby="steps-heading">
+          <h2 id="steps-heading" class="ui ui-muted">How it works</h2>
+          <ol>
+            {d.steps.map((s, i) => (
+              <li data-reveal>
+                <span class="display svc-steps__n">{i + 1}</span>
+                <h3 class="display">{s.title}</h3>
+                {s.body && <p>{s.body}</p>}
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {studies.length > 0 && (
+        <section class="svc-studies container" aria-labelledby="studies-heading">
+          <h2 id="studies-heading" class="ui ui-muted">Case studies</h2>
+          <div class="svc-studies__grid">
+            {studies.map((s) => <div data-reveal><WorkCard entry={s!} ratio="4x5" sizes="(min-width: 900px) 20vw, 50vw" /></div>)}
+          </div>
+        </section>
+      )}
+    </article>
   )}
-
-  {d.media.length > 0 && (
-    <section class="svc-strip container" aria-label={`${d.title} examples`}>
-      <ol class="svc-strip__row">
-        {d.media.map((m, i) => (
-          <li data-reveal>
-            <span class="ui">{String(i + 1).padStart(2, '0')}</span>
-            <VideoFrame video={m.url} poster={m.poster} alt={m.title} ratio={m.vertical ? '9x16' : '16x10'} vertical={m.vertical} sizes="(min-width: 900px) 25vw, 60vw" />
-            {m.title && <span class="ui ui-muted">{m.title}</span>}
-          </li>
-        ))}
-      </ol>
-    </section>
-  )}
-
-  {d.statement && (
-    <section class="svc-statement section container">
-      <p class="mega center" data-reveal>{d.statement}</p>
-    </section>
-  )}
-
-  {d.capabilities.length > 0 && (
-    <section class="svc-caps container" aria-labelledby="caps-heading">
-      <h2 id="caps-heading" class="ui ui-muted">Capabilities</h2>
-      <p class="display svc-caps__list" data-reveal>{d.capabilities.join(', ')}.</p>
-    </section>
-  )}
-
-  {hasBody && <section class="narrow prose svc-body"><Content /></section>}
-
-  {featured && !featured.data.draft && (
-    <section class="svc-featured container" aria-label="Featured case study">
-      <WorkCard entry={featured} ratio="16x9" sizes="100vw" />
-    </section>
-  )}
-
 </BaseLayout>
 
 <style>
-  .svc-hero { height: 100svh; min-height: 520px; }
-  .svc-hero__card {
-    --shrink: 0;
-    position: relative; height: 100%; overflow: hidden; color: var(--paper); background: var(--ink);
-    display: grid; place-content: center; text-align: center; padding: var(--gutter);
-    transform-origin: 50% 0; scale: calc(1 - var(--shrink) * 0.1); border-radius: calc(var(--shrink) * 64px);
+  .svc { padding-bottom: clamp(3rem, 6vw, 6rem); }
+  .svc > * + * { margin-top: clamp(4rem, 9vw, 9rem); }
+  .svc-hero { display: grid; justify-items: center; gap: 1rem; text-align: center; padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 7rem)); }
+  .svc-hero__headline { max-width: 12ch; font-size: min(var(--mega), 17svh); }
+  .svc-video :global(.svc-video__frame) { border-radius: var(--radius-lg); }
+  .svc-lead { display: grid; gap: 1.2rem; text-align: center; }
+  .svc-lead__subtitle { font-size: clamp(1.8rem, 1rem + 3vw, 3.6rem); }
+
+  .svc-rows { display: grid; gap: clamp(4rem, 8vw, 8rem); }
+  .svc-row { display: grid; gap: 2rem; align-items: center; }
+  @media (min-width: 900px) {
+    .svc-row { grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); }
+    .svc-row.is-flipped .svc-row__text { order: 2; }
   }
-  .svc-hero__card :global(.svc-hero__media) { position: absolute; inset: 0; border-radius: 0; }
-  .svc-hero__shade { position: absolute; inset: 0; background: rgba(26, 19, 7, 0.35); }
-  .svc-hero__title { position: relative; max-width: 11ch; }
-  .svc-hero__tag { position: absolute; left: 0; right: 0; bottom: var(--gutter); }
-  .svc-intro { padding-block: clamp(5rem, 9vw, 9rem) clamp(3rem, 5vw, 5rem); }
-  .svc-intro .statement { max-width: 34ch; }
-  .svc-strip__row {
-    list-style: none; margin: 0; padding: 0 0 1rem;
-    display: grid; grid-auto-flow: column; grid-auto-columns: minmax(200px, 1fr); gap: clamp(0.75rem, 1.2vw, 1.25rem);
-    align-items: start; overflow-x: auto; scroll-snap-type: x mandatory;
-  }
-  .svc-strip__row li { display: grid; gap: 0.5rem; scroll-snap-align: start; }
-  .svc-strip__row li:nth-child(even) { margin-top: clamp(2rem, 6vw, 6rem); }
-  .svc-caps { display: grid; gap: 1rem; text-align: center; justify-items: center; padding-bottom: clamp(5rem, 9vw, 9rem); }
-  .svc-caps__list { max-width: 22ch; font-size: clamp(2rem, 1.2rem + 3vw, 4.4rem); }
-  .svc-body { padding-bottom: clamp(4rem, 8vw, 8rem); }
-  .svc-featured { padding-bottom: clamp(3rem, 6vw, 6rem); }
-  @media (max-width: 699px) { .svc-strip__row { grid-auto-columns: 62%; } }
+
+  .svc-included ul { list-style: none; margin: 0; padding: 0; text-align: center; }
+  .svc-included li { font-size: clamp(2.2rem, 1rem + 6.5vw, 7.5rem); line-height: 0.95; }
+  .svc-stat { text-align: center; }
+
+  .svc-packages { display: grid; justify-items: center; gap: 2.5rem; text-align: center; }
+  .svc-packages__intro { max-width: 26ch; }
+  .svc-packages__grid { display: grid; gap: 1.2rem; width: 100%; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); text-align: left; }
+  .svc-package { padding: clamp(1.4rem, 3vw, 2.2rem); border-radius: var(--radius-lg); background: rgba(255, 252, 244, 0.55); backdrop-filter: blur(8px); }
+  .svc-package__price { font-family: var(--font-display); font-size: 2.2rem; margin: 0.4rem 0 1rem; }
+  .svc-package ul { padding-left: 1.1em; }
+
+  .svc-steps ol { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
+  .svc-steps__n { display: block; font-size: 3rem; color: var(--mustard); }
+
+  .svc-studies h2 { text-align: center; }
+  .svc-studies__grid { display: grid; gap: 1.2rem; margin-top: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 260px)); justify-content: center; }
 </style>

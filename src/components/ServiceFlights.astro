@@ -5,12 +5,14 @@ const services = await publishedServices();
 // Short labels keep the fabric banners readable; destinations and accessible
 // names always come from the same collection that builds the service pages.
 const labels: Record<string, string> = {
-  'content-strategy': 'Strategy & Creative',
-  'video-production': 'Video Production',
-  'social-media': 'Social Media',
-  'post-production': 'Post-Production',
-  'paid-media': 'Paid Media',
+  'content-creation': 'Content Creation',
+  'the-testimony': 'The Testimony',
+  commercials: 'Commercials',
+  'ugc-influencer': 'UGC & Influencer',
+  'brand-strategy': 'Brand Strategy',
   'design-and-web': 'Design & Web',
+  'ad-placement': 'Ad Placement',
+  'company-announcements': 'Announcements',
 };
 ---
 <section class="service-flights" aria-labelledby="service-flights-heading" data-service-flights>
@@ -89,6 +91,8 @@ const labels: Record<string, string> = {
   .service-flights__lane:nth-child(4) { --plane-color: #7195b5; }
   .service-flights__lane:nth-child(5) { --plane-color: #c0888a; }
   .service-flights__lane:nth-child(6) { --plane-color: #d9b435; }
+  .service-flights__lane:nth-child(7) { --plane-color: #d87652; }
+  .service-flights__lane:nth-child(8) { --plane-color: #7b9c93; }
   .service-flight {
     display: flex; flex-direction: row-reverse; align-items: center;
     width: min(100% - 50px, 440px); color: #263f4d;

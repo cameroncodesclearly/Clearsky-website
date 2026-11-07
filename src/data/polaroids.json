@@ -84,8 +84,8 @@
     "alt": "",
     "orientation": "landscape",
     "pages": [
-      "/services/post-production",
-      "/services/video-production",
+      "/services/the-testimony",
+      "/services/content-creation",
       "gear",
       "production"
     ],
@@ -96,7 +96,7 @@
     "alt": "",
     "orientation": "portrait",
     "pages": [
-      "/services/video-production",
+      "/services/content-creation",
       "production"
     ],
     "order": 11
@@ -106,7 +106,7 @@
     "alt": "",
     "orientation": "landscape",
     "pages": [
-      "/services/video-production",
+      "/services/content-creation",
       "production"
     ],
     "order": 12
@@ -116,8 +116,8 @@
     "alt": "",
     "orientation": "landscape",
     "pages": [
-      "/services/post-production",
-      "/services/video-production",
+      "/services/the-testimony",
+      "/services/content-creation",
       "gear",
       "production"
     ],
@@ -128,7 +128,7 @@
     "alt": "",
     "orientation": "landscape",
     "pages": [
-      "/services/post-production",
+      "/services/the-testimony",
       "gear"
     ],
     "order": 20
@@ -138,7 +138,7 @@
     "alt": "",
     "orientation": "landscape",
     "pages": [
-      "/services/post-production",
+      "/services/the-testimony",
       "gear"
     ],
     "order": 21

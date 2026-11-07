@@ -49,24 +49,41 @@ const caseStudies = defineCollection({
       featured: z.boolean().default(false),
       order: z.number().int().default(100),
       draft: z.boolean().default(false),
+      // "building": a placeholder that shows the "Building in progress" page and
+      // stays out of the Work grid and homepage until the study is written.
+      status: z.enum(['live', 'building']).default('live'),
       ...seo,
     }),
 });
 
+// Service pages follow the layout in the "Our Services" Google Doc: headline,
+// optional video, alternating text and case-study rows, a big list of what's
+// included, a stat line, packages, how it works, case studies, then the photo
+// carousel and the sunset footer (both added by the layout).
+// status "building" shows the "Building in progress" page instead.
 const services = defineCollection({
   loader: glob({ pattern: '**/*.mdoc', base: './src/content/services' }),
-  schema: ({ image }) =>
+  schema: () =>
     z.object({
       title: z.string(),
       tagline: z.string().optional().default(''),
-      intro: z.string().optional().default(''),
-      statement: z.string().optional().default(''),
-      capabilities: z.array(z.string()).default([]),
-      heroVideo: z.string().url().nullish(),
-      heroImage: image().nullish(),
-      media: z.array(videoItem(image)).default([]),
-      featuredWork: z.string().nullish(),
+      status: z.enum(['live', 'building']).default('live'),
       order: z.number().int().default(100),
+      headline: z.string().optional().default(''),
+      video: z.string().url().nullish(),
+      subtitle: z.string().optional().default(''),
+      lead: z.string().optional().default(''),
+      rows: z.array(z.object({ text: z.string(), caseStudy: z.string().optional() })).default([]),
+      included: z.array(z.string()).default([]),
+      stat: z.string().optional().default(''),
+      packagesIntro: z.string().optional().default(''),
+      packages: z
+        .array(z.object({ name: z.string(), price: z.string().optional().default(''), summary: z.string().optional().default(''), includes: z.array(z.string()).default([]) }))
+        .default([]),
+      customQuote: z.string().optional().default(''),
+      steps: z.array(z.object({ title: z.string(), body: z.string().optional().default('') })).default([]),
+      caseStudies: z.array(z.string()).default([]),
+      ...seo,
     }),
 });
 

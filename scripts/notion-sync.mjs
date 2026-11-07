@@ -36,12 +36,14 @@ const OUT = {
 
 // Notion multi-select names to the site's service slugs.
 const SERVICE_SLUGS = {
-  'Social Media': 'social-media',
-  'Video Production': 'video-production',
-  Strategy: 'content-strategy',
-  'Post-Production': 'post-production',
-  'Paid Media': 'paid-media',
+  'Content Creation': 'content-creation',
+  'The Testimony': 'the-testimony',
+  Commercials: 'commercials',
+  'UGC & Influencer': 'ugc-influencer',
+  'Brand Strategy': 'brand-strategy',
   'Design and Web': 'design-and-web',
+  'Ad Placement': 'ad-placement',
+  'Company Announcements': 'company-announcements',
 };
 
 // ---------------------------------------------------------------------------

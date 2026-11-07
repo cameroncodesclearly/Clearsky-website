@@ -21,10 +21,23 @@ const poster = portrait && heroPoster && heroPoster.height > heroPoster.width ? 
     <span class="ui">{d.client}</span>
     <span class="ui ui-muted">{d.title}</span>
   </span>
-  <VideoFrame video={d.videoUrl} poster={poster} alt={`${d.client}: ${d.title}`} ratio={portrait ? '9x16' : ratio} cursor="See the work" sizes={sizes} />
+  <span class="work-card__media">
+    <VideoFrame video={d.videoUrl} poster={poster} alt={`${d.client}: ${d.title}`} ratio={portrait ? '9x16' : ratio} cursor={d.status === 'building' ? 'Coming soon' : 'See the work'} sizes={sizes} />
+    {d.status === 'building' && (
+      <span class="work-card__soon" aria-hidden="true"><span class="display">{d.client}</span><span class="ui">Coming soon</span></span>
+    )}
+  </span>
 </a>
 
 <style>
+  .work-card__media { position: relative; display: block; }
+  /* Placeholder studies: the client's name on the sky, until the story is in. */
+  .work-card__soon {
+    position: absolute; inset: 0; z-index: 951; display: grid; place-content: center; justify-items: center; gap: 0.4rem;
+    padding: 1rem; text-align: center; color: var(--ink); pointer-events: none;
+  }
+  .work-card__soon .display { font-size: clamp(1.3rem, 0.8rem + 1.6vw, 2.4rem); line-height: 0.95; }
+
   .work-card { display: block; }
   .work-card :global(.frame img) { transition: transform 1.2s var(--ease); }
   .work-card:hover :global(.frame img) { transform: scale(1.04); }

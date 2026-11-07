@@ -2,12 +2,12 @@
 import TitleSun from '../components/TitleSun.astro';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import VideoPlayer from '../components/VideoPlayer.astro';
+import LocalVideo from '../components/LocalVideo.astro';
+import sizzlePoster from '../assets/hero/sizzle-poster.jpg';
 import about from '../content/settings/about.json';
 import { publishedServices, resolveImage } from '../lib/site';
 
 const services = await publishedServices();
-const photos = about.photos.map((p) => ({ ...p, img: resolveImage(p.image) })).filter((p) => p.img);
 // The story alternates paragraph and photos, like the old site's About page.
 const story = about.story.map((s) => ({ ...s, photos: s.photos.map((p) => ({ ...p, img: resolveImage(p.image) })).filter((p) => p.img) }));
 const team = about.team.map((t: { name: string; role: string; photo?: string | null }) => ({ ...t, img: resolveImage(t.photo) }));
@@ -23,7 +23,7 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
   </section>
 
   <section class="about-reel container" data-reveal>
-    <VideoPlayer video={about.reelUrl} title="How we work" class="about-reel__frame" sizes="(min-width: 1440px) 1400px, 100vw" />
+    <LocalVideo src="/video/sizzle.mp4" small="/video/sizzle-960.mp4" poster={sizzlePoster} title="Clear Sky Creations sizzle reel" class="about-reel__frame" sizes="(min-width: 1440px) 1400px, 100vw" />
   </section>
 
   <section class="about-intro narrow">
@@ -75,21 +75,6 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
       ))}
     </ul>
   </section>
-
-  {photos.length > 0 && (
-    <section class="about-photos container" aria-label="Behind the scenes">
-      <ol class="about-photos__row">
-        {photos.map((p, i) => (
-          <li data-reveal>
-            <span class="ui">{String(i + 1).padStart(2, '0')}</span>
-            <figure class:list={['frame', i % 3 === 1 ? 'ratio-1' : 'ratio-4x5']}>
-              <Image src={p.img!} alt={p.alt} widths={[400, 700, 1000]} sizes="(min-width: 900px) 18vw, 60vw" />
-            </figure>
-          </li>
-        ))}
-      </ol>
-    </section>
-  )}
 
   {team.length > 0 && (
     <section class="about-team container" aria-labelledby="team-heading">
@@ -149,16 +134,11 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
   .about-values__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; border-top: 1.5px solid var(--fg); padding-top: 2rem; }
   .about-values__grid h3 { color: var(--blue); margin-bottom: 0.6rem; font-size: clamp(1.8rem, 1.3rem + 1.4vw, 2.6rem); overflow-wrap: anywhere; }
 
-  .about-photos__row {
     list-style: none; margin: 0; padding: 0 0 1rem; display: grid; grid-auto-flow: column;
     grid-auto-columns: minmax(200px, 1fr); gap: clamp(0.75rem, 1.2vw, 1.25rem); align-items: start; overflow-x: auto; scroll-snap-type: x mandatory;
   }
-  .about-photos__row li { display: grid; gap: 0.5rem; scroll-snap-align: start; }
-  .about-photos__row li:nth-child(3n + 2) { margin-top: 3rem; }
-  .about-photos__row figure { margin: 0; }
   .about-team { display: grid; gap: 1.5rem; padding-top: clamp(4rem, 8vw, 8rem); }
   .about-team__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1.5rem; }
   .about-team__grid figure { margin: 0 0 0.6rem; }
 
-  @media (max-width: 699px) { .about-photos__row { grid-auto-columns: 62%; } }
 </style>

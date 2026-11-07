@@ -5,7 +5,7 @@ import { publishedServices } from '../../lib/site';
 
 const services = await publishedServices();
 ---
-<BaseLayout title="Services" description="Strategy, video production, social media management, post-production, paid media, and design from Clear Sky Creations.">
+<BaseLayout title="Services" description="Content creation, testimonials and brand stories, commercials, UGC and influencer content, brand strategy, design and web, ad placement and company announcements from Clear Sky Creations.">
   <section class="services container">
     <p class="ui ui-muted services__eyebrow">Services</p>
     <div class="rise">
@@ -18,7 +18,7 @@ const services = await publishedServices();
           <a href={`/services/${s.id}/`} class="services__link">
             <span class="ui ui-muted services__num">{String(i + 1).padStart(2, '0')}</span>
             <span class="display services__name">{s.data.title}</span>
-            <span class="ui services__tag">{s.data.tagline}</span>
+            <span class="ui services__tag">{s.data.status === 'building' ? 'Coming soon' : s.data.tagline}</span>
           </a>
         </li>
       ))}

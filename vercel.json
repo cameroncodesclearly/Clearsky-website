@@ -68,6 +68,56 @@
       ],
       "destination": "/api/blocked",
       "permanent": false
+    },
+    {
+      "source": "/services/content-strategy",
+      "destination": "/services/brand-strategy/",
+      "permanent": true
+    },
+    {
+      "source": "/services/video-production",
+      "destination": "/services/content-creation/",
+      "permanent": true
+    },
+    {
+      "source": "/services/social-media",
+      "destination": "/services/content-creation/",
+      "permanent": true
+    },
+    {
+      "source": "/services/post-production",
+      "destination": "/services/content-creation/",
+      "permanent": true
+    },
+    {
+      "source": "/services/paid-media",
+      "destination": "/services/ad-placement/",
+      "permanent": true
+    },
+    {
+      "source": "/services/content-strategy/",
+      "destination": "/services/brand-strategy/",
+      "permanent": true
+    },
+    {
+      "source": "/services/video-production/",
+      "destination": "/services/content-creation/",
+      "permanent": true
+    },
+    {
+      "source": "/services/social-media/",
+      "destination": "/services/content-creation/",
+      "permanent": true
+    },
+    {
+      "source": "/services/post-production/",
+      "destination": "/services/content-creation/",
+      "permanent": true
+    },
+    {
+      "source": "/services/paid-media/",
+      "destination": "/services/ad-placement/",
+      "permanent": true
     }
   ]
 }

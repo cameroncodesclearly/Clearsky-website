@@ -18,7 +18,14 @@ export const nav = [
 ];
 
 // Draft entries stay editable in Keystatic but never reach the public site.
+// Placeholders (status "building") are routable but not listed.
 export async function publishedCaseStudies() {
+  const entries = await getCollection('caseStudies', (e) => !e.data.draft && e.data.status !== 'building');
+  return entries.sort((a, b) => a.data.order - b.data.order || b.data.year - a.data.year);
+}
+
+/** Every case study page that exists, placeholders included (for routing). */
+export async function allCaseStudies() {
   const entries = await getCollection('caseStudies', (e) => !e.data.draft);
   return entries.sort((a, b) => a.data.order - b.data.order || b.data.year - a.data.year);
 }
@@ -34,14 +41,14 @@ export async function publishedPosts() {
 }
 
 export const SERVICE_LABELS: Record<string, string> = {
-  'social-media': 'Social Media',
-  'video-production': 'Video Production',
-  'content-strategy': 'Strategy',
-  'post-production': 'Post-Production',
-  photography: 'Photography',
-  'paid-social': 'Paid Social',
-  branding: 'Branding',
-  web: 'Web',
+  'content-creation': 'Content Creation',
+  'the-testimony': 'The Testimony',
+  commercials: 'Commercials',
+  'ugc-influencer': 'UGC & Influencer',
+  'brand-strategy': 'Brand Strategy',
+  'design-and-web': 'Design and Web',
+  'ad-placement': 'Ad Placement',
+  'company-announcements': 'Company Announcements',
 };
 
 export const formatDate = (d: Date) =>

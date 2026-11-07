@@ -1,0 +1,31 @@
+---
+// Stand-in for a service or case study that isn't written yet. The page
+// exists (so links and menus work) and says so plainly.
+import TitleSun from './TitleSun.astro';
+interface Props { name: string; kind: 'service' | 'case study' }
+const { name, kind } = Astro.props;
+---
+<section class="building container">
+  <p class="ui ui-muted">{name}</p>
+  <div class="rise">
+    <TitleSun size="min(34vw, 240px)" />
+    <h1 class="mega building__title">Building in progress</h1>
+  </div>
+  <p class="statement building__text">
+    {kind === 'service' ? `Our ${name} page is on its way.` : `The full ${name} story is on its way.`} In the meantime, see what we've made or tell us about your project.
+  </p>
+  <div class="building__actions">
+    <a class="pill" href="/work/">See our work</a>
+    <a class="pill pill--solid" href="/contact/">Work with us</a>
+  </div>
+</section>
+
+<style>
+  .building {
+    min-height: 80svh; display: grid; place-content: center; justify-items: center; gap: 1.6rem; text-align: center;
+    padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 6rem)); padding-bottom: clamp(4rem, 8vw, 7rem);
+  }
+  .building__title { max-width: 10ch; font-size: min(var(--mega), 16svh); }
+  .building__text { max-width: 30ch; }
+  .building__actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.8rem; }
+</style>

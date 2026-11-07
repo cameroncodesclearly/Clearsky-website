@@ -111,7 +111,11 @@
     const animation=leaf.animate(frames,{duration:8000,easing:'steps(96,end)',fill:'forwards'});ambient.add(animation);
     animation.finished.then(()=>{ambient.delete(animation);leaf.remove();}).catch(()=>{ambient.delete(animation);leaf.remove();});
   }
-  function sync(){clearInterval(timer);timer=null;const hold=paused||!inView||document.hidden;root.classList.toggle('is-paused',hold);root.classList.toggle('is-reduced',reduced.matches);for(const s of active){for(const a of [s.animation,...s.effects]){if(hold)a?.pause();else a?.play();}}for(const a of ambient){if(hold)a.pause();else a.play();}if(!hold&&!reduced.matches)timer=setInterval(()=>snap(),interval);}
+  // Only pause what is still running and only resume what was paused: calling
+  // play() on a finished animation restarts it, which re-developed old prints.
+  const holdAnim=a=>{if(a&&a.playState==='running')a.pause();};
+  const resumeAnim=a=>{if(a&&a.playState==='paused')a.play();};
+  function sync(){clearInterval(timer);timer=null;const hold=paused||!inView||document.hidden;root.classList.toggle('is-paused',hold);root.classList.toggle('is-reduced',reduced.matches);for(const s of active){for(const a of [s.animation,...s.effects])hold?holdAnim(a):resumeAnim(a);}for(const a of ambient)hold?holdAnim(a):resumeAnim(a);if(!hold&&!reduced.matches)timer=setInterval(()=>snap(),interval);}
   camera.onclick=()=>snap(true);
   const observer=new IntersectionObserver(entries=>{inView=entries[0].isIntersecting;sync();},{threshold:.1});observer.observe(root);
   const visibility=()=>sync();document.addEventListener('visibilitychange',visibility);
