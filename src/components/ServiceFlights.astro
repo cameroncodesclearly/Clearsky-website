@@ -1,6 +1,10 @@
 ---
 import { publishedServices } from '../lib/site';
 
+// title/hint let other pages fly the planes over their own headline (About
+// uses "Changed companies change culture"). Defaults are the homepage's.
+interface Props { title?: string; hint?: string; id?: string }
+const { title = 'Our services', hint = "Tap on a banner... If you're quick enough", id = 'service-flights-heading' } = Astro.props;
 const services = await publishedServices();
 // Short labels keep the fabric banners readable; destinations and accessible
 // names always come from the same collection that builds the service pages.
@@ -15,10 +19,10 @@ const labels: Record<string, string> = {
   'company-announcements': 'Announcements',
 };
 ---
-<section class="service-flights" aria-labelledby="service-flights-heading" data-service-flights>
+<section class="service-flights" aria-labelledby={id} data-service-flights>
   <header class="service-flights__header">
-    <h2 class="mega" id="service-flights-heading">Our services</h2>
-    <p class="service-flights__hint">Tap on a banner... If you're quick enough</p>
+    <h2 class="mega" id={id}>{title}</h2>
+    {hint && <p class="service-flights__hint">{hint}</p>}
     <button class="service-flights__toggle ui" type="button" aria-pressed="false" hidden>Gather the planes</button>
   </header>
 

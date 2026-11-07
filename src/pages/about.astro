@@ -3,16 +3,14 @@ import TitleSun from '../components/TitleSun.astro';
 import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LocalVideo from '../components/LocalVideo.astro';
+import ServiceFlights from '../components/ServiceFlights.astro';
 import sizzlePoster from '../assets/hero/sizzle-poster.jpg';
 import about from '../content/settings/about.json';
-import { publishedServices, resolveImage } from '../lib/site';
+import { resolveImage } from '../lib/site';
 
-const services = await publishedServices();
 // The story alternates paragraph and photos, like the old site's About page.
 const story = about.story.map((s) => ({ ...s, photos: s.photos.map((p) => ({ ...p, img: resolveImage(p.image) })).filter((p) => p.img) }));
 const team = about.team.map((t: { name: string; role: string; photo?: string | null }) => ({ ...t, img: resolveImage(t.photo) }));
-// Spots for the scattered service tags around the big line (percent of the block).
-const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [48, 90, -5]];
 ---
 <BaseLayout title="About" description="Clear Sky Creations started with one person and a baseball account. Today we're a story-first content studio building good brands with honest content.">
   <section class="about-hero container">
@@ -50,17 +48,8 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
     </ol>
   </section>
 
-  <section class="about-big section" aria-label="Our mission" data-shrink data-shrink-start="100vh">
-    <div class="about-big__stage">
-    <div class="about-big__tags" aria-hidden="true">
-      {services.slice(0, spots.length).map((s, i) => (
-        <a class="about-big__tag" href={`/services/${s.id}/`} tabindex="-1" style={`left:${spots[i][0]}%;top:${spots[i][1]}%;--tilt:${spots[i][2]}deg;--drift:${(i % 2 ? -1 : 1) * (30 + i * 8)}px`}>
-          <span class="ui">{s.data.title}</span>
-        </a>
-      ))}
-    </div>
-    <p class="mega center about-big__line" data-reveal>{about.bigLine}</p>
-    </div>
+  <section class="about-big" aria-label="Our mission">
+    <ServiceFlights title={about.bigLine} id="about-big-heading" />
     <p class="statement center about-big__mission" data-reveal>{about.mission}</p>
   </section>
 
@@ -113,22 +102,14 @@ const spots = [[2, 4, -6], [72, 0, 5], [6, 80, 4], [76, 78, -4], [38, -4, 3], [4
     .about-story__beat.is-flipped .about-story__photos { order: 1; }
   }
 
-  .about-big { --shrink: 0; position: relative; padding-inline: var(--gutter); }
-  .about-big__line { position: relative; z-index: 1; max-width: 12ch; }
-  .about-big__mission { margin-top: 2.5rem; max-width: 30ch; }
-  .about-big__stage { position: relative; padding-block: clamp(2rem, 5vw, 5rem); }
-  .about-big__tags { position: absolute; inset: 0 4%; z-index: 2; pointer-events: none; }
-  .about-big__tag {
+  .about-big { position: relative; padding-bottom: clamp(4rem, 8vw, 8rem); }
+  .about-big__mission { margin: 0 auto; max-width: 30ch; padding-inline: var(--gutter); }
     position: absolute; pointer-events: auto;
     padding: 0.7rem 1rem; border-radius: 12px; background: var(--blue); color: var(--paper);
     rotate: var(--tilt); translate: 0 calc(var(--shrink) * var(--drift));
     box-shadow: 0 18px 40px -22px rgba(18, 57, 79, 0.7);
     transition: background-color 0.3s;
   }
-  .about-big__tag:nth-child(3n + 2) { background: var(--butter); color: var(--ink); }
-  .about-big__tag:nth-child(3n) { background: var(--ink); color: var(--paper); }
-  .about-big__tag:hover { background: var(--mustard); color: var(--ink); }
-  @media (max-width: 699px) { .about-big__tags { display: none; } }
 
   .about-values { display: grid; gap: 1.5rem; padding-bottom: clamp(5rem, 9vw, 9rem); }
   .about-values__grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 2rem; border-top: 1.5px solid var(--fg); padding-top: 2rem; }
