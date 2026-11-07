@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import WorkCard from '../../components/WorkCard.astro';
+import VideoPlayer from '../../components/VideoPlayer.astro';
 import { publishedCaseStudies, SERVICE_LABELS } from '../../lib/site';
 
 const studies = await publishedCaseStudies();
@@ -9,6 +10,10 @@ const archive = [...studies].sort((a, b) => b.data.year - a.data.year || a.data.
 <BaseLayout title="Work" description="Case studies from Clear Sky Creations: video production, social media, and campaigns for good brands at every stage.">
   <section class="work container">
     <h1 class="visually-hidden">Work</h1>
+    <!-- The 2024 reel leads the page, then the case studies. -->
+    <div class="work__reel" data-reveal>
+      <VideoPlayer video="https://vimeo.com/914985215" title="Clear Sky 2024 Reel" class="work__reel-frame" sizes="(min-width: 1440px) 1400px, 100vw" eager />
+    </div>
     <div class="work__grid">
       {studies.map((entry) => (
         <div data-reveal><WorkCard entry={entry} sizes="(min-width: 1000px) 33vw, (min-width: 640px) 50vw, 100vw" /></div>
@@ -43,6 +48,8 @@ const archive = [...studies].sort((a, b) => b.data.year - a.data.year || a.data.
 
 <style>
   .work { padding-top: calc(var(--header-h) + clamp(3rem, 8vw, 8rem)) !important; }
+  .work__reel { margin-bottom: clamp(3rem, 6vw, 6rem); }
+  .work__reel :global(.work__reel-frame) { border-radius: var(--radius-lg); }
   .work__grid { display: grid; gap: clamp(3rem, 7vw, 8rem) clamp(1rem, 1.5vw, 1.5rem); grid-template-columns: repeat(auto-fill, minmax(min(100%, 380px), 1fr)); }
   .archive { padding-block: clamp(6rem, 10vw, 12rem); }
   .archive__heading { font-size: var(--step-2); font-weight: 500; letter-spacing: -0.01em; margin-bottom: 2rem; }
