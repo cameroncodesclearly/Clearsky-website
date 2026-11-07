@@ -135,12 +135,14 @@ const landscape = d.videos.filter((v) => !vertical.includes(v));
   .case__meta div { display: grid; gap: 0.15rem; }
   .case__meta dd { margin: 0; }
   .case__story { padding-block: clamp(5rem, 9vw, 9rem); display: grid; gap: clamp(2.5rem, 5vw, 4rem); }
-  .case__intro { max-width: 26ch; }
+  .case__intro { max-width: 26ch; margin-inline: auto; text-align: center; }
   .case__body { width: 100%; }
   /* Text keeps its 60ch measure on the right; images, videos and galleries
      from Notion pages use the full width. */
   .case__body > :global(article > :not(.md-wide, .md-video, .md-figure)),
-  .case__body > :global(:not(article)) { max-width: 40.5rem; margin-left: auto; }
+  .case__body > :global(:not(article)) { max-width: 40.5rem; margin-inline: auto; text-align: center; }
+  .case__body :global(ul), .case__body :global(ol) { list-style-position: inside; padding-left: 0; }
+  .case__body :global(blockquote) { border-left: 0; padding-left: 0; }
   .case__ba { padding-bottom: clamp(3rem, 6vw, 6rem); }
   .case__ba-caption { margin: 0.8rem auto 0; text-align: center; }
   .case__results { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 2rem; padding-bottom: clamp(4rem, 8vw, 8rem); }

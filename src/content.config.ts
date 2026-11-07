@@ -70,6 +70,7 @@ const services = defineCollection({
       status: z.enum(['live', 'building']).default('live'),
       order: z.number().int().default(100),
       headline: z.string().optional().default(''),
+      subheadline: z.string().optional().default(''),
       video: z.string().url().nullish(),
       subtitle: z.string().optional().default(''),
       lead: z.string().optional().default(''),
@@ -78,8 +79,21 @@ const services = defineCollection({
       stat: z.string().optional().default(''),
       packagesIntro: z.string().optional().default(''),
       packages: z
-        .array(z.object({ name: z.string(), price: z.string().optional().default(''), summary: z.string().optional().default(''), includes: z.array(z.string()).default([]) }))
+        .array(
+          z.object({
+            name: z.string(),
+            badge: z.string().optional().default(''),
+            price: z.string().optional().default(''),
+            monthly: z.string().optional().default(''),
+            priceNote: z.string().optional().default(''),
+            summary: z.string().optional().default(''),
+            includes: z.array(z.string()).default([]),
+            note: z.string().optional().default(''),
+            cta: z.string().optional().default(''),
+          }),
+        )
         .default([]),
+      packagesFootnote: z.string().optional().default(''),
       customQuote: z.string().optional().default(''),
       steps: z.array(z.object({ title: z.string(), body: z.string().optional().default('') })).default([]),
       caseStudies: z.array(z.string()).default([]),
