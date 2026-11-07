@@ -5,7 +5,7 @@ import { site } from '../lib/site';
 // Keep this page in step with what the site actually does. If a new tool that
 // touches personal data is added (another analytics or form provider, ads
 // pixels, a chat widget), add it to "Who we share it with" and the cookie table.
-const updated = 'November 3, 2026';
+const updated = 'November 7, 2026';
 ---
 <BaseLayout title="Privacy Policy" description="How Clear Sky Creations collects, uses and protects your information, and the choices you have.">
   <article class="privacy narrow">
@@ -18,8 +18,8 @@ const updated = 'November 3, 2026';
       <h2>The short version</h2>
       <ul>
         <li>We collect what you choose to send us through our contact form, so we can reply.</li>
-        <li>With your permission (or, in some places, unless you opt out) we use analytics to see how people use the site.</li>
-        <li>We do not sell your personal information, and we do not use it for targeted advertising.</li>
+        <li>With your permission (or, in some places, unless you opt out) we use analytics to see how people use the site, and Meta and Google advertising tags to measure and target our ads.</li>
+        <li>We do not sell your information for money. Our advertising tags count as "sharing" under some US state laws, and you can opt out at any time.</li>
         <li>You can ask to see, correct or delete your information at any time.</li>
       </ul>
 
@@ -30,6 +30,7 @@ const updated = 'November 3, 2026';
       <h3>Information collected automatically</h3>
       <ul>
         <li><strong>Analytics.</strong> If analytics is on for you (see "Your choices"), we record the pages you visit, links and buttons you click, how far you scroll, your browser and device type, your approximate location (country or city) and how you arrived at the site. We may also record anonymized session replays of how the page was used. Anything you type is masked and never recorded.</li>
+        <li><strong>Advertising.</strong> If advertising is on for you, the Meta Pixel and the Google Ads tag record that you visited our site, the pages you viewed and actions such as sending our contact form, along with cookie identifiers, your IP address and browser details. Meta and Google use this to measure our ads, to show our ads to people who visited the site, and to find similar audiences.</li>
         <li><strong>Approximate location for the live sky.</strong> Our homepage shows the current weather and time of day near you. To do this our hosting provider estimates your city from your IP address, and we send rounded coordinates (about 1 km) to the Norwegian Meteorological Institute for a forecast. We do not store your IP address or location for this.</li>
         <li><strong>Server logs.</strong> Like every website, our host keeps short-lived technical logs (IP address, browser, pages requested) to run and secure the service.</li>
       </ul>
@@ -39,8 +40,9 @@ const updated = 'November 3, 2026';
         <li>To reply to your inquiry and, if we work together, to plan and deliver your project.</li>
         <li>To understand which pages and work people find useful and to improve the site.</li>
         <li>To keep the site secure and working.</li>
+        <li>To measure our advertising and show our ads to people who have shown interest in our work.</li>
       </ul>
-      <p>If you are in the European Economic Area, the UK or Switzerland, our legal bases are: taking steps at your request before entering into a contract (your inquiry), your consent (analytics), and our legitimate interest in running a secure website (server logs and the live sky feature).</p>
+      <p>If you are in the European Economic Area, the UK or Switzerland, our legal bases are: taking steps at your request before entering into a contract (your inquiry), your consent (analytics and advertising), and our legitimate interest in running a secure website (server logs and the live sky feature).</p>
 
       <h2>Who we share it with</h2>
       <p>We share information only with service providers that process it for us, under contracts that limit how they can use it:</p>
@@ -51,7 +53,11 @@ const updated = 'November 3, 2026';
         <li><strong>Vimeo, YouTube and Instagram</strong> play the videos embedded on the site. Vimeo videos play with tracking turned off and YouTube videos use its privacy-enhanced mode.</li>
         <li><strong>MET Norway</strong> receives rounded coordinates (never your IP address) to return a weather forecast.</li>
       </ul>
-      <p>We may also disclose information if the law requires it, or to protect our rights, or as part of a business sale or merger. We do not sell or share personal information for cross-context behavioral advertising, as those terms are defined under California law, and we have not done so in the past 12 months.</p>
+      <p>When advertising is on for you, <strong>Meta Platforms</strong> and <strong>Google</strong> also receive information from their tags on our site. They use it under their own privacy policies, as independent controllers (see <a href="https://www.facebook.com/privacy/policy/" rel="noopener" target="_blank">Meta's policy</a> and <a href="https://policies.google.com/privacy" rel="noopener" target="_blank">Google's policy</a>).</p>
+      <p>We may also disclose information if the law requires it, or to protect our rights, or as part of a business sale or merger.</p>
+
+      <h3>Sale and sharing under US state laws</h3>
+      <p>We do not sell personal information for money. Allowing Meta and Google to collect information through their tags for advertising counts as "sharing" for cross-context behavioral advertising under California law, and as "targeted advertising" or a "sale" under some other states' laws. In the past 12 months the categories involved were identifiers (cookie IDs, IP address) and internet activity (pages viewed and actions on our site), shared with Meta and Google. We do not knowingly sell or share the information of anyone under 16. To opt out, use <button class="privacy__choices" type="button" data-privacy-choices="panel">Do not sell or share my info</button> (also in the footer of every page) or turn on Global Privacy Control in your browser.</p>
 
       <h2>Cookies and similar technologies</h2>
       <div class="privacy__table">
@@ -61,6 +67,8 @@ const updated = 'November 3, 2026';
             <tr><td>cs-consent</td><td>Remembers your privacy choice</td><td>Strictly necessary (local storage)</td><td>Until you change it</td></tr>
             <tr><td>cs-preloader, cs-geo</td><td>Shows the loading screen once and remembers which privacy rules apply where you are</td><td>Strictly necessary (session storage)</td><td>Until you close the tab</td></tr>
             <tr><td>ph_*_posthog</td><td>Analytics (only when analytics is on for you)</td><td>Analytics cookie and local storage</td><td>Up to 1 year</td></tr>
+            <tr><td>_fbp, _fbc</td><td>Meta Pixel: measures and targets our ads (only when advertising is on for you)</td><td>Advertising cookie</td><td>Up to 90 days</td></tr>
+            <tr><td>_gcl_au, _gcl_aw</td><td>Google Ads: measures ad conversions (only when advertising is on for you)</td><td>Advertising cookie</td><td>Up to 90 days</td></tr>
           </tbody>
         </table>
       </div>
@@ -68,11 +76,11 @@ const updated = 'November 3, 2026';
 
       <h2>Your choices</h2>
       <ul>
-        <li><strong>In the EEA, UK, Switzerland, Quebec and Brazil</strong> no analytics runs until you choose "Accept".</li>
-        <li><strong>Everywhere else</strong> analytics is on by default, and you can turn it off with "Decline".</li>
-        <li><strong>Global Privacy Control and Do Not Track.</strong> If your browser sends either signal, we treat it as a request to opt out and analytics stays off.</li>
+        <li><strong>In the EEA, UK, Switzerland, Quebec and Brazil</strong> no analytics or advertising tags run until you accept them. You can accept one and not the other.</li>
+        <li><strong>Everywhere else</strong> both are on by default, and you can turn either off.</li>
+        <li><strong>Global Privacy Control and Do Not Track.</strong> If your browser sends either signal, we treat it as an opt-out of sale and sharing: advertising tags stay off, and analytics stays off unless you turn it on yourself.</li>
       </ul>
-      <p>You can change your choice at any time from <button class="privacy__choices" type="button" data-privacy-choices>Privacy choices</button>, also in the footer of every page.</p>
+      <p>You can change your choices at any time from <button class="privacy__choices" type="button" data-privacy-choices>Your privacy choices</button>, also in the footer of every page. You can also limit ad personalization in your <a href="https://adssettings.google.com" rel="noopener" target="_blank">Google</a> and <a href="https://www.facebook.com/adpreferences" rel="noopener" target="_blank">Meta</a> account settings.</p>
 
       <h2>Your rights</h2>
       <p>Depending on where you live, you may have the right to:</p>
@@ -89,7 +97,7 @@ const updated = 'November 3, 2026';
       <p>To make a request, send us a message through our <a href="/contact/">contact form</a> and say what you would like us to do. We may need to confirm your identity before acting on a request, and we will respond within the time the law allows (usually 30 to 45 days). You can also use an authorized agent to make a request for you.</p>
 
       <h2>How long we keep it</h2>
-      <p>We keep inquiries for as long as we need them to talk with you and, if we work together, for the length of the project plus the time required for our business and tax records. Analytics data is kept for up to 12 months. Server logs are kept for a short period by our host.</p>
+      <p>Advertising cookies last up to 90 days; Meta and Google keep the data they receive under their own policies. We keep inquiries for as long as we need them to talk with you and, if we work together, for the length of the project plus the time required for our business and tax records. Analytics data is kept for up to 12 months. Server logs are kept for a short period by our host.</p>
 
       <h2>International transfers</h2>
       <p>We are based in the United States and our service providers may process information in the US and other countries. Where the law requires it, transfers are covered by safeguards such as the European Commission's Standard Contractual Clauses or the EU-US Data Privacy Framework.</p>

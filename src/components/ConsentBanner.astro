@@ -1,38 +1,65 @@
 ---
 // Privacy banner (logic in src/scripts/consent.ts). Hidden until the script
-// decides it's needed. "Decline" is as easy to reach as "Accept".
+// decides it's needed. "Reject all" is as easy to reach as "Accept all", and
+// each category can be chosen on its own under "Choose".
 ---
 <aside class="consent" data-consent hidden aria-label="Privacy choices" role="dialog" aria-live="polite">
-  <p class="consent__text" data-consent-text-optin>
-    We'd like to use analytics cookies to see which pages and videos people enjoy. Nothing is tracked unless you say yes.
-  </p>
-  <p class="consent__text" data-consent-text-optout hidden>
-    We use privacy-friendly analytics to see which pages and videos people enjoy. We never sell your data. You can turn it off here any time.
-  </p>
+  <p class="consent__text" data-consent-text-optin>May we use analytics and ad cookies? <a href="/privacy/">Details</a></p>
+  <p class="consent__text" data-consent-text-optout hidden>We use analytics and ad cookies. <a href="/privacy/">Details</a></p>
+
+  <div class="consent__panel" data-consent-panel hidden>
+    <label class="consent__row">
+      <span><strong>Necessary</strong><br />Remembers your choices. Always on.</span>
+      <input type="checkbox" checked disabled />
+    </label>
+    <label class="consent__row">
+      <span><strong>Analytics</strong><br />Pages visited and clicks, so we can improve the site (PostHog).</span>
+      <input type="checkbox" data-consent-analytics />
+    </label>
+    <label class="consent__row">
+      <span><strong>Advertising</strong><br />Measures and personalizes our ads on Meta and Google. Turning this off opts you out of the sale or sharing of your information.</span>
+      <input type="checkbox" data-consent-marketing />
+    </label>
+    <button class="consent__btn consent__btn--solid consent__save" type="button" data-consent-save>Save choices</button>
+  </div>
+
   <div class="consent__actions">
-    <button class="pill pill--solid consent__btn" type="button" data-consent-accept>Accept</button>
-    <button class="pill consent__btn" type="button" data-consent-decline>Decline</button>
-    <a class="ui consent__link" href="/privacy/">Privacy policy</a>
+    <button class="consent__btn consent__btn--solid" type="button" data-consent-accept>Accept</button>
+    <button class="consent__btn consent__btn--solid" type="button" data-consent-decline>Reject</button>
+    <button class="consent__link" type="button" data-consent-customize>Choose</button>
   </div>
 </aside>
 
 <style>
+  /* Compact by default: one short line and three small buttons. "Choose"
+     opens the per-category toggles above them. */
   .consent {
     position: fixed; z-index: 1080; left: var(--gutter); bottom: var(--gutter);
-    width: min(26rem, calc(100vw - 2 * var(--gutter)));
-    padding: 1.1rem 1.2rem 1.2rem; border-radius: 18px;
-    background: rgba(255, 252, 244, 0.94); color: var(--ink);
+    width: min(21.5rem, calc(100vw - 2 * var(--gutter)));
+    max-height: calc(100svh - 2 * var(--gutter)); overflow-y: auto;
+    padding: 0.7rem 0.8rem; border-radius: 14px;
+    background: rgba(255, 252, 244, 0.96); color: var(--ink);
     backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
-    box-shadow: 0 18px 50px rgba(20, 16, 10, 0.22);
-    opacity: 0; translate: 0 16px; transition: opacity 0.4s var(--ease), translate 0.5s var(--ease);
+    box-shadow: 0 10px 30px rgba(20, 16, 10, 0.2);
+    font-size: 0.78rem; line-height: 1.4;
+    opacity: 0; translate: 0 12px; transition: opacity 0.4s var(--ease), translate 0.5s var(--ease);
   }
   .consent.is-on { opacity: 1; translate: 0 0; }
-  .consent[hidden] { display: none; }
-  .consent__text { font-size: 0.92rem; line-height: 1.5; margin: 0; }
-  .consent__actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.6rem 0.8rem; margin-top: 0.9rem; }
-  .consent__btn { min-width: 6.5rem; justify-content: center; }
-  /* Declining is as easy and as visible as accepting. */
-  .consent__btn:not(.pill--solid) { box-shadow: inset 0 0 0 1.5px var(--ink); }
-  .consent__link { margin-left: auto; text-decoration: underline; text-underline-offset: 0.2em; }
+  .consent[hidden], .consent [hidden] { display: none; }
+  .consent__text { margin: 0; }
+  .consent a { text-decoration: underline; text-underline-offset: 0.2em; }
+  .consent__actions { display: flex; align-items: center; gap: 0.4rem; margin-top: 0.55rem; }
+  .consent__btn {
+    padding: 0.42rem 0.9rem; border-radius: 999px; font: 600 0.72rem/1 var(--font-body);
+    text-transform: uppercase; letter-spacing: 0.04em; cursor: pointer;
+  }
+  /* Accept and Reject look the same: neither choice is nudged. */
+  .consent__btn--solid { background: var(--ink); color: var(--paper); }
+  .consent__btn--solid:hover { background: color-mix(in srgb, var(--ink) 80%, transparent); }
+  .consent__link { margin-left: auto; font: 600 0.72rem/1 var(--font-body); text-transform: uppercase; letter-spacing: 0.04em; text-decoration: underline; text-underline-offset: 0.2em; color: inherit; cursor: pointer; }
+  .consent__panel { display: grid; gap: 0.55rem; margin-top: 0.6rem; padding-top: 0.6rem; border-top: 1px solid rgba(20, 16, 10, 0.12); }
+  .consent__row { display: flex; justify-content: space-between; align-items: start; gap: 0.8rem; font-size: 0.74rem; line-height: 1.35; cursor: pointer; }
+  .consent__row input { flex: none; width: 1rem; height: 1rem; margin-top: 0.1rem; accent-color: var(--ink); }
+  .consent__save { justify-self: start; }
   @media (prefers-reduced-motion: reduce) { .consent { transition: none; translate: none; } }
 </style>

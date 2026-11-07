@@ -66,6 +66,9 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     {grain && <FilmGrain />}
     <script>
       import '../scripts/analytics.ts';
+      import '../scripts/ads.ts';
+      import { initConsent } from '../scripts/consent.ts';
+      initConsent(); // after both listeners are registered
       import '../scripts/site.ts';
     </script>
   </body>

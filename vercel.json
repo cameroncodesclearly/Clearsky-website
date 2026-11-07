@@ -40,9 +40,34 @@
       "headers": [
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://server.fillout.com https://us-assets.i.posthog.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com https://*.fillout.com; frame-src https://player.vimeo.com https://www.youtube-nocookie.com https://www.instagram.com https://*.fillout.com; worker-src 'self' blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
+          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' https://server.fillout.com https://us-assets.i.posthog.com https://connect.facebook.net https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.googleadservices.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob: https:; font-src 'self' data:; media-src 'self' blob:; connect-src 'self' https://us.i.posthog.com https://us-assets.i.posthog.com https://*.fillout.com https://www.facebook.com https://connect.facebook.net https://www.google.com https://google.com https://googleads.g.doubleclick.net https://*.doubleclick.net https://www.googleadservices.com https://www.googletagmanager.com https://pagead2.googlesyndication.com; frame-src https://player.vimeo.com https://www.youtube-nocookie.com https://www.instagram.com https://*.fillout.com https://td.doubleclick.net https://www.googletagmanager.com https://bid.g.doubleclick.net; worker-src 'self' blob:; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests"
         }
       ]
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/((?!robots\\.txt$|api/blocked$).*)",
+      "has": [
+        {
+          "type": "header",
+          "key": "user-agent",
+          "value": ".*(GPTBot|ClaudeBot|Claude\\-Web|anthropic\\-ai|CCBot|Bytespider|PerplexityBot|Meta\\-ExternalAgent|Meta\\-ExternalFetcher|FacebookBot|Amazonbot|cohere\\-ai|cohere\\-training\\-data\\-crawler|Diffbot|ImagesiftBot|Omgilibot|omgili|YouBot|Timpibot|AI2Bot|Ai2Bot\\-Dolma|Kangaroo\\ Bot|PanguBot|Scrapy|img2dataset|DeepSeekBot|Brightbot|QualifiedBot|TikTokSpider|VelenPublicWebCrawler|iaskspider|SemrushBot|AhrefsBot|MJ12bot|DotBot|PetalBot|BLEXBot|DataForSeoBot|SerpstatBot|MegaIndex|Barkrowler|Seekport|HTTrack|Wget|SiteSucker|WebCopier|Offline\\ Explorer|Teleport|WebZIP|python\\-requests|python\\-urllib|aiohttp|httpx|Go\\-http\\-client|node\\-fetch|axios|libwww\\-perl|curl\\/|HeadlessChrome|PhantomJS|Java\\/|okhttp|Apache\\-HttpClient).*"
+        }
+      ],
+      "destination": "/api/blocked",
+      "permanent": false
+    },
+    {
+      "source": "/((?!robots\\.txt$|api/blocked$).*)",
+      "missing": [
+        {
+          "type": "header",
+          "key": "user-agent"
+        }
+      ],
+      "destination": "/api/blocked",
+      "permanent": false
     }
   ]
 }

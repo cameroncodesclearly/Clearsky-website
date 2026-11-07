@@ -3,7 +3,7 @@
 // The project key is public by design (it ships in every page); override it
 // with PUBLIC_POSTHOG_KEY / PUBLIC_POSTHOG_HOST if the project ever changes.
 import posthog from 'posthog-js';
-import { onConsent, initConsent } from './consent';
+import { onConsent } from './consent';
 
 const key = import.meta.env.PUBLIC_POSTHOG_KEY || 'phc_nquJm5nW9vVagzR9NPfgcY786BbDQJStWkHsN3VD7CNy';
 const host = import.meta.env.PUBLIC_POSTHOG_HOST || 'https://us.i.posthog.com';
@@ -14,7 +14,7 @@ const isLocal = ['localhost', '127.0.0.1'].includes(location.hostname);
 // Starts only once consent.ts says it may (see that file for the rules per
 // region), and stops again if the visitor later opts out.
 let started = false;
-onConsent((allowed) => {
+onConsent(({ analytics: allowed }) => {
   if (!key || isLocal) return;
   if (allowed && !started) {
     started = true;
@@ -37,7 +37,6 @@ onConsent((allowed) => {
     posthog.reset();
   }
 });
-initConsent();
 
 /** Send a named event; safe to call even when analytics is off. */
 export function track(event: string, props?: Record<string, unknown>) {
