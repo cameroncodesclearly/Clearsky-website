@@ -1,5 +1,7 @@
 ---
 import ConsentBanner from '../components/ConsentBanner.astro';
+import PolaroidCarousel from '../components/PolaroidCarousel.astro';
+import { pageTag } from '../lib/polaroids';
 import GlassLoop from '../components/GlassLoop.astro';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
@@ -14,10 +16,12 @@ interface Props {
   image?: string;
   /** Keep this page out of search results. */
   noindex?: boolean;
+  /** Show the camera carousel for this page's tagged photos before the footer (default true). */
+  polaroids?: boolean;
   /** Film grain over the page; off for case studies. */
   grain?: boolean;
 }
-const { title, description = site.description, image = '/og-default.jpg', noindex = false, grain = true } = Astro.props;
+const { title, description = site.description, image = '/og-default.jpg', noindex = false, grain = true, polaroids = true } = Astro.props;
 const fullTitle = title ? `${title} | ${site.name}` : `${site.name} | Video and Social Content Studio`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
@@ -60,6 +64,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <main id="main">
       <slot />
     </main>
+    {polaroids && <PolaroidCarousel tag={pageTag(Astro.url.pathname)} />}
     <Footer />
     <ConsentBanner />
     <div class="fader" data-fader aria-hidden="true"></div>

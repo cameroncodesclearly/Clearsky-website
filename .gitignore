@@ -10,3 +10,7 @@ dist/
 # Generated from Notion at build time (scripts/notion-sync.mjs)
 src/content/notion/
 src/assets/notion/
+
+# Polaroids made from Notion photos at build time
+public/polaroids/notion/
+src/data/polaroids.notion.json

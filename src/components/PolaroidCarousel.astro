@@ -1,0 +1,27 @@
+---
+// The site's one way of showing photos: the hand-drawn camera prints them as
+// Polaroids that drift off on the wind (public/camera-wind/polaroid-wind.js,
+// the approved handoff build). Renders nothing when there are no photos.
+//   <PolaroidCarousel tag="/about" />          photos tagged with a page
+//   <PolaroidCarousel tag={['team', 'gear']} /> named carousels, mixed
+// BaseLayout adds one for the current page automatically (src/lib/polaroids.ts).
+import { polaroidsFor } from '../lib/polaroids';
+interface Props { tag: string | string[]; interval?: number; label?: string }
+const { tag, interval, label = 'Photos from Clear Sky Creations' } = Astro.props;
+const photos = polaroidsFor(tag).map(({ src, orientation }) => ({ src, orientation }));
+const alts = polaroidsFor(tag).map((p) => p.alt).filter(Boolean);
+---
+{photos.length > 0 && (
+  <section class="polaroids" aria-label={label}>
+    <polaroid-wind photos={JSON.stringify(photos)} interval={interval}></polaroid-wind>
+    {alts.length > 0 && <ul class="polaroids__alts">{alts.map((a) => <li>{a}</li>)}</ul>}
+    <script is:inline src="/camera-wind/polaroid-wind.js" defer></script>
+  </section>
+)}
+
+<style>
+  /* Above the film grain, like every photo and video on the site. */
+  .polaroids { position: relative; z-index: 950; margin-block: clamp(1rem, 3vw, 3rem); }
+  /* What's in the photos, for screen readers and search engines. */
+  .polaroids__alts { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; margin: 0; padding: 0; }
+</style>

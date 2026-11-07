@@ -241,3 +241,8 @@ p { max-width: 64ch; }
 /* The text column spaces out loose images; media inside frames and Notion
    blocks size themselves. */
 .prose .frame img, .prose .md-figure img, .prose .ba img { margin: 0; }
+
+/* Decorative glows (the title sun, clouds) may spill past the edges; never let
+   them make the page scroll sideways on phones. clip, not hidden, so sticky
+   sections and scroll timelines keep working. */
+html, body { overflow-x: clip; }

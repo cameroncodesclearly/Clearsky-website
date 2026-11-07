@@ -15,17 +15,21 @@
 
 import fs from 'node:fs/promises';
 import path from 'node:path';
+import { framePolaroid } from './polaroid-frame.mjs';
 
 const TOKEN = process.env.NOTION_TOKEN;
 const API = process.env.NOTION_API_BASE || 'https://api.notion.com/v1';
 const DATABASES = {
   caseStudies: process.env.NOTION_CASE_STUDIES_DB || '0a72a233a40b40e48544fb1ffa5ccc15',
   posts: process.env.NOTION_JOURNAL_DB || 'b59254addca44bb1b1dc623fd7585ace',
+  photos: process.env.NOTION_PHOTOS_DB || '52fe6397306e4cb29e667f2a10cd257c',
 };
 const ROOT = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
 const OUT = {
   caseStudies: path.join(ROOT, 'src/content/notion/case-studies'),
   posts: path.join(ROOT, 'src/content/notion/posts'),
+  polaroids: path.join(ROOT, 'public/polaroids/notion'),
+  polaroidData: path.join(ROOT, 'src/data/polaroids.notion.json'),
   assets: path.join(ROOT, 'src/assets/notion'),
   posters: path.join(ROOT, 'src/assets/video-posters'),
 };
@@ -414,6 +418,73 @@ async function build(kind, page) {
   return slug;
 }
 
+// ---------------------------------------------------------------------------
+// Photos: every published photo becomes a framed Polaroid, tagged with the
+// pages (or named carousels) it belongs to. See src/lib/polaroids.ts.
+
+/** Every page on the site, as the path tags used in the Photos database. */
+async function sitePaths() {
+  const paths = ['/', '/about', '/services', '/work', '/journal', '/contact'];
+  const dirs = {
+    '/services': ['src/content/services'],
+    '/work': ['src/content/case-studies', 'src/content/notion/case-studies'],
+    '/journal': ['src/content/posts', 'src/content/notion/posts'],
+  };
+  for (const [base, list] of Object.entries(dirs)) {
+    for (const dir of list) {
+      const files = await fs.readdir(path.join(ROOT, dir)).catch(() => []);
+      for (const f of files) if (f.endsWith('.mdoc')) paths.push(`${base}/${f.replace(/\.mdoc$/, '')}`);
+    }
+  }
+  return [...new Set(paths)];
+}
+
+const TAG_COLOR = { '/services': 'blue', '/work': 'purple', '/journal': 'orange', '/about': 'green', '/': 'yellow' };
+
+// Add any new page to the Photos database's "Pages" options, so a new case
+// study, service or post can be picked as soon as it exists. Existing options
+// (including custom carousel names) are kept as they are.
+async function syncPageTags() {
+  const db = await notion('GET', `/databases/${DATABASES.photos}`);
+  const existing = db.properties?.Pages?.multi_select?.options || [];
+  const have = new Set(existing.map((o) => o.name));
+  const missing = (await sitePaths()).filter((p) => !have.has(p));
+  if (!missing.length) return;
+  const color = (p) => TAG_COLOR['/' + p.split('/')[1]] || 'gray';
+  await notion('PATCH', `/databases/${DATABASES.photos}`, {
+    properties: { Pages: { multi_select: { options: [...existing, ...missing.map((name) => ({ name, color: color(name) }))] } } },
+  });
+  console.log(`[notion] Added page tags: ${missing.join(', ')}`);
+}
+
+async function syncPhotos() {
+  await fs.rm(OUT.polaroids, { recursive: true, force: true });
+  await fs.mkdir(OUT.polaroids, { recursive: true });
+  const rows = await queryPublished(DATABASES.photos);
+  const out = [];
+  for (const row of rows) {
+    const name = text(row, 'Name') || 'Photo';
+    const url = files(row, 'Photo')[0];
+    const pages = multi(row, 'Pages');
+    if (!url || !pages.length) {
+      console.warn(`[notion] Photo "${name}" skipped: needs a photo and at least one page.`);
+      continue;
+    }
+    try {
+      const res = await fetch(url);
+      if (!res.ok) throw new Error(`download failed (${res.status})`);
+      const id = row.id.replace(/-/g, '');
+      const want = text(row, 'Orientation').toLowerCase();
+      const orientation = await framePolaroid(Buffer.from(await res.arrayBuffer()), path.join(OUT.polaroids, `${id}.jpg`), want);
+      out.push({ src: `/polaroids/notion/${id}.jpg`, alt: name, orientation, pages, order: num(row, 'Order') ?? 100 });
+    } catch (e) {
+      console.warn(`[notion] Photo "${name}" skipped: ${e.message}`);
+    }
+  }
+  await fs.writeFile(OUT.polaroidData, JSON.stringify(out, null, 2) + '\n');
+  console.log(`[notion] Photos: ${out.length} Polaroid${out.length === 1 ? '' : 's'}`);
+}
+
 export async function main() {
   if (!TOKEN) {
     console.log('[notion] NOTION_TOKEN not set; skipping the Notion sync.');
@@ -437,6 +508,9 @@ export async function main() {
       }
     }
   }
+  // After the pages above, so brand-new pages get their tag on the same build.
+  await syncPageTags().catch((e) => console.warn(`[notion] Couldn't update page tags: ${e.message}`));
+  await syncPhotos().catch((e) => console.warn(`[notion] Photos skipped: ${e.message}`));
 }
 
 if (import.meta.url === `file://${process.argv[1]}`) {
