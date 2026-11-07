@@ -69,12 +69,12 @@ async function notion(method, url, body) {
   }
 }
 
-async function queryPublished(db) {
+async function queryPublished(db, filter = { property: 'Status', status: { equals: 'Published' } }) {
   const rows = [];
   let cursor;
   do {
     const data = await notion('POST', `/databases/${db}/query`, {
-      filter: { property: 'Status', status: { equals: 'Published' } },
+      ...(filter ? { filter } : {}),
       start_cursor: cursor,
       page_size: 100,
     });
@@ -459,21 +459,40 @@ async function syncPageTags() {
   console.log(`[notion] Added page tags: ${missing.join(', ')}`);
 }
 
+// Keep one Photos row per page, named after its address ("/about",
+// "/work/good-stuff-restaurants"), so every page is ready for photos. Rows are
+// only ever added, never removed or renamed.
+async function ensurePageRows() {
+  const rows = await queryPublished(DATABASES.photos, null);
+  const named = new Set(rows.map((r) => text(r, 'Name')));
+  const missing = (await sitePaths()).filter((p) => !named.has(p));
+  for (const p of missing) {
+    await notion('POST', '/pages', {
+      parent: { database_id: DATABASES.photos },
+      properties: { Name: { title: [{ text: { content: p } }] }, Pages: { multi_select: [{ name: p }] } },
+    });
+  }
+  if (missing.length) console.log(`[notion] Added photo rows: ${missing.join(', ')}`);
+}
+
 async function syncPhotos() {
   await fs.rm(OUT.polaroids, { recursive: true, force: true });
   await fs.mkdir(OUT.polaroids, { recursive: true });
-  const rows = await queryPublished(DATABASES.photos);
+  // Every row counts (no publish step): a row with photos shows them, an empty
+  // row shows nothing, and "Hide" takes a row's photos off the site.
+  const rows = (await queryPublished(DATABASES.photos, null)).filter((r) => !check(r, 'Hide'));
   const out = [];
   for (const row of rows) {
     // One row can hold any number of photos: every file in the Photo field,
     // plus any images dropped into the row's page. They all share the row's
     // pages, name and order, and print in the order they appear.
-    const name = text(row, 'Name') || 'Photo';
+    const name = text(row, 'Description') || 'Clear Sky Creations behind the scenes';
     const pages = multi(row, 'Pages');
     const body = await children(row.id).catch(() => []);
     const urls = [...files(row, 'Photo'), ...body.filter((b) => b.type === 'image').map((b) => fileUrl(b.image))].filter(Boolean);
-    if (!urls.length || !pages.length) {
-      console.warn(`[notion] Photo row "${name}" skipped: needs at least one photo and one page.`);
+    if (!urls.length) continue; // no photos yet: that page's carousel stays hidden
+    if (!pages.length) {
+      console.warn(`[notion] Photo row "${text(row, 'Name')}" has photos but no page; skipped.`);
       continue;
     }
     const id = row.id.replace(/-/g, '');
@@ -520,6 +539,7 @@ export async function main() {
   }
   // After the pages above, so brand-new pages get their tag on the same build.
   await syncPageTags().catch((e) => console.warn(`[notion] Couldn't update page tags: ${e.message}`));
+  await ensurePageRows().catch((e) => console.warn(`[notion] Couldn't add photo rows: ${e.message}`));
   await syncPhotos().catch((e) => console.warn(`[notion] Photos skipped: ${e.message}`));
 }
 
